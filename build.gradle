@@ -1,0 +1,29 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        maven { url 'http://artifactory-ci.tomtomgroup.com/artifactory/cs-vgtt-maven-local' }
+        maven { url 'http://artifactory-ci.tomtomgroup.com/artifactory/navapp-maven-virtual/' }
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+    }
+}
+
+// Load the versions file
+project.ext.versions = new Properties()
+project.versions.load(new FileInputStream(project.file("versions.properties")))
+
+allprojects {
+    repositories {
+        maven { url 'http://artifactory-ci.tomtomgroup.com/artifactory/cs-vgtt-maven-local' }
+        maven { url 'http://artifactory-ci.tomtomgroup.com/artifactory/navapp-maven-virtual' }
+
+        // Local repository for the Google Analytics lib
+        flatDir {
+            dirs "$rootProject.projectDir/Imports/Android/GoogleAnalytics"
+        }
+    }
+}
+

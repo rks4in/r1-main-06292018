@@ -1,0 +1,95 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+
+    defaultConfig {
+        minSdkVersion 18
+        targetSdkVersion 23
+        multiDexEnabled true
+        versionCode 1
+        versionName "1.0"
+        
+        ndk {
+            abiFilters "x86_64"
+        }
+    }
+
+    signingConfigs {
+        def signaturesFolder = "$rootDir/Signatures"
+        release {
+            storeFile = file("$signaturesFolder/r1-release-key.keystore")
+            storePassword "cs-fca-r123"
+            keyAlias "r1-keystore"
+            keyPassword "cs-fca-r123"
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    /* Michi */
+    implementation "com.tomtom.navui.michi:TomTomNavKitMapSdk:${versions.michi}"
+    implementation "com.tomtom.navui.michi:TomTomNavKitMapSignatureStyle:${versions.michi}"
+
+    implementation "com.tomtom.navui.navkit:IconAssets2Aar:${versions.navkit}"
+
+    /* Base */
+    implementation "com.tomtom.navui:Kits_CoreKit:${versions.navui}"
+    implementation "com.tomtom.navui:Kits_SignatureAppKit:${versions.navui}"
+    implementation "com.tomtom.navui:Kits_SignaturePromptKit:${versions.navui}"
+    implementation("com.tomtom.navui:Kits_SignatureTaskKit:${versions.navui}") {
+        /* 17.6 version only contains armv7, so exclude those */
+        exclude group: 'com.tomtom.navui.navkit', module: 'IconAssets2Aar'
+    }
+    
+    implementation("com.tomtom.navui:Kits_SignatureRendererKit3:${versions.navui}") {
+        /* 17.6 version only contains armv7, so exclude those */
+        exclude group: 'com.tomtom.navui.michi', module: 'TomTomNavKitMapSdk'
+        exclude group: 'com.tomtom.navui.michi', module: 'TomTomNavKitMapSignatureStyle'
+    }
+    
+    implementation "com.tomtom.navui:Kits_SignatureViewKit:${versions.navui}"
+    implementation "com.tomtom.navui:Themes_SignatureTheme:${versions.navui}"
+    implementation "com.tomtom.navui:Themes_SignatureCarProductTheme:${versions.navui}"
+
+    /* MapManagement */
+    implementation "com.tomtom.navui:Kits_MapCoreKit:${versions.navui}"
+    implementation "com.tomtom.navui:Kits_SignatureMapAppKit:${versions.navui}"
+    implementation "com.tomtom.navui:Kits_SignatureMapViewKit:${versions.navui}"
+
+    /* FocusUi */
+    implementation "com.tomtom.navui:Kits_SignatureFocusUiKit:${versions.navui}"
+    implementation "com.tomtom.navui:Themes_SignatureFocusUiTheme:${versions.navui}"
+
+    /* Audio */
+    implementation "com.tomtom.navui:Ports_StockAudio:${versions.navui}"
+    implementation "com.tomtom.navui:Ports_StockPlatformTextToSpeech:${versions.navui}"
+
+    /* SystemPort */
+    implementation "com.tomtom.navui:Ports_StockSystemPort:${versions.navui}"
+    implementation "com.tomtom.navui:Ports_StockControls:${versions.navui}"
+
+    /* ApiKit */
+    implementation "com.tomtom.navui:Kits_SignatureApiKit:${versions.navui}"
+
+    implementation "com.tomtom.navui:Kits_UtilKit:${versions.navui}"
+
+    implementation "com.android.support:multidex:${versions.multidex}"
+    implementation "com.tomtom.navui.navkit:NavKitServiceAar:${versions.navkit}"
+    implementation "com.tomtom.navui.navkit:PositioningServiceAar:${versions.navkit}"
+}
