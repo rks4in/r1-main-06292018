@@ -42,54 +42,23 @@ android {
 }
 
 dependencies {
-    /* Michi */
-    implementation "com.tomtom.navui.michi:TomTomNavKitMapSdk:${versions.michi}"
-    implementation "com.tomtom.navui.michi:TomTomNavKitMapSignatureStyle:${versions.michi}"
-
-    implementation "com.tomtom.navui.navkit:IconAssets2Aar:${versions.navkit}"
-
     /* Base */
-    implementation "com.tomtom.navui:Kits_CoreKit:${versions.navui}"
-    implementation "com.tomtom.navui:Kits_SignatureAppKit:${versions.navui}"
-    implementation "com.tomtom.navui:Kits_SignaturePromptKit:${versions.navui}"
-    implementation("com.tomtom.navui:Kits_SignatureTaskKit:${versions.navui}") {
-        /* 17.6 version only contains armv7, so exclude those */
-        exclude group: 'com.tomtom.navui.navkit', module: 'IconAssets2Aar'
-    }
-    
-    implementation("com.tomtom.navui:Kits_SignatureRendererKit3:${versions.navui}") {
-        /* 17.6 version only contains armv7, so exclude those */
-        exclude group: 'com.tomtom.navui.michi', module: 'TomTomNavKitMapSdk'
-        exclude group: 'com.tomtom.navui.michi', module: 'TomTomNavKitMapSignatureStyle'
-    }
-    
-    implementation "com.tomtom.navui:Kits_SignatureViewKit:${versions.navui}"
-    implementation "com.tomtom.navui:Themes_SignatureTheme:${versions.navui}"
-    implementation "com.tomtom.navui:Themes_SignatureCarProductTheme:${versions.navui}"
-
+    implementation "com.tomtom.navui:Modules_NavAppBaseModule:${versions.navui}"
     /* MapManagement */
+    implementation "com.tomtom.navui:Modules_MapManagementModule:${versions.navui}"
     implementation "com.tomtom.navui:Kits_MapCoreKit:${versions.navui}"
-    implementation "com.tomtom.navui:Kits_SignatureMapAppKit:${versions.navui}"
-    implementation "com.tomtom.navui:Kits_SignatureMapViewKit:${versions.navui}"
-
     /* FocusUi */
-    implementation "com.tomtom.navui:Kits_SignatureFocusUiKit:${versions.navui}"
-    implementation "com.tomtom.navui:Themes_SignatureFocusUiTheme:${versions.navui}"
-
+    implementation "com.tomtom.navui:Modules_FocusUiModule:${versions.navui}"
     /* Audio */
-    implementation "com.tomtom.navui:Ports_StockAudio:${versions.navui}"
-    implementation "com.tomtom.navui:Ports_StockPlatformTextToSpeech:${versions.navui}"
-
+    implementation "com.tomtom.navui:Modules_PromptModule:${versions.navui}"
     /* SystemPort */
     implementation "com.tomtom.navui:Ports_StockSystemPort:${versions.navui}"
-    implementation "com.tomtom.navui:Ports_StockControls:${versions.navui}"
-
     /* ApiKit */
     implementation "com.tomtom.navui:Kits_SignatureApiKit:${versions.navui}"
-
     implementation "com.tomtom.navui:Kits_UtilKit:${versions.navui}"
-
+    /* Tools */
     implementation "com.android.support:multidex:${versions.multidex}"
+    /* NavKit */
     implementation "com.tomtom.navui.navkit:NavKitServiceAar:${versions.navkit}"
     implementation "com.tomtom.navui.navkit:PositioningServiceAar:${versions.navkit}"
 }

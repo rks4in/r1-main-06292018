@@ -99,7 +99,7 @@ public class R1NavApp extends StockApplication {
         final PromptContext promptKit = new SigPromptContext(applicationContext, audioPort, systemPort);
 
         // configure which app kit
-        final SigAppContext appKit = new SigAppContext(viewKit, taskKit, promptKit, systemPort, null, null, null, this);
+        final SigAppContext appKit = new SigAppContext.Builder(viewKit, taskKit, promptKit, systemPort,this).build();
         final SigMapAppContext mapAppKit = new SigMapAppContext();
         appKit.addExt(ExtAppScreenContext.class, mapAppKit);
 
@@ -157,7 +157,7 @@ public class R1NavApp extends StockApplication {
         final boolean focusUiKitEnabled = settings.getBoolean(SystemSettingsConstants.NAVUI_FEATURES_FOCUS_UI_ENABLED, false);
         if (focusUiKitEnabled) {
             final FocusUiContext focusUi = SigFocusUiContext.create(getApplicationContext(),
-                    getResources().getString(R.string.keycode_mapping_configuration),
+                    getResources().getString(com.tomtom.navui.sigfocusuitheme.R.string.keycode_mapping_configuration),
                     null);
             appContext.addKit(focusUi, FocusUiContext.NAME);
         }
