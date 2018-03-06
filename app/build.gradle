@@ -61,4 +61,6 @@ dependencies {
     /* NavKit */
     implementation "com.tomtom.navui.navkit:NavKitServiceAar:${versions.navkit}"
     implementation "com.tomtom.navui.navkit:PositioningServiceAar:${versions.navkit}"
+    /* Services connector */
+    implementation "com.tomtom.navui.navkit:ServicesConnectorAar:${versions.navkit}"
 }
