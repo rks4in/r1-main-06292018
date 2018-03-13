@@ -1,3 +1,5 @@
+apply plugin: 'maven-publish'
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
@@ -19,3 +21,40 @@ allprojects {
     }
 }
 
+publishing {
+    repositories {
+        maven {
+            credentials {
+                username "$USERNAME"
+                password "$PASSWORD"
+            }
+            if (rootProject.version.endsWith('-SNAPSHOT')) {
+                url "${ARTIFACTORY_BASE_URL}/cs-fca-r1-snapshots"
+            } else {
+                url "${ARTIFACTORY_BASE_URL}/cs-fca-r1-releases"
+            }
+        }
+    }
+    publications {
+        maven(MavenPublication) {
+            artifactId 'R1-NavApp-Debug'
+            groupId 'com.tomtom.navapp'
+            version "$rootProject.version"
+            artifact(file("$rootDir/app/build/outputs/apk/debug/app-debug.apk")) {
+                classifier 'navapp-debug'
+                extension 'apk'
+            }   
+        }
+    }
+    publications {
+        maven(MavenPublication) {
+            artifactId 'R1-NavApp-Release'
+            groupId 'com.tomtom.navapp'
+            version "$rootProject.version"
+            artifact(file("$rootDir/app/build/outputs/apk/release/app-release.apk")) {
+                classifier 'navapp-release'
+                extension 'apk'
+            }  
+        }
+    }
+}

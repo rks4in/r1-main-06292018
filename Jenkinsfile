@@ -13,7 +13,7 @@
 
 import com.tomtom.cs.deliverypipeline.stages.commitstage.bitbucket.CommitStage
 
-DOCKER_IMAGE_PATH = 'cs-fca-r1-docker.navkit-pipeline.tt3.com/tomtom/android-x86_64-toolchain:0.0.5'
+DOCKER_IMAGE_PATH = 'cs-fca-r1-docker.navkit-pipeline.tt3.com/tomtom/android-x86_64-toolchain:0.0.6'
 
 pipeline {
   agent {
@@ -33,6 +33,7 @@ pipeline {
           commitStage.setBuildStep({ instance ->
             buildComponent("clean")
             buildComponent("assemble")
+            //buildComponent("publish")
           })
           commitStage.run()
         }
