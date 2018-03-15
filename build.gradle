@@ -29,30 +29,30 @@ publishing {
                 password "$PASSWORD"
             }
             if (rootProject.version.endsWith('-SNAPSHOT')) {
-                url "${ARTIFACTORY_BASE_URL}/cs-fca-r1-snapshots"
+                url "${ARTIFACTORY_BASE_URL}/cs-fca-r1-snapshot"
             } else {
-                url "${ARTIFACTORY_BASE_URL}/cs-fca-r1-releases"
+                url "${ARTIFACTORY_BASE_URL}/cs-fca-r1-release"
             }
         }
     }
     publications {
         maven(MavenPublication) {
-            artifactId 'R1-NavApp-Debug'
+            artifactId 'R1-NavApp'
             groupId 'com.tomtom.navapp'
             version "$rootProject.version"
             artifact(file("$rootDir/app/build/outputs/apk/debug/app-debug.apk")) {
-                classifier 'navapp-debug'
+                classifier 'debug'
                 extension 'apk'
             }   
         }
     }
     publications {
         maven(MavenPublication) {
-            artifactId 'R1-NavApp-Release'
+            artifactId 'R1-NavApp'
             groupId 'com.tomtom.navapp'
             version "$rootProject.version"
             artifact(file("$rootDir/app/build/outputs/apk/release/app-release.apk")) {
-                classifier 'navapp-release'
+                classifier 'release'
                 extension 'apk'
             }  
         }
