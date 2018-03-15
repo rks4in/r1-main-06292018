@@ -33,7 +33,7 @@ pipeline {
           commitStage.setBuildStep({ instance ->
             buildComponent("clean")
             buildComponent("assemble")
-            //buildComponent("publish")
+            buildComponent("publish")
           })
           commitStage.run()
         }
