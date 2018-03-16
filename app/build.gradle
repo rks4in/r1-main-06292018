@@ -63,4 +63,9 @@ dependencies {
     implementation "com.tomtom.navui.navkit:PositioningServiceAar:${versions.navkit}"
     /* Services connector */
     implementation "com.tomtom.navui.navkit:ServicesConnectorAar:${versions.navkit}"
+    /* Local projects*/
+    api project(':Kits:R1CoreKit')
+    api project(':Kits:R1AppKit')
+    api project(':Libs:LocationActionHandler')
+    api project(':Ports:R1SystemPort')
 }

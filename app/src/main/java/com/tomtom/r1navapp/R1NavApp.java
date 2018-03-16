@@ -16,7 +16,7 @@ import com.tomtom.navui.promptkit.PromptContext;
 import com.tomtom.navui.promptport.AudioEngineContext;
 import com.tomtom.navui.promptport.audioplayer.AudioPlayerEngineFactory;
 import com.tomtom.navui.rendererkit.RendererContext;
-import com.tomtom.navui.sigappkit.SigAppContext;
+import com.tomtom.navui.r1appkit.R1AppContext;
 import com.tomtom.navui.sigappkit.util.time.TimeFormattingUtilWrapperImpl;
 import com.tomtom.navui.sigfocusuikit.SigFocusUiContext;
 import com.tomtom.navui.sigmapappkit.SigMapAppContext;
@@ -34,6 +34,7 @@ import com.tomtom.navui.stocksystemport.StockDefaultErrorReporter;
 import com.tomtom.navui.stocksystemport.StockSystemContext;
 import com.tomtom.navui.systemport.ErrorReporter;
 import com.tomtom.navui.systemport.SystemContext;
+import com.tomtom.navui.r1systemport.R1SystemContext;
 import com.tomtom.navui.systemport.SystemMapConfigurationManager;
 import com.tomtom.navui.systemport.SystemMapConfigurationManager.SystemMapColorScheme;
 import com.tomtom.navui.systemport.SystemMapConfigurationManager.SystemMapColorScheme.ColorSchemeType;
@@ -83,7 +84,7 @@ public class R1NavApp extends StockApplication {
         // configure which system port
         final Intent intent = new Intent(this, R1MainActivity.class);
         final PendingIntent pendingLaunchIntent = PendingIntent.getActivity(this, 0, intent, 0);
-        final StockSystemContext systemPort = new StockSystemContext(applicationContext,
+        final R1SystemContext systemPort = new R1SystemContext(applicationContext,
                 R1NavKitLifecycleManagementService.class, pendingLaunchIntent, controls);
         setupMapColorSchemes(systemPort);
 
@@ -99,7 +100,7 @@ public class R1NavApp extends StockApplication {
         final PromptContext promptKit = new SigPromptContext(applicationContext, audioPort, systemPort);
 
         // configure which app kit
-        final SigAppContext appKit = new SigAppContext.Builder(viewKit, taskKit, promptKit, systemPort,this).build();
+        final R1AppContext appKit = new R1AppContext.Builder(viewKit, taskKit, promptKit, systemPort, this).build();
         final SigMapAppContext mapAppKit = new SigMapAppContext();
         appKit.addExt(ExtAppScreenContext.class, mapAppKit);
 
@@ -219,7 +220,7 @@ public class R1NavApp extends StockApplication {
                 createNewColorScheme(themeDetails, twoDDay, threeDDay, twoDNight, threeDNight);
     }
 
-    private void setupThemes(final SigAppContext appKit) {
+    private void setupThemes(final R1AppContext appKit) {
         // LinkedHashMap so that themes can be retrieved in a fixed order which is used to display
         // a list of themes in the UI
         final LinkedHashMap<String, ThemeDetails> supportedThemes = new LinkedHashMap<>();
