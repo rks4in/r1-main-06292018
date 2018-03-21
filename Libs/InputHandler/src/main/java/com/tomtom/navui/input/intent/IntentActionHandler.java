@@ -18,7 +18,6 @@ import com.tomtom.navui.input.parser.ParseException;
 import com.tomtom.navui.input.parser.ParseFailureException;
 import com.tomtom.navui.input.parser.data.ParseResult;
 import com.tomtom.navui.input.parser.intent.ContactsLocationParser;
-import com.tomtom.navui.input.parser.intent.LauncherShortcutParser;
 import com.tomtom.navui.input.parser.intent.GeoLocationParser;
 import com.tomtom.navui.input.parser.intent.GoogleMapLocationParser;
 import com.tomtom.navui.input.parser.intent.NavigationParser;
@@ -52,7 +51,6 @@ public class IntentActionHandler implements ActionHandler<Intent>, ContextStateL
         addInputParser(new GoogleMapLocationParser(), null);
         addInputParser(new NavigationParser(), null);
         addInputParser(new ContactsLocationParser(appKit), null);
-        addInputParser(new LauncherShortcutParser(), null);
     }
 
     public void addInputParser(final InputParser<Intent> inputParser, final InputDataErrorHandler errorHandler) {
