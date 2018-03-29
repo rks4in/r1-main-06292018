@@ -13,6 +13,7 @@ import com.tomtom.navui.input.parser.GeoUnitHelper;
 import com.tomtom.navui.input.parser.ParseException;
 import com.tomtom.navui.input.parser.data.location.TextLocationData;
 import com.tomtom.navui.systemport.SystemContext;
+import com.tomtom.navui.systemport.systemcomponents.ScreenSystemComponent;
 import com.tomtom.navui.taskkit.TaskContext;
 
 import org.junit.Before;
@@ -23,8 +24,8 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.argThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -36,12 +37,15 @@ public class InputDataErrorHandlerTests {
 
     private AppContext mAppContextMock;
     private SystemContext mSystemContextMock;
+    private ScreenSystemComponent mScreenSystemComponentMock;
 
     @Before
     public void setUp() throws Exception {
         mAppContextMock = mock(AppContext.class);
         mSystemContextMock = mock(SystemContext.class);
+        mScreenSystemComponentMock = mock(ScreenSystemComponent.class);
 
+        when(mSystemContextMock.getComponent(ScreenSystemComponent.class)).thenReturn(mScreenSystemComponentMock);
         when(mAppContextMock.getSystemPort()).thenReturn(mSystemContextMock);
     }
 
@@ -56,7 +60,7 @@ public class InputDataErrorHandlerTests {
         dialogHandler.handle(new IllegalArgumentException());
 
         //THEN we need show critical dialog
-        verify(mSystemContextMock).startScreen(equalsIntent(dataNotSupportedDialog));
+        verify(mScreenSystemComponentMock).startScreen(equalsIntent(dataNotSupportedDialog));
     }
 
     @Test
@@ -70,7 +74,7 @@ public class InputDataErrorHandlerTests {
         handler.handle(new ParseException("test", "query"));
 
         //THEN we need show critical dialog
-        verify(mSystemContextMock).startScreen(equalsIntent(externalLocationDialog));
+        verify(mScreenSystemComponentMock).startScreen(equalsIntent(externalLocationDialog));
     }
 
     @Test
@@ -298,6 +302,7 @@ public class InputDataErrorHandlerTests {
         if (mockAction == null) {
             mockAction = mock(com.tomtom.navui.appkit.action.Action.class);
         }
+        when(mockContext.getSystemPort()).thenReturn(mSystemContextMock);
         final InputDataErrorDialogHandlerEx inputErrorHandler = new InputDataErrorDialogHandlerEx(mockContext);
         when(mockContext.getTaskKit()).thenReturn(mockTaskKit);
         when(mockTaskKit.isReady()).thenReturn(true);

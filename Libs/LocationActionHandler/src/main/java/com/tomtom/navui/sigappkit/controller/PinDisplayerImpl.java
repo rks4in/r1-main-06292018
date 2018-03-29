@@ -9,6 +9,8 @@ import com.tomtom.navui.appkit.LocationPreviewScreen;
 import com.tomtom.navui.appkit.action.PinMapAction;
 import com.tomtom.navui.sigappkit.SigLocationPreviewScreen;
 import com.tomtom.navui.sigappkit.maprenderer.MapElement;
+import com.tomtom.navui.systemport.SystemContext;
+import com.tomtom.navui.systemport.systemcomponents.ScreenSystemComponent;
 import com.tomtom.navui.taskkit.Location2;
 import com.tomtom.navui.util.Log;
 
@@ -16,10 +18,14 @@ public class PinDisplayerImpl implements ShowCoordinateController {
 
     protected static final String TAG = "PinDisplayerImpl";
     private final AppContext mAppContext;
+    private final SystemContext mSystemPort;
+    private final ScreenSystemComponent mScreenSystemComponent;
     private Location2 mLocation2;
 
     public PinDisplayerImpl(final AppContext appContext) {
         this.mAppContext = appContext;
+        this.mSystemPort = appContext.getSystemPort();
+        this.mScreenSystemComponent = mSystemPort.getComponent(ScreenSystemComponent.class);
     }
 
     public AppContext getAppContext() {
@@ -52,6 +58,6 @@ public class PinDisplayerImpl implements ShowCoordinateController {
         intent.putExtra(AppScreen.LOCATION_LAT_LON, location.getCoordinate());
         intent.putExtra(PinMapAction.EXTERNAL_LOCATTION_KEY, true);
         // start the screen
-        getAppContext().getSystemPort().startScreen(intent);
+        mScreenSystemComponent.startScreen(intent);
     }
 }

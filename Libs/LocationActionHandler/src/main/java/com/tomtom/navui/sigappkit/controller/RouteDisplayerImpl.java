@@ -13,6 +13,7 @@ import com.tomtom.navui.appkit.RouteAlreadyPlannedDialog;
 import com.tomtom.navui.appkit.action.Action;
 import com.tomtom.navui.systemport.SystemContext;
 import com.tomtom.navui.systemport.SystemGpsObservable;
+import com.tomtom.navui.systemport.systemcomponents.ScreenSystemComponent;
 import com.tomtom.navui.taskkit.Location2;
 import com.tomtom.navui.taskkit.route.Route;
 import com.tomtom.navui.taskkit.route.RouteGuidanceTask;
@@ -22,13 +23,15 @@ public class RouteDisplayerImpl implements ShowCoordinateController {
     private static final String ACTION_ADD_WAY_POINT = "action://AddWayPoint";
     
     private final AppContext mAppContext;
-    private SystemContext mSystemPort;
+    private final SystemContext mSystemPort;
+    private final ScreenSystemComponent mScreenSystemComponent;
     private RouteGuidanceTask mRouteGuidance;
     private RoutePlanningTask mRoutePlanning;
 
     public RouteDisplayerImpl(final AppContext appContext) {
         this.mAppContext = appContext;
-        mSystemPort = appContext.getSystemPort();
+        this.mSystemPort = appContext.getSystemPort();
+        this.mScreenSystemComponent = mSystemPort.getComponent(ScreenSystemComponent.class);
     }
 
     public AppContext getAppContext() {
@@ -61,7 +64,7 @@ public class RouteDisplayerImpl implements ShowCoordinateController {
         //make sure we are showing map 
         final Intent intent = new Intent(HomeScreen.class.getSimpleName());
         intent.addFlags(AppScreen.FLAG_SCREEN_CLEAR_HISTORY);
-        mSystemPort.startScreen(intent);
+        mScreenSystemComponent.startScreen(intent);
         
         final Route activeRoute = mRouteGuidance.getActiveRoute();
         if (activeRoute != null) {
@@ -88,7 +91,7 @@ public class RouteDisplayerImpl implements ShowCoordinateController {
         
         //location2 is already copied - dialog will handle releasing, dont release here
         noGpsPlanRouteIntent.putExtra(NoGpsPlanRouteDialog.ARGUMENT_LOCATION, location2.persist());
-        getAppContext().getSystemPort().startScreen(noGpsPlanRouteIntent);
+        mScreenSystemComponent.startScreen(noGpsPlanRouteIntent);
       
     }
 
@@ -100,6 +103,6 @@ public class RouteDisplayerImpl implements ShowCoordinateController {
         //location2 is already copied - dialog will handle releasing, dont release here
         routeAlreadyPlannedIntent.putExtra(RouteAlreadyPlannedDialog.ARGUMENT_LOCATION, location2.persist());
         
-        getAppContext().getSystemPort().startScreen(routeAlreadyPlannedIntent);
+        mScreenSystemComponent.startScreen(routeAlreadyPlannedIntent);
     }
 }

@@ -5,6 +5,7 @@ import android.net.Uri;
 import com.tomtom.navui.appkit.AppContext;
 import com.tomtom.navui.appkit.action.Action;
 import com.tomtom.navui.systemport.SystemContext;
+import com.tomtom.navui.systemport.systemcomponents.ScreenSystemComponent;
 import com.tomtom.navui.systemport.SystemGpsObservable;
 import com.tomtom.navui.systemport.SystemGpsObservable.LocationServiceState;
 import com.tomtom.navui.systemport.SystemSettings;
@@ -174,6 +175,7 @@ public class RouteDisplayerImplActionTest {
         AppContext mockAppContext = mock(AppContext.class);
         TaskContext mockTaskKit = mock(TaskContext.class);
         SystemContext mockSysPort = mock(SystemContext.class);
+        when(mockSysPort.getComponent(ScreenSystemComponent.class)).thenReturn(mock(ScreenSystemComponent.class));
         RouteGuidanceTask mockRoutGuidnace = mock(RouteGuidanceTask.class);
         RoutePlanningTask mockPlanning = mock(RoutePlanningTask.class);
         when(mockAppContext.getTaskKit()).thenReturn(mockTaskKit);

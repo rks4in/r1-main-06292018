@@ -132,13 +132,6 @@ public class R1DialogFragment extends Fragment implements SystemDialogFragment, 
         attachContext(context);
     }
 
-    @Override
-    public void onAttach(final Activity activity) {
-        if (Log.ENTRY) Log.entry(TAG, "onAttach");
-        super.onAttach(activity);
-        attachContext(activity);
-    }
-
     private void attachContext(final Context context) {
         if (mSystemApplication == null) {
             mSystemApplication = ((SystemApplication) context.getApplicationContext());

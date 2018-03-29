@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import com.tomtom.navui.appkit.AppContext;
 import com.tomtom.navui.systemport.SystemContext;
+import com.tomtom.navui.systemport.systemcomponents.ScreenSystemComponent;
 import com.tomtom.navui.taskkit.Location2;
 
 import org.junit.Test;
@@ -25,12 +26,13 @@ public class PinDisplayImplTests {
         //GIVEN implementation of displayer
         AppContext mckAppContext = mock(AppContext.class);
         SystemContext mckSysContext = mock(SystemContext.class);
+        when(mckSysContext.getComponent(ScreenSystemComponent.class)).thenReturn(mock(ScreenSystemComponent.class));
         when(mckAppContext.getSystemPort()).thenReturn(mckSysContext);
         PinDisplayerImpl tested = new PinDisplayerImpl(mckAppContext);
         //WHEN we try display location  
         tested.displayLocation(mock(Location2.class));
         //THEN start screen should be called
-        verify(mckAppContext.getSystemPort()).startScreen(any(Intent.class));
+        verify(mckAppContext.getSystemPort().getComponent(ScreenSystemComponent.class)).startScreen(any(Intent.class));
     }
     
 }

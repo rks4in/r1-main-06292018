@@ -9,6 +9,7 @@ import com.tomtom.navui.appkit.ExternalDataNotSupportedDialog;
 import com.tomtom.navui.appkit.ExternalLocationNotFoundDialog;
 import com.tomtom.navui.input.parser.ParseException;
 import com.tomtom.navui.systemport.SystemContext;
+import com.tomtom.navui.systemport.systemcomponents.ScreenSystemComponent;
 import com.tomtom.navui.util.Log;
 
 /**
@@ -18,10 +19,11 @@ import com.tomtom.navui.util.Log;
 public class InputDataErrorDialogHandler implements InputDataErrorHandler {
 
     private static final String TAG = "InputDataErrorHandler";
-    private final SystemContext mSystemPort;
+    private final ScreenSystemComponent mScreenSystemComponent;
 
     public InputDataErrorDialogHandler(final AppContext appContext) {
-        this.mSystemPort = appContext.getSystemPort();
+        final SystemContext systemPort = appContext.getSystemPort();
+        this.mScreenSystemComponent = systemPort.getComponent(ScreenSystemComponent.class);
     }
 
     @Override
@@ -39,14 +41,14 @@ public class InputDataErrorDialogHandler implements InputDataErrorHandler {
     void showCriticalErrorDialog() {
         final Intent dataNotSupportedDialog = new Intent(ExternalDataNotSupportedDialog.class.getSimpleName());
         dataNotSupportedDialog.addCategory(AppDialog.DIALOG_CATEGORY);
-        mSystemPort.startScreen(dataNotSupportedDialog);
+        mScreenSystemComponent.startScreen(dataNotSupportedDialog);
     }
 
     void showUnableToFindDialog(final String query) {
         final Intent externalLocationDialog = new Intent(ExternalLocationNotFoundDialog.class.getSimpleName());
         externalLocationDialog.addCategory(AppDialog.DIALOG_CATEGORY);
         externalLocationDialog.putExtra(ExternalLocationNotFoundDialog.EXTRA_QUERY, query);
-        mSystemPort.startScreen(externalLocationDialog);
+        mScreenSystemComponent.startScreen(externalLocationDialog);
     }
 
 }

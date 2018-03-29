@@ -19,6 +19,9 @@ allprojects {
     repositories {
         maven { url 'http://artifactory-ci.tomtomgroup.com/artifactory/navapp-maven-virtual' }
     }
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xlint:deprecation"
+    }
 }
 
 publishing {
