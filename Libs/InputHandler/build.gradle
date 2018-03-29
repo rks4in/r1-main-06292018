@@ -1,38 +1,6 @@
 apply plugin: 'com.android.library'
+apply from: "${rootDir}/gradle/androidProject.gradle"
 
-android {
-    compileSdkVersion 26
-
-    defaultConfig {
-        minSdkVersion 18
-        targetSdkVersion 23
-        multiDexEnabled true
-        versionCode 1
-        versionName "1.0"
-        
-        ndk {
-            abiFilters "x86_64"
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    lintOptions {
-        abortOnError false
-    }
-    testOptions {
-        unitTests {
-            all {
-                testLogging {
-                    events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
-                }
-            }
-        }
-    }
-}
 dependencies {
   implementation "com.tomtom.navui:Modules_NavAppBaseModule:${versions.navui}"
   implementation "com.google.guava:guava:16+"

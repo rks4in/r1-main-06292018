@@ -1,50 +1,5 @@
 apply plugin: 'com.android.application'
-
-android {
-    compileSdkVersion 26
-
-    defaultConfig {
-        minSdkVersion 18
-        targetSdkVersion 23
-        multiDexEnabled true
-        versionCode 1
-        versionName "1.0"
-    }
-    
-    splits{
-        abi {
-            enable true
-            reset()
-            include "x86_64","armeabi-v7a"
-            universalApk false
-        }
-    }
-
-    signingConfigs {
-        def signaturesFolder = "$rootDir/Signatures"
-        release {
-            storeFile = file("$signaturesFolder/r1-release-key.keystore")
-            storePassword "cs-fca-r123"
-            keyAlias "r1-keystore"
-            keyPassword "cs-fca-r123"
-        }
-    }
-
-    buildTypes {
-        release {
-            signingConfig signingConfigs.release
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    lintOptions {
-        abortOnError false
-    }
-}
+apply from: "${rootDir}/gradle/androidProject.gradle"
 
 dependencies {
     /* Base */
