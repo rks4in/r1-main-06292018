@@ -12,6 +12,16 @@ android {
         
         ndk {
             abiFilters "x86_64"
+            abiFilters "armeabi-v7a"
+        }
+    }
+    
+    splits{
+        abi {
+            enable true
+            reset()
+            include "x86_64","armeabi-v7a"
+            universalApk false
         }
     }
 
