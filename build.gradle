@@ -40,8 +40,8 @@ publishing {
             artifactId 'R1-NavApp'
             groupId 'com.tomtom.navapp'
             version "$rootProject.version"
-            artifact(file("$rootDir/app/build/outputs/apk/debug/app-debug.apk")) {
-                classifier 'debug'
+            artifact(file("$rootDir/app/build/outputs/apk/debug/app-x86_64-debug.apk")) {
+                classifier 'debug-x86'
                 extension 'apk'
             }   
         }
@@ -51,8 +51,30 @@ publishing {
             artifactId 'R1-NavApp'
             groupId 'com.tomtom.navapp'
             version "$rootProject.version"
-            artifact(file("$rootDir/app/build/outputs/apk/release/app-release.apk")) {
-                classifier 'release'
+            artifact(file("$rootDir/app/build/outputs/apk/release/app-x86_64-release.apk")) {
+                classifier 'release-x86'
+                extension 'apk'
+            }   
+        }
+    }
+    publications {
+        maven(MavenPublication) {
+            artifactId 'R1-NavApp'
+            groupId 'com.tomtom.navapp'
+            version "$rootProject.version"
+            artifact(file("$rootDir/app/build/outputs/apk/debug/app-armeabi-v7a-debug.apk")) {
+                classifier 'debug-armeabiv7a'
+                extension 'apk'
+            }   
+        }
+    }    
+    publications {
+        maven(MavenPublication) {
+            artifactId 'R1-NavApp'
+            groupId 'com.tomtom.navapp'
+            version "$rootProject.version"
+            artifact(file("$rootDir/app/build/outputs/apk/release/app-armeabi-v7a-release.apk")) {
+                classifier 'release-armeabiv7a'
                 extension 'apk'
             }  
         }
