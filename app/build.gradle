@@ -16,8 +16,6 @@ dependencies {
     /* ApiKit */
     implementation "com.tomtom.navui:Kits_SignatureApiKit:${versions.navui}"
     implementation "com.tomtom.navui:Kits_UtilKit:${versions.navui}"
-    /* Tools */
-    implementation "com.android.support:multidex:${versions.multidex}"
     /* NavKit */
     implementation "com.tomtom.navui.navkit:NavKitServiceAar:${versions.navkit}"
     implementation "com.tomtom.navui.navkit:PositioningServiceAar:${versions.navkit}"

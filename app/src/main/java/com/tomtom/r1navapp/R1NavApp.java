@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
-import android.support.multidex.MultiDex;
 
 import com.tomtom.navui.appkit.AppContext;
 import com.tomtom.navui.appkit.ExtAppScreenContext;
@@ -145,12 +144,6 @@ public class R1NavApp extends StockApplication {
     public int getProductTheme() {
         // Return a resource ID for the product particulars style
         return com.tomtom.r1navapp.R.style.navui_SignatureProductTheme;
-    }
-
-    @Override
-    protected void attachBaseContext(final Context base) {
-        super.attachBaseContext(base);
-        MultiDex.install(base);
     }
 
     private void configureFocusUiContext(final AppContext appContext) {
