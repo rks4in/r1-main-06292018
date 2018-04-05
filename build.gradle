@@ -8,17 +8,29 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.netflix.nebula:gradle-dependency-lock-plugin:5.0.4'
     }
 }
 
 // Load the versions file
 project.ext.versions = new Properties()
 project.versions.load(new FileInputStream(project.file("versions.properties")))
+project.versions += [
+    navkit: '+',
+    navui: "${versions.navkitRelease}.+",
+]
 
 allprojects {
     repositories {
         maven { url 'http://artifactory-ci.tomtomgroup.com/artifactory/navapp-maven-virtual' }
     }
+
+    apply plugin: 'nebula.dependency-lock'
+
+    dependencyLock{
+        globalLockFile = 'dependencies.lock'
+    }
+
     tasks.withType(JavaCompile) {
         options.compilerArgs << "-Xlint:deprecation"
     }
@@ -81,5 +93,14 @@ publishing {
                 extension 'apk'
             }  
         }
+    }
+}
+
+// A special way to define local dependencies is required by dependency lock plugin
+// because it can not automatically resolve required dependency configuration
+// as latest android plugin does
+def localDependency(subProject, dependencyPath) {
+    subProject.dependencies{
+        implementation project(path: dependencyPath, configuration: 'archives')
     }
 }
