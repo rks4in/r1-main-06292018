@@ -9,7 +9,7 @@
  *
  */
 
-@Library('cs-delivery-pipeline@1.0.7') _
+@Library('cs-delivery-pipeline@1.1.6') _
 
 import com.tomtom.cs.deliverypipeline.stages.commitstage.bitbucket.CommitStage
 
@@ -24,17 +24,34 @@ pipeline {
     disableConcurrentBuilds()
   }
 
+  parameters {
+    choice(name: 'MODALITY',
+            choices: 'NORMAL\nUPDATE_DEPENDENCY_MANIFEST',
+            description: 'Modality of this execution of the pipeline.')
+  }
+  triggers {
+    parameterizedCron(BRANCH_NAME == "master" ? "0 * * * * % MODALITY=UPDATE_DEPENDENCY_MANIFEST" : "")
+  }
+
   stages {
     stage("Commit") {
       steps {
         script {
 
-          def commitStage = new CommitStage(this, "${WORKSPACE}/gradle.properties")
+          def commitStage = new CommitStage(this,
+                                            "${WORKSPACE}/gradle.properties",
+                                            "${WORKSPACE}/dependencies.lock",
+                                            params.MODALITY as CommitStage.Modality)
           commitStage.setBuildStep({ instance ->
             buildComponent("clean")
             buildComponent("assemble")
             buildComponent("test")
-            buildComponent("publish")
+          })
+          commitStage.setUpdateDependencyManifestStep({ instance ->
+              buildComponent("generateGlobalLock saveGlobalLock")
+          })
+          commitStage.setPublishStep({ instance ->
+              buildComponent("publish")
           })
           commitStage.run()
         }

@@ -22,8 +22,24 @@ dependencies {
     /* Services connector */
     implementation "com.tomtom.navui.navkit:ServicesConnectorAar:${versions.navkit}"
     /* Local projects*/
-    api project(':Kits:R1CoreKit')
-    api project(':Kits:R1AppKit')
-    api project(':Libs:LocationActionHandler')
-    api project(':Ports:R1SystemPort')
+    localDependency(project, ':Kits::R1CoreKit')
+    localDependency(project, ':Kits::R1AppKit')
+    localDependency(project, ':Libs::LocationActionHandler')
+    localDependency(project, ':Ports:R1SystemPort')
+}
+
+configurations.all { Configuration configuration ->
+    //allow all configurations to be visible and resolvable for dependency lock plugin
+    configuration.setCanBeConsumed(true)
+    configuration.setCanBeResolved(true)
+
+    resolutionStrategy {
+        componentSelection.all { ComponentSelection selection ->
+            if (selection.candidate.group == "com.tomtom.navui.navkit" &&
+                !selection.candidate.version.endsWith("-${versions.navkitRelease}"))
+            {
+                selection.reject("version of navkit packages should end with \"-${versions.navkitRelease}\"")
+            }
+        }
+    }
 }
