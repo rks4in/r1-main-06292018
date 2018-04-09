@@ -1,6 +1,13 @@
 apply plugin: 'com.android.application'
 apply from: "${rootDir}/gradle/androidProject.gradle"
 
+android {
+    packagingOptions {
+        pickFirst 'lib/armeabi-v7a/libFramework.ProtobufComms.MemChannel.so'
+        pickFirst 'lib/x86_64/libFramework.ProtobufComms.MemChannel.so'
+    }
+}
+
 dependencies {
     /* Base */
     implementation "com.tomtom.navui:Modules_NavAppBaseModule:${versions.navui}"
