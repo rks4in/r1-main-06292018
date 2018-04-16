@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply from: "${rootDir}/gradle/androidProject.gradle"
+apply from: 'downloadSdk.gradle'
 
 android {
     packagingOptions {
@@ -50,3 +51,6 @@ configurations.all { Configuration configuration ->
         }
     }
 }
+
+assemble.finalizedBy(downloadSdk)
+
