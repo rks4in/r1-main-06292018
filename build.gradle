@@ -17,8 +17,44 @@ project.ext.versions = new Properties()
 project.versions.load(new FileInputStream(project.file("versions.properties")))
 project.versions += [
     navkit: '+',
+    nik: '+',
     navui: "${versions.navkitRelease}.+",
 ]
+project.ext.navuiNavKitGroup = 'com.tomtom.navui.navkit'
+
+def checkDependencyNavKitVersion(ResolvedDependency dependency) {
+    if (dependency.moduleGroup.startsWith(navuiNavKitGroup)) {
+        if (versions.navKitResolved == null) {
+            versions.navKitResolved = dependency.moduleVersion
+        } else if (versions.navKitResolved != dependency.moduleVersion) {
+            throw new GradleException(
+                    "Different version of NavKit artifacts are not allowed: " +
+                    "${versions.navKitResolved} and ${dependency.moduleVersion}")
+        }
+    }
+
+    dependency.children.each { it ->
+        checkDependencyNavKitVersion(it)
+    }
+}
+
+def checkProjectNavKitVersion(Project subProject) {
+    subProject.configurations.each { configuration ->
+        if (!configuration.isCanBeResolved()) {
+            return
+        }
+
+        configuration.dependencies.each { dependency ->
+            if (dependency.group.startsWith('com.tomtom')) {
+                ResolvedDependency resolvedDepndency =
+                        configuration.resolvedConfiguration.firstLevelModuleDependencies.find {
+                    it.moduleGroup == dependency.group && it.moduleName == dependency.name
+                }
+                checkDependencyNavKitVersion(resolvedDepndency)
+            }
+        }
+    }
+}
 
 // Load publish properties
 file("publish.properties").withReader {
@@ -29,6 +65,7 @@ file("publish.properties").withReader {
 
 allprojects {
     repositories {
+        maven { url 'http://artifactory-ci.tomtomgroup.com/artifactory/cs-fca-r1-maven-releases' }
         maven { url 'http://artifactory-ci.tomtomgroup.com/artifactory/navapp-maven-virtual' }
     }
 
@@ -40,6 +77,10 @@ allprojects {
 
     tasks.withType(JavaCompile) {
         options.compilerArgs << "-Xlint:deprecation"
+    }
+
+    afterEvaluate {
+        checkProjectNavKitVersion(it)
     }
 }
 
