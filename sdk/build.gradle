@@ -1,0 +1,33 @@
+configurations {
+    sdk
+}
+
+dependencies {
+    /* NavAppSDK */
+    sdk "com.tomtom.navui:NavAppSDK:${versions.navui}"
+}
+
+def forAllReleaseArtifacts(Closure cl) {
+    configurations.sdk.resolve().each { File artifact ->
+        cl(artifact)
+    }
+}
+
+task assemble {
+    doLast {
+        forAllReleaseArtifacts { File artifact ->
+            copy {
+                from artifact
+                into rootProject.ext.artifactPublishDir
+            }
+        }
+    }
+}
+
+task clean {
+    doLast {
+        forAllReleaseArtifacts { File artifact ->
+            delete new File(rootProject.ext.artifactPublishDir, artifact.name)
+        }
+    }
+}

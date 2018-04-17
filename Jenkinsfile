@@ -51,7 +51,23 @@ pipeline {
               buildComponent("generateGlobalLock saveGlobalLock")
           })
           commitStage.setPublishStep({ instance ->
-              buildComponent("publish")
+              withCredentials([usernamePassword(credentialsId: 'artifactory_creds',
+                              usernameVariable: 'USERNAME',
+                              passwordVariable: 'PASSWORD')]) {
+                 sh(script: "release_mgmt_tool.py -u ${USERNAME} \
+                            -p ${PASSWORD} \
+                            -c cs-fca-r1-product-release-candidates \
+                            -r cs-fca-r1-product-releases \
+                            create-rc \
+                            `cat ${WORKSPACE}/revision.txt`")
+                 sh(script: "release_mgmt_tool.py -u ${USERNAME} \
+                            -p ${PASSWORD} \
+                            -c cs-fca-r1-product-release-candidates \
+                            -r cs-fca-r1-product-releases \
+                            add-to-rc \
+                            `cat ${WORKSPACE}/revision.txt` \
+                            `grep artifactPublishDirName= ${WORKSPACE}/publish.properties | sed 's/^.*=//'`/*")
+              }
           })
           commitStage.run()
         }
