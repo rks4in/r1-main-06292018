@@ -6,7 +6,7 @@
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA.Libs:LocationActionHandler",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA.Ports:R1SystemPort"
             ],
-            "locked": "23.6-android"
+            "locked": "23.4-android"
         },
         "com.tomtom.navui.navkit:NavKitServiceAar": {
             "firstLevelTransitive": [
@@ -38,7 +38,7 @@
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
-            "locked": "18.1.144"
+            "locked": "18.1.145"
         },
         "com.tomtom.navui:Kits_SignatureApiKit": {
             "firstLevelTransitive": [
@@ -46,7 +46,7 @@
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
-            "locked": "18.1.144"
+            "locked": "18.1.145"
         },
         "com.tomtom.navui:Kits_UtilKit": {
             "firstLevelTransitive": [
@@ -54,7 +54,7 @@
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
-            "locked": "18.1.144"
+            "locked": "18.1.145"
         },
         "com.tomtom.navui:Modules_FocusUiModule": {
             "firstLevelTransitive": [
@@ -62,7 +62,7 @@
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
-            "locked": "18.1.144"
+            "locked": "18.1.145"
         },
         "com.tomtom.navui:Modules_MapManagementModule": {
             "firstLevelTransitive": [
@@ -70,7 +70,7 @@
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
-            "locked": "18.1.144"
+            "locked": "18.1.145"
         },
         "com.tomtom.navui:Modules_NavAppBaseModule": {
             "firstLevelTransitive": [
@@ -83,7 +83,7 @@
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
-            "locked": "18.1.144"
+            "locked": "18.1.145"
         },
         "com.tomtom.navui:Modules_PromptModule": {
             "firstLevelTransitive": [
@@ -91,13 +91,13 @@
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
-            "locked": "18.1.144"
+            "locked": "18.1.145"
         },
         "com.tomtom.navui:NavAppSDK": {
             "firstLevelTransitive": [
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
-            "locked": "18.1.144"
+            "locked": "18.1.145"
         },
         "com.tomtom.navui:Ports_StockSystemPort": {
             "firstLevelTransitive": [
@@ -106,7 +106,7 @@
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
-            "locked": "18.1.144"
+            "locked": "18.1.145"
         },
         "org.jacoco:org.jacoco.agent": {
             "firstLevelTransitive": [
