@@ -30,7 +30,7 @@ pipeline {
             description: 'Modality of this execution of the pipeline.')
   }
   triggers {
-    parameterizedCron(BRANCH_NAME == "master" ? "0 * * * * % MODALITY=UPDATE_DEPENDENCY_MANIFEST" : "")
+    parameterizedCron(BRANCH_NAME == "master" ? "H 7-19 * * 1-5 % MODALITY=UPDATE_DEPENDENCY_MANIFEST" : "")
   }
 
   stages {
