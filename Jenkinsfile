@@ -39,7 +39,7 @@ pipeline {
         script {
 
           def commitStage = new CommitStage(this,
-                                            "${WORKSPACE}/gradle.properties",
+                                            "${WORKSPACE}/revision.txt",
                                             "${WORKSPACE}/dependencies.lock",
                                             params.MODALITY as CommitStage.Modality)
           commitStage.setBuildStep({ instance ->
