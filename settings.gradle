@@ -1,2 +1,2 @@
 include ":Libs:InputHandler", ":Libs:LocationActionHandler", ":Ports:R1SystemPort", ":Kits:R1CoreKit", ":Kits:R1AppKit"
-include ":app"
+include ":app", ":sdk"

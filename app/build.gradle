@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply from: "${rootDir}/gradle/androidProject.gradle"
-apply from: 'downloadSdk.gradle'
 
 android {
     packagingOptions {
@@ -52,5 +51,33 @@ configurations.all { Configuration configuration ->
     }
 }
 
-assemble.finalizedBy(downloadSdk)
+def forAllReleaseArtifacts(Closure cl) {
+    android.applicationVariants.all { variant ->
+        if ( (variant.name).equals("release") ) {
+            variant.outputs.each { output ->
+                cl(output.outputFile)
+            }
+        }
+    }
+}
 
+task copyArtifacts {
+    doLast {
+        forAllReleaseArtifacts { File artifact ->
+            copy {
+              from artifact
+              into rootProject.ext.artifactPublishDir
+            }
+        }
+    }
+}
+assemble.finalizedBy(copyArtifacts)
+
+task deleteArtifacts {
+    doLast {
+        forAllReleaseArtifacts { File artifact ->
+            delete new File(rootProject.ext.artifactPublishDir, artifact.name)
+        }
+    }
+}
+clean.finalizedBy(deleteArtifacts)
