@@ -60,13 +60,14 @@ pipeline {
                             -r cs-fca-r1-product-releases \
                             create-rc \
                             `cat ${WORKSPACE}/revision.txt`")
-                 sh(script: "release_mgmt_tool.py -u ${USERNAME} \
+                 sh(script: "find `grep artifactPublishDirName= ${WORKSPACE}/publish.properties | sed 's/^.*=//'` -type f -exec \
+                            release_mgmt_tool.py -u ${USERNAME} \
                             -p ${PASSWORD} \
                             -c cs-fca-r1-product-release-candidates \
                             -r cs-fca-r1-product-releases \
                             add-to-rc \
                             `cat ${WORKSPACE}/revision.txt` \
-                            `grep artifactPublishDirName= ${WORKSPACE}/publish.properties | sed 's/^.*=//'`/*")
+                            {} \\;")
               }
           })
           commitStage.run()

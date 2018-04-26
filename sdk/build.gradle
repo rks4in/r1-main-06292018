@@ -18,7 +18,7 @@ task assemble {
         forAllReleaseArtifacts { File artifact ->
             copy {
                 from artifact
-                into rootProject.ext.artifactPublishDir
+                into "${artifactPublishDir}/${project.name}"
             }
         }
     }
@@ -26,8 +26,6 @@ task assemble {
 
 task clean {
     doLast {
-        forAllReleaseArtifacts { File artifact ->
-            delete new File(rootProject.ext.artifactPublishDir, artifact.name)
-        }
+        delete "${artifactPublishDir}/${project.name}"
     }
 }

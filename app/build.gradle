@@ -66,7 +66,7 @@ task copyArtifacts {
         forAllReleaseArtifacts { File artifact ->
             copy {
               from artifact
-              into rootProject.ext.artifactPublishDir
+              into "${artifactPublishDir}/${project.name}"
             }
         }
     }
@@ -75,9 +75,7 @@ assemble.finalizedBy(copyArtifacts)
 
 task deleteArtifacts {
     doLast {
-        forAllReleaseArtifacts { File artifact ->
-            delete new File(rootProject.ext.artifactPublishDir, artifact.name)
-        }
+        delete "${artifactPublishDir}/${project.name}"
     }
 }
 clean.finalizedBy(deleteArtifacts)
