@@ -95,7 +95,7 @@
         },
         "com.tomtom.navui:NavAppSDK": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:sdk"
             ],
             "locked": "18.1.147"
         },
@@ -165,6 +165,9 @@
             "project": true
         },
         "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app": {
+            "project": true
+        },
+        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:sdk": {
             "project": true
         }
     }
