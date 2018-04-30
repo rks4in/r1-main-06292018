@@ -5,6 +5,8 @@ android {
     packagingOptions {
         pickFirst 'lib/armeabi-v7a/libFramework.ProtobufComms.MemChannel.so'
         pickFirst 'lib/x86_64/libFramework.ProtobufComms.MemChannel.so'
+        pickFirst 'lib/armeabi-v7a/libgnustl_shared.so'
+        pickFirst 'lib/x86_64/libgnustl_shared.so'
     }
 }
 
@@ -24,10 +26,7 @@ dependencies {
     implementation "com.tomtom.navui:Kits_SignatureApiKit:${versions.navui}"
     implementation "com.tomtom.navui:Kits_UtilKit:${versions.navui}"
     /* NavKit */
-    implementation "com.tomtom.navui.navkit:NavKitServiceAar:${versions.navkit}"
-    implementation "com.tomtom.navui.navkit:PositioningServiceAar:${versions.navkit}"
-    /* Services connector */
-    implementation "com.tomtom.navui.navkit:ServicesConnectorAar:${versions.navkit}"
+    implementation "com.tomtom.r1.navkit:NavKitService:${versions.nik}"
     /* Local projects*/
     localDependency(project, ':Kits::R1CoreKit')
     localDependency(project, ':Kits::R1AppKit')
@@ -42,7 +41,7 @@ configurations.all { Configuration configuration ->
 
     resolutionStrategy {
         componentSelection.all { ComponentSelection selection ->
-            if (selection.candidate.group == "com.tomtom.navui.navkit" &&
+            if (selection.candidate.group == navuiNavKitGroup &&
                 !selection.candidate.version.endsWith("-${versions.navkitRelease}"))
             {
                 selection.reject("version of navkit packages should end with \"-${versions.navkitRelease}\"")
