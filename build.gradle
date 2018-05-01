@@ -123,6 +123,15 @@ allprojects {
     }
 }
 
+subprojects {
+    configurations {
+        toolchain
+    }
+    dependencies {
+        toolchain "com.tomtom.r1:toolchain:+"
+    }
+}
+
 // A special way to define local dependencies is required by dependency lock plugin
 // because it can not automatically resolve required dependency configuration
 // as latest android plugin does
