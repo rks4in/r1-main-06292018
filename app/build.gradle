@@ -41,10 +41,12 @@ configurations.all { Configuration configuration ->
 
     resolutionStrategy {
         componentSelection.all { ComponentSelection selection ->
-            if (selection.candidate.group == navuiNavKitGroup &&
-                !selection.candidate.version.endsWith("-${versions.navkitRelease}"))
-            {
+            if ( (selection.candidate.group == navuiNavKitGroup) &&
+                  !selection.candidate.version.endsWith("-${versions.navkitRelease}")) {
                 selection.reject("version of navkit packages should end with \"-${versions.navkitRelease}\"")
+            } else if ( (selection.candidate.group == r1NavKitGroup) &&
+                         !selection.candidate.version.contains("-${versions.navkitRelease}-")) {
+                selection.reject("version of NIK packages should contain \"-${versions.navkitRelease}-\"")
             }
         }
     }

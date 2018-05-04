@@ -21,6 +21,7 @@ project.versions += [
     navui: "${versions.navkitRelease}.+",
 ]
 project.ext.navuiNavKitGroup = 'com.tomtom.navui.navkit'
+project.ext.r1NavKitGroup = "com.tomtom.r1.navkit"
 
 def checkDependencyNavKitVersion(ResolvedDependency dependency) {
     if (dependency.moduleGroup.startsWith(navuiNavKitGroup)) {
