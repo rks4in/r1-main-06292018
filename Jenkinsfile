@@ -60,24 +60,9 @@ pipeline {
               buildComponent("generateGlobalLock saveGlobalLock")
           })
           commitStage.setPublishStep({ instance ->
-              withCredentials([usernamePassword(credentialsId: 'artifactory_creds',
-                              usernameVariable: 'USERNAME',
-                              passwordVariable: 'PASSWORD')]) {
-                 sh(script: "release_mgmt_tool.py -u ${USERNAME} \
-                            -p ${PASSWORD} \
-                            -c cs-fca-r1-product-release-candidates \
-                            -r cs-fca-r1-product-releases \
-                            create-rc \
-                            `cat ${WORKSPACE}/revision.txt`")
-                 sh(script: "find `grep artifactPublishDirName= ${WORKSPACE}/publish.properties | sed 's/^.*=//'` -type f -exec \
-                            release_mgmt_tool.py -u ${USERNAME} \
-                            -p ${PASSWORD} \
-                            -c cs-fca-r1-product-release-candidates \
-                            -r cs-fca-r1-product-releases \
-                            add-to-rc \
-                            `cat ${WORKSPACE}/revision.txt` \
-                            {} \\;")
-              }
+              createReleaseCandidate(sh(script: "cat revision.txt", returnStdout: true).trim())
+              def artifacts = sh(script: "find `grep artifactPublishDirName= ${WORKSPACE}/publish.properties | sed 's/^.*=//'` -type f", returnStdout: true).split('\\n')
+              artifacts.each {artifact -> addToReleaseCandidate(sh(script: "cat revision.txt", returnStdout: true).trim(), artifact)}
           })
           commitStage.run()
 
@@ -149,6 +134,19 @@ def buildComponent(buildArgs) {
                          -u \$(id -u):\$(id -g) \
                          ${DOCKER_IMAGE_PATH} \
                          ./gradlew ${buildArgs}")
+}
+
+def createReleaseCandidate(revision) {
+  withCredentials([usernamePassword(credentialsId: 'artifactory_creds',
+                  usernameVariable: 'USERNAME',
+                  passwordVariable: 'PASSWORD')]) {
+
+    sh(script: "release_mgmt_tool.py -u ${USERNAME} \
+                                     -p ${PASSWORD} \
+                                     -c cs-fca-r1-product-release-candidates \
+                                     -r cs-fca-r1-product-releases \
+                                     create-rc ${revision}")
+  }
 }
 
 def addToReleaseCandidate(revision, sourceDir) {
