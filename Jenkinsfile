@@ -89,6 +89,9 @@ pipeline {
                   )
           def revision = ""
 
+          //Cleaning up the repository to only analyze R1 source code
+          buildComponent("clean")
+
           if (params.VERSION != '') {
             //Run Protex on specific revision
             revision = params.VERSION.trim()
