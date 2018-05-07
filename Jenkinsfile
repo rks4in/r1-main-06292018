@@ -111,6 +111,8 @@ pipeline {
 
           protexStage.run()
 
+          def protexReports = protexStage.getGeneratedReportPaths()
+
           sh(script: "git checkout master")
 
           protexReports.each { path -> addToReleaseCandidate(revision, path)}
