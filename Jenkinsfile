@@ -40,7 +40,7 @@ pipeline {
   stages {
     stage("Commit") {
       when {
-        expression { params.MODALITY == 'NORMAL' || params.MODALITY == 'UPDATE_DEPENDENCY_MANIFEST' }
+        expression { (params.MODALITY == 'NORMAL' && BRANCH_NAME != "master")  || params.MODALITY == 'UPDATE_DEPENDENCY_MANIFEST' }
       }
       steps {
         script {
@@ -52,9 +52,7 @@ pipeline {
                                             "${WORKSPACE}/dependencies.lock",
                                             params.MODALITY as CommitStage.Modality)
           commitStage.setBuildStep({ instance ->
-            callGradleInDocker("clean")
-            callGradleInDocker("assemble")
-            callGradleInDocker("test")
+            callGradleInDocker("clean assemble test")
           })
           commitStage.setUpdateDependencyManifestStep({ instance ->
               callGradleInDocker("generateGlobalLock saveGlobalLock")
