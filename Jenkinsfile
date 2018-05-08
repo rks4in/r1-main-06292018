@@ -40,7 +40,7 @@ pipeline {
   stages {
     stage("Commit") {
       when {
-        expression { params.MODALITY == 'NORMAL' || params.MODALITY == 'UPDATE_DEPENDENCY_MANIFEST' }
+        expression { (params.MODALITY == 'NORMAL' && BRANCH_NAME != "master")  || params.MODALITY == 'UPDATE_DEPENDENCY_MANIFEST' }
       }
       steps {
         script {
