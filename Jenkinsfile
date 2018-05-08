@@ -52,9 +52,7 @@ pipeline {
                                             "${WORKSPACE}/dependencies.lock",
                                             params.MODALITY as CommitStage.Modality)
           commitStage.setBuildStep({ instance ->
-            callGradleInDocker("clean")
-            callGradleInDocker("assemble")
-            callGradleInDocker("test")
+            callGradleInDocker("clean assemble test")
           })
           commitStage.setUpdateDependencyManifestStep({ instance ->
               callGradleInDocker("generateGlobalLock saveGlobalLock")
