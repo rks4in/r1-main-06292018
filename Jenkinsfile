@@ -52,12 +52,12 @@ pipeline {
                                             "${WORKSPACE}/dependencies.lock",
                                             params.MODALITY as CommitStage.Modality)
           commitStage.setBuildStep({ instance ->
-            buildComponent("clean")
-            buildComponent("assemble")
-            buildComponent("test")
+            callGradleInDocker("clean")
+            callGradleInDocker("assemble")
+            callGradleInDocker("test")
           })
           commitStage.setUpdateDependencyManifestStep({ instance ->
-              buildComponent("generateGlobalLock saveGlobalLock")
+              callGradleInDocker("generateGlobalLock saveGlobalLock")
           })
           commitStage.setPublishStep({ instance ->
               createReleaseCandidate(sh(script: "cat revision.txt", returnStdout: true).trim())
@@ -90,7 +90,7 @@ pipeline {
           def revision = ""
 
           //Cleaning up the repository to only analyze R1 source code
-          buildComponent("clean")
+          callGradleInDocker("clean")
 
           if (params.VERSION != '') {
             //Run Protex on specific revision
@@ -125,17 +125,19 @@ pipeline {
   }
 }
 
-def buildComponent(buildArgs) {
-  echo "Building buildComponent for '${buildArgs}'"
+def callGradleInDocker(buildArgs) {
+  echo "Calling gradle inside of docker for '${buildArgs}'"
   sh(script: "docker run --rm \
                          --net=host \
                          -e USER=\$(id -u) \
                          -e _JAVA_OPTIONS=\"-Duser.home=/tmp\" \
+                         -e GRADLE_USER_HOME=/var/gradle \
                          -w \${WORKSPACE} \
                          -v \${WORKSPACE}:\${WORKSPACE}:rw \
                          -v /tmp:/tools/devenv:ro \
                          -v /etc/group:/etc/group:ro \
                          -v /etc/passwd:/etc/passwd:ro \
+                         -v \${HOME}:/var/gradle:rw \
                          -u \$(id -u):\$(id -g) \
                          ${DOCKER_IMAGE_PATH} \
                          ./gradlew ${buildArgs}")
