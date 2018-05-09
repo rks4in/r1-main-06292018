@@ -15,10 +15,12 @@ def forAllReleaseArtifacts(Closure cl) {
 
 task assemble {
     doLast {
-        forAllReleaseArtifacts { File artifact ->
-            copy {
-                from artifact
-                into "${artifactPublishDir}/${project.name}"
+        if(publishSDK) {
+            forAllReleaseArtifacts { File artifact ->
+                copy {
+                    from artifact
+                    into "${artifactPublishDir}/${project.name}"
+                }
             }
         }
     }
