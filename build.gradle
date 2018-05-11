@@ -62,6 +62,7 @@ file("publish.properties").withReader {
    Properties props = new Properties()
    props.load(it)
    project.ext.artifactPublishDir = file(props.artifactPublishDirName)
+   project.ext.publishSDK = props.publishSDK.toBoolean()
 }
 
 allprojects {
