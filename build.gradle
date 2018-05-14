@@ -16,10 +16,15 @@ buildscript {
 project.ext.versions = new Properties()
 project.versions.load(new FileInputStream(project.file("versions.properties")))
 project.versions += [
-    navkit: '+',
-    nik: '+',
-    navui: "${versions.navkitRelease}.+",
+    //Lock to specific version of NavKit, to unlock use '+'
+    navKitLocked: '9.11.0-18.2',
+    navui: '18.2.111',
 ]
+if (project.versions.navKitLocked == '+') {
+    project.versions += [ nik: '+' ]
+} else {
+    project.versions += [ nik: "${project.versions.navKitLocked}-+" ]
+}
 project.ext.navuiNavKitGroup = 'com.tomtom.navui.navkit'
 project.ext.r1NavKitGroup = "com.tomtom.r1.navkit"
 
@@ -57,6 +62,32 @@ def checkProjectNavKitVersion(Project subProject) {
     }
 }
 
+def navkitResolutionStrategy(Project subProject) {
+    subProject.configurations.all {
+        resolutionStrategy {
+            if (project.versions.navKitLocked != '+') {
+                // Force all NavKit artifacts to be the same specified version
+                eachDependency { DependencyResolveDetails details ->
+                    if (details.requested.group == navuiNavKitGroup) {
+                        details.useVersion versions.navKitLocked
+                    }
+                }
+            } else {
+                // Define dynamic NavKit artifacts version to correspond a required pattern
+                componentSelection.all { ComponentSelection selection ->
+                    if ( (selection.candidate.group == navuiNavKitGroup) &&
+                        !selection.candidate.version.endsWith("-${versions.navkitRelease}")) {
+                        selection.reject("version of navkit packages should end with \"-${versions.navkitRelease}\"")
+                    } else if ( (selection.candidate.group == r1NavKitGroup) &&
+                                !selection.candidate.version.contains("-${versions.navkitRelease}-")) {
+                        selection.reject("version of NIK packages should contain \"-${versions.navkitRelease}-\"")
+                    }
+                }
+            }
+        }
+    }
+}
+
 // Load publish properties
 file("publish.properties").withReader {
    Properties props = new Properties()
@@ -82,7 +113,13 @@ allprojects {
     }
 
     afterEvaluate {
-        checkProjectNavKitVersion(it)
+        navkitResolutionStrategy(it)
+
+        // Check that all resolved NavKit artifacts have the same version 
+        // only if NavKit dynamic version was specified
+        if (versions.navKitLocked == '+') {
+            checkProjectNavKitVersion(it)
+        }
     }
 }
 
