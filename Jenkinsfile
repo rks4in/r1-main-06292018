@@ -59,7 +59,7 @@ pipeline {
           })
           commitStage.setPublishStep({ instance ->
               createReleaseCandidate(sh(script: "cat revision.txt", returnStdout: true).trim())
-              def artifacts = sh(script: "find `grep artifactPublishDirName= ${WORKSPACE}/publish.properties | sed 's/^.*=//'` -type f", returnStdout: true).split('\\n')
+              def artifacts = sh(script: "find ${getArtifactsPublishDirName()} -type f", returnStdout: true).split('\\n')
               artifacts.each {artifact -> addToReleaseCandidate(sh(script: "cat revision.txt", returnStdout: true).trim(), artifact)}
           })
           commitStage.run()
@@ -121,6 +121,16 @@ pipeline {
       }
     }
   }
+
+  post { 
+    always { 
+      sh(script: "rm -rf ${getArtifactsPublishDirName()}")
+    }
+  }
+}
+
+def getArtifactsPublishDirName() {
+  return sh(script: "grep artifactPublishDirName= ${WORKSPACE}/publish.properties | sed 's/^.*=//'", returnStdout: true).trim()
 }
 
 def callGradleInDocker(buildArgs) {
