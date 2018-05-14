@@ -9,7 +9,7 @@
 <SettingScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tomtom="http://schemas.android.com/apk/res-auto"
     tomtom:navui_settingScreenId="@+id/navui_settings"
-    tomtom:navui_settingScreenVersion="131">
+    tomtom:navui_settingScreenVersion="139">
 
     <SettingScreen
         tomtom:navui_settingTitle="@string/navui_settings_title_appearance"
@@ -130,6 +130,11 @@
                 tomtom:navui_settingLabel="@string/navui_appearance_show_large_panel"
                 tomtom:navui_visibleAction="com.tomtom.navui.setting.ShowWideRouteBar.VISIBILITY"
                 tomtom:navui_visibleBooleanExtra="GONE" />
+
+            <ToggleSetting
+                tomtom:navui_defaultValue="true"
+                tomtom:navui_key="com.tomtom.navui.setting.show_cancel_route"
+                tomtom:navui_settingLabel="@string/navui_appearance_show_cancel_route" />
 
         </SettingScreen>
 
@@ -1000,6 +1005,11 @@
                         tomtom:navui_defaultValue="2" />
 
                 </SettingScreen>
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_setting_reachable_range_layer"
+                    tomtom:navui_key="com.tomtom.navui.setting.ReachableRangeLayer"
+                    tomtom:navui_defaultValue="false" />
             </SettingScreen>
 
              <!-- appearance vehicle settings -->
@@ -1047,6 +1057,11 @@
                    tomtom:navui_settingLabel="@string/navui_enable_vehicle_profile_for_motorcycle"
                    tomtom:navui_key="com.tomtom.navui.setting.feature.enable.vehicle.profile.for.motorcycle"
                    tomtom:navui_defaultValue="true" />
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_enable_engine_composition_selection"
+                    tomtom:navui_key="com.tomtom.navui.setting.NAVUI_FEATURE_ENABLE_ENGINE_COMPOSITION_SELECTION"
+                    tomtom:navui_defaultValue="false"/>
 
             </SettingScreen>
 
@@ -1111,7 +1126,11 @@
                     <ToggleSetting
                             tomtom:navui_settingLabel="@string/navui_feature_decision_screen_for_avoid_route_segment"
                             tomtom:navui_key="com.tomtom.setting.feature.use.decision.screen.for.avoid.route.segment"
-                            tomtom:navui_defaultValue="false" />
+                            tomtom:navui_defaultValue="false">
+                        <VersionChange
+                            tomtom:navui_settingVersionUpgradeTo="134"
+                            tomtom:navui_defaultValue="true" />
+                    </ToggleSetting>
                 </SettingScreen>
 
                 <SettingScreen
@@ -1689,11 +1708,6 @@
             </SettingScreen>
 
             <ToggleSetting
-                    tomtom:navui_settingLabel="@string/navui_configurable_features_mirrorlink"
-                    tomtom:navui_key="com.tomtom.navui.feature.mirrorlink"
-                    tomtom:navui_defaultValue="false" />
-
-            <ToggleSetting
                 tomtom:navui_settingLabel="@string/navui_configurable_feature_external_navkit"
                 tomtom:navui_key="com.tomtom.navui.feature.external_navkit"
                 tomtom:navui_defaultValue="false" />
@@ -1706,9 +1720,26 @@
             <ToggleSetting
                 tomtom:navui_settingLabel="@string/navui_poi_categories_in_search_screen"
                 tomtom:navui_key="com.tomtom.navui.setting.NAVUI_FEATURE_POI_CATEGORIES_IN_SEARCH_SCREEN"
+                tomtom:navui_defaultValue="false">
+                <VersionChange
+                    tomtom:navui_settingVersionUpgradeTo="139"
+                    tomtom:navui_defaultValue="true"/>
+            </ToggleSetting>
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_enable_vehicle_range_marker"
+                tomtom:navui_key="com.tomtom.navui.setting.NAVUI_FEATURE_ENABLE_VEHICLE_RANGE_MARKER"
                 tomtom:navui_defaultValue="false"/>
 
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_configurable_feature_safety_lock"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.safety_lock"
+                tomtom:navui_defaultValue="false"/>
 
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_configurable_feature_dune"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.dune"
+                tomtom:navui_defaultValue="false"/>
         </SettingScreen>
 
     </SettingScreen>
