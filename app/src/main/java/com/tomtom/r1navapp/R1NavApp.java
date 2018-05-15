@@ -65,7 +65,7 @@ public class R1NavApp extends StockApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        enableDune();
+        setDuneEnabled(false);
         getErrorReporter().setEnabled();
     }
 
@@ -154,14 +154,22 @@ public class R1NavApp extends StockApplication {
         return com.tomtom.r1navapp.R.style.navui_SignatureProductTheme;
     }
 
-    private void enableDune() {
+    private void setDuneEnabled(final boolean aEnable) {
         File duneFile = new File(TTNDATA_FILES_PATH + DUNE_FILE_NAME);
 
-        if(!duneFile.exists()) {
-            try {
-                duneFile.createNewFile();
-            } catch (IOException e) {
-                Log.e(TAG,"Dune cannot be enabled: " + e);
+        if (aEnable) {
+            if (!duneFile.exists()) {
+                try {
+                    duneFile.createNewFile();
+                } catch (IOException e) {
+                    Log.e(TAG, "Dune cannot be enabled: " + e);
+                }
+            }
+        } else {
+            if (duneFile.exists()) {
+                if (!duneFile.delete()) {
+                    Log.e(TAG, "Dune file could not be deleted");
+                }
             }
         }
     }
