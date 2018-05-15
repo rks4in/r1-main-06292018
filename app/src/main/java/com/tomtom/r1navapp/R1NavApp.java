@@ -128,7 +128,7 @@ public class R1NavApp extends StockApplication {
 
     @Override
     public int getSettingResourceId() {
-        return R.xml.default_settings;
+        return R.xml.r1_settings;
     }
 
     @Override

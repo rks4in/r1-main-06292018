@@ -1,0 +1,1747 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--  IMPORTANT
+      Changes to this file or any referenced resource which requires a settings update will also need an update to the
+      top level SettingScreen tomtom:navui_settingScreenVersion attribute or it will not be picked up by the code.
+      There are however strict processes to adhere to when manipulating settings to ensure upgrades and downgrades
+      work appropriately.  Please see http://vos.intra.local/display/NAVAPP/Settings for details of these processes -->
+
+<SettingScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tomtom="http://schemas.android.com/apk/res-auto"
+    tomtom:navui_settingScreenId="@+id/navui_settings"
+    tomtom:navui_settingScreenVersion="139">
+
+    <SettingScreen
+        tomtom:navui_settingTitle="@string/navui_settings_title_appearance"
+        tomtom:navui_settingScreenId="@+id/navui_settings_appearance">
+
+        <SettingScreen
+           tomtom:navui_settingLabel="@string/navui_settings_appearance_display"
+           tomtom:navui_settingTitle="@string/navui_settings_appearance_display"
+           tomtom:navui_showValue="false"
+           tomtom:navui_settingScreenId="@+id/navui_settings_appearance_display" >
+
+           <Setting
+              tomtom:navui_settingLabel="@string/navui_appearance_theme_colour"
+              tomtom:navui_visibleAction="com.tomtom.navui.setting.MapTypeTTC"
+              tomtom:navui_visibleBooleanExtra="GONE">
+              <intent android:action="ChangeThemeScreen" />
+           </Setting>
+
+           <Setting
+              tomtom:navui_settingLabel="@string/navui_appearance_map_colour"
+              tomtom:navui_visibleAction="com.tomtom.navui.setting.MapColorScheme.VISIBILITY"
+              tomtom:navui_visibleBooleanExtra="GONE" >
+              <intent android:action="ChangeMapColorScreen" />
+           </Setting>
+
+           <ToggleSetting
+            tomtom:navui_settingLabel="@string/navui_appearance_night_colors_when_dark"
+            tomtom:navui_key="com.tomtom.navui.setting.AutoSwitchToNightColorsWhenDark"
+            tomtom:navui_defaultValue="true" />
+
+        </SettingScreen>
+
+        <SettingScreen
+            tomtom:navui_settingLabel="@string/navui_settings_appearance_routebar"
+            tomtom:navui_settingScreenId="@+id/navui_settings_appearance_routebar"
+            tomtom:navui_settingTitle="@string/navui_settings_appearance_routebar_title"
+            tomtom:navui_showValue="false" >
+
+            <SettingScreen
+                tomtom:navui_settingLabel="@string/navui_appearance_route_bar"
+                tomtom:navui_settingScreenId="@+id/navui_settings_appearance_route_bar"
+                tomtom:navui_settingTitle="@string/navui_appearance_route_bar_title"
+                tomtom:navui_showValue="true" >
+
+                <ListSetting
+                    tomtom:navui_defaultValue="0"
+                    tomtom:navui_entries="@array/navui_appearance_route_bar_options"
+                    tomtom:navui_entryValues="@array/navui_appearance_route_bar_values"
+                    tomtom:navui_key="com.tomtom.navui.setting.RouteBarDetails" />
+
+                <SettingCategory tomtom:navui_settingLabel="@string/navui_appearance_route_bar_remaining_destination_or_stop">
+
+                    <ListSetting
+                        tomtom:navui_defaultValue="0"
+                        tomtom:navui_entries="@array/navui_appearance_route_bar_destination_stop_options"
+                        tomtom:navui_entryValues="@array/navui_appearance_route_bar_destination_stop_values"
+                        tomtom:navui_key="com.tomtom.navui.setting.RouteBarDetails.DestinationorStop" />
+                </SettingCategory>
+
+            </SettingScreen>
+
+            <SettingScreen
+                tomtom:navui_settingLabel="@string/navui_appearance_route_information"
+                tomtom:navui_settingScreenId="@+id/navui_settings_appearance_route_information"
+                tomtom:navui_settingTitle="@string/navui_appearance_route_information_title" >
+
+                <ToggleSetting
+                    tomtom:navui_defaultValue="true"
+                    tomtom:navui_key="com.tomtom.navui.setting.timeline.show.parking"
+                    tomtom:navui_settingLabel="@string/navui_appearance_route_information_parking" />
+
+                <ToggleSetting
+                    tomtom:navui_defaultValue="true"
+                    tomtom:navui_key="com.tomtom.navui.setting.timeline.show.petrol"
+                    tomtom:navui_settingLabel="@string/navui_appearance_route_information_petrol" />
+
+                <ToggleSetting
+                    tomtom:navui_defaultValue="true"
+                    tomtom:navui_key="com.tomtom.navui.setting.timeline.show.stops"
+                    tomtom:navui_settingLabel="@string/navui_appearance_route_information_stops" />
+
+                <ToggleSetting
+                    tomtom:navui_defaultValue="false"
+                    tomtom:navui_key="com.tomtom.navui.setting.timeline.show.rest_areas"
+                    tomtom:navui_settingLabel="@string/navui_appearance_route_information_rest_areas" />
+
+                <ToggleSetting
+                    tomtom:navui_defaultValue="false"
+                    tomtom:navui_key="com.tomtom.navui.setting.timeline.show.highway_exits"
+                    tomtom:navui_settingLabel="@string/navui_appearance_route_information_highway_exits"
+                    tomtom:navui_visibleAction="com.tomtom.navui.setting.show.highway.exit.toggle"
+                    tomtom:navui_visibleBooleanExtra="GONE" />
+
+                <ToggleSetting
+                    tomtom:navui_defaultValue="true"
+                    tomtom:navui_key="com.tomtom.navui.setting.timeline.show.tollroads"
+                    tomtom:navui_settingLabel="@string/navui_appearance_route_information_toll_roads"
+                    tomtom:navui_visibleAction="com.tomtom.navui.setting.tollroad.toggle.visibility"
+                    tomtom:navui_visibleBooleanExtra="GONE" />
+
+                <ToggleSetting
+                    tomtom:navui_defaultValue="true"
+                    tomtom:navui_key="com.tomtom.navui.setting.timeline.show.ferries.or.car.shuttle.trains"
+                    tomtom:navui_settingLabel="@string/navui_appearance_route_information_ferries_or_car_shuttle_trains"
+                    tomtom:navui_visibleAction="com.tomtom.navui.setting.ferry.or.car.shuttle.train.toggle.visibility"
+                    tomtom:navui_visibleBooleanExtra="GONE" />
+
+            </SettingScreen>
+
+            <ToggleSetting
+                tomtom:navui_defaultValue="false"
+                tomtom:navui_key="com.tomtom.navui.setting.clock"
+                tomtom:navui_settingLabel="@string/navui_appearance_show_current_time" />
+
+            <ToggleSetting
+                tomtom:navui_defaultValue="false"
+                tomtom:navui_key="com.tomtom.navui.setting.ShowWideRouteBar"
+                tomtom:navui_settingLabel="@string/navui_appearance_show_large_panel"
+                tomtom:navui_visibleAction="com.tomtom.navui.setting.ShowWideRouteBar.VISIBILITY"
+                tomtom:navui_visibleBooleanExtra="GONE" />
+
+            <ToggleSetting
+                tomtom:navui_defaultValue="true"
+                tomtom:navui_key="com.tomtom.navui.setting.show_cancel_route"
+                tomtom:navui_settingLabel="@string/navui_appearance_show_cancel_route" />
+
+        </SettingScreen>
+
+        <SettingScreen
+            tomtom:navui_settingLabel="@string/navui_settings_appearance_guidanceview"
+            tomtom:navui_settingScreenId="@+id/navui_settings_appearance_guidanceview"
+            tomtom:navui_settingTitle="@string/navui_settings_appearance_guidanceview_title"
+            tomtom:navui_showValue="false" >
+
+            <ToggleSetting
+                tomtom:navui_defaultValue="true"
+                tomtom:navui_key="com.tomtom.navui.setting.CurrentStreetNameInSpeedPanel"
+                tomtom:navui_settingLabel="@string/navui_appearance_steeet_names_in_sb" />
+
+            <ToggleSetting
+                tomtom:navui_defaultValue="true"
+                tomtom:navui_key="com.tomtom.navui.setting.BuildingsIn3DView"
+                tomtom:navui_settingLabel="@string/navui_appearance_buildings_in_3d_view"
+                tomtom:navui_visibleAction="com.tomtom.navui.setting.show.buildings.3d.view.toggle"
+                tomtom:navui_visibleBooleanExtra="GONE"/>
+
+            <SettingCategory tomtom:navui_settingLabel="@string/navui_appearance_guidance_view_title" >
+
+                <ListSetting
+                    tomtom:navui_defaultValue="0"
+                    tomtom:navui_entries="@array/navui_appearance_guidance_view_options"
+                    tomtom:navui_entryValues="@array/navui_appearance_guidance_view_values"
+                    tomtom:navui_key="com.tomtom.navui.setting.GuidanceView" />
+
+            </SettingCategory>
+
+        </SettingScreen>
+
+        <SettingScreen
+            tomtom:navui_settingLabel="@string/navui_appearance_auto_map_zoom"
+            tomtom:navui_settingScreenId="@+id/navui_settings_appearance_auto_map_zoom"
+            tomtom:navui_settingTitle="@string/navui_appearance_auto_map_zoom_title"
+            tomtom:navui_showValue="true" >
+
+            <ListSetting
+                tomtom:navui_entries="@array/navui_appearance_auto_map_zoom_options"
+                tomtom:navui_entryValues="@array/navui_appearance_auto_map_zoom_values"
+                tomtom:navui_key="com.tomtom.navui.setting.AutoMapZoom"
+                tomtom:navui_defaultValue="0" />
+
+        </SettingScreen>
+
+        <Setting
+            tomtom:navui_settingLabel="@string/navui_appearance_show_community_pois"
+            tomtom:navui_visibleAction="com.tomtom.navui.setting.feature.CommunityPoiMapLayer.VISIBLE"
+            tomtom:navui_visibleBooleanExtra="GONE">
+            <intent android:action="CommunityPoiSettingsScreen" />
+        </Setting>
+
+        <ToggleSetting
+            tomtom:navui_settingLabel="@string/navui_appearance_switch_map_view"
+            tomtom:navui_key="com.tomtom.navui.setting.auto.map.switch"
+            tomtom:navui_defaultValue="true" />
+
+        <ToggleSetting
+            tomtom:navui_settingLabel="@string/navui_appearance_show_alg"
+            tomtom:navui_key="com.tomtom.navui.setting.Alg"
+            tomtom:navui_defaultValue="true" />
+
+        <ToggleSetting
+            tomtom:navui_settingLabel="@string/navui_appearance_show_terrain_on_map"
+            tomtom:navui_key="com.tomtom.navui.setting.ShowTerrainOnMap"
+            tomtom:navui_visibleAction="com.tomtom.navui.client.supports.terrain.display"
+            tomtom:navui_visibleBooleanExtra="GONE"
+            tomtom:navui_defaultValue="false" />
+
+    </SettingScreen>
+
+    <!-- Voice & Instructions -->
+    <SettingScreen
+        tomtom:navui_settingTitle="@string/navui_settings_title_voice_and_instructions"
+        tomtom:navui_settingScreenId="@+id/navui_settings_voice_and_instructions" >
+
+        <Setting
+            tomtom:navui_settingLabel="@string/navui_settings_voices_change"
+            tomtom:navui_valueAction="com.tomtom.navui.setting.voice.SET_VOICE_NAME"
+            tomtom:navui_valueStringExtra="VOICENAME"
+            tomtom:navui_showValue="true" >
+
+            <intent android:action="VoiceSelectionScreen"/>
+        </Setting>
+
+        <SettingCategory
+            tomtom:navui_settingLabel="@string/navui_settings_instruction_preferences_title" >
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_settings_instruction_preferences_arrival_information"
+                tomtom:navui_key="com.tomtom.navui.setting.ToggleTTSRouteEta"
+                tomtom:navui_defaultValue="true" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_settings_instruction_preferences_early_warnings"
+                tomtom:navui_key="com.tomtom.navui.setting.SpeakEarlyWarnings"
+                tomtom:navui_defaultValue="true" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_settings_instruction_preferences_road_numbers"
+                tomtom:navui_key="com.tomtom.navui.setting.SpeakRoadNumbers"
+                tomtom:navui_visibleAction="com.tomtom.navui.setting.voice.preferences.SET_VISIBILITY"
+                tomtom:navui_visibleBooleanExtra="VISIBLE"
+                tomtom:navui_defaultValue="true" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_settings_instruction_preferences_signposts"
+                tomtom:navui_key="com.tomtom.navui.setting.SpeakSignPosts"
+                tomtom:navui_visibleAction="com.tomtom.navui.setting.voice.preferences.SET_VISIBILITY"
+                tomtom:navui_visibleBooleanExtra="VISIBLE"
+                tomtom:navui_defaultValue="true" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_settings_instruction_preferences_street_names"
+                tomtom:navui_key="com.tomtom.navui.setting.SpeakStreetNames"
+                tomtom:navui_visibleAction="com.tomtom.navui.setting.voice.preferences.SET_VISIBILITY"
+                tomtom:navui_visibleBooleanExtra="VISIBLE"
+                tomtom:navui_defaultValue="true" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_settings_instruction_preferences_foreign_street_names"
+                tomtom:navui_key="com.tomtom.navui.setting.SpeakForeignStreetNames"
+                tomtom:navui_visibleAction="com.tomtom.navui.setting.voice.preferences.SET_VISIBILITY"
+                tomtom:navui_visibleBooleanExtra="VISIBLE"
+                tomtom:navui_defaultValue="false" />
+        </SettingCategory>
+
+        <SettingCategory
+            tomtom:navui_settingLabel="@string/navui_settings_audio_advanced" />
+
+        <SettingScreen
+            tomtom:navui_settingTitle="@string/navui_settings_audio_advanced"
+            tomtom:navui_settingLabel="@string/navui_settings_audio_stream_type"
+            tomtom:navui_settingScreenId="@+id/navui_soundalerts_audio_audiostreamtype"
+            tomtom:navui_visibleAction="com.tomtom.navui.setting.audiostreamtype.VISIBILITY"
+            tomtom:navui_visibleBooleanExtra="VISIBLE"
+            tomtom:navui_showValue="true" >
+
+            <SettingCategory
+                tomtom:navui_settingLabel="@string/navui_settings_audio_stream_type">
+
+                <ListSetting
+                    tomtom:navui_key="com.tomtom.navui.setting.audiostreamtype"
+                    tomtom:navui_entries="@array/navui_audio_stream_type_options"
+                    tomtom:navui_entryValues="@array/navui_audio_stream_type_values"
+                    tomtom:navui_defaultValue="3" />
+
+            </SettingCategory>
+        </SettingScreen>
+    </SettingScreen>
+
+    <!-- Route Planning -->
+    <SettingScreen
+        tomtom:navui_settingTitle="@string/navui_settings_title_route_planning"
+        tomtom:navui_settingScreenId="@+id/navui_settings_routeplanning" >
+
+         <SettingCategory
+            tomtom:navui_settingLabel="@string/navui_routeplanning_suggest_destinations_title"
+            tomtom:navui_visibleAction="com.tomtom.navui.setting.RoutePlanningSuggestDestinations.VISIBILITY"
+            tomtom:navui_visibleBooleanExtra="GONE" >
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_routeplanning_suggest_destinations"
+                tomtom:navui_key="com.tomtom.navui.setting.RoutePlanningSuggestDestinations"
+                tomtom:navui_visibleAction="com.tomtom.navui.setting.RoutePlanningSuggestDestinations.VISIBILITY"
+                tomtom:navui_visibleBooleanExtra="GONE"
+                tomtom:navui_defaultValue="true" />
+
+        </SettingCategory>
+
+        <SettingCategory
+            tomtom:navui_settingLabel="@string/navui_routeplanning_faster_route_title" >
+
+            <ListSetting
+                tomtom:navui_key="com.tomtom.navui.setting.WhenAFasterRouteIsAvailable"
+                tomtom:navui_entries="@array/navui_routeplanning_faster_options"
+                tomtom:navui_entryValues="@array/navui_routeplanning_faster_values"
+                tomtom:navui_defaultValue="1" />
+
+        </SettingCategory>
+
+        <SettingCategory
+            tomtom:navui_settingLabel="@string/navui_routeplanning_always_pick_title" >
+
+            <ListSetting
+                tomtom:navui_key="com.tomtom.navui.setting.WhenPlanningARouteAlwaysPick"
+                tomtom:navui_entries="@array/navui_routeplanning_always_options"
+                tomtom:navui_entryValues="@array/navui_routeplanning_always_values"
+                tomtom:navui_hiddenEntryTrigger="com.tomtom.navui.setting.feature.MenuWindingRouteTypeEnabled"
+                tomtom:navui_hiddenEntryValues="@array/navui_routeplanning_hidden_values"
+                tomtom:navui_visibleAction="com.tomtom.navui.setting.planning.always.options.SET_VISIBILITY"
+                tomtom:navui_visibleBooleanExtra="VISIBLE"
+                tomtom:navui_defaultValue="0" />
+
+            <ListSetting
+                tomtom:navui_key="com.tomtom.navui.setting.WhenPlanningATruckRouteAlwaysPick"
+                tomtom:navui_entries="@array/navui_routeplanning_always_options_truck"
+                tomtom:navui_entryValues="@array/navui_routeplanning_always_values_truck"
+                tomtom:navui_visibleAction="com.tomtom.navui.setting.planning.always.options.truck.SET_VISIBILITY"
+                tomtom:navui_visibleBooleanExtra="VISIBLE"
+                tomtom:navui_defaultValue="0" />
+
+        </SettingCategory>
+
+        <SettingCategory
+            tomtom:navui_settingLabel="@string/navui_routeplanning_avoid_title" >
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_routeplanning_avoid_ferries"
+                tomtom:navui_key="com.tomtom.navui.setting.RoutePlanningAvoidFerries"
+                tomtom:navui_defaultValue="false" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_routeplanning_avoid_toll_roads"
+                tomtom:navui_key="com.tomtom.navui.setting.RoutePlanningAvoidTollRoads"
+                tomtom:navui_defaultValue="false" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_routeplanning_avoid_carpool_lanes"
+                tomtom:navui_key="com.tomtom.navui.setting.RoutePlanningAvoidCarpoolLanes"
+                tomtom:navui_defaultValue="false" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_routeplanning_avoid_unpaved_roads"
+                tomtom:navui_key="com.tomtom.navui.setting.RoutePlanningAvoidUnpavedRoads"
+                tomtom:navui_defaultValue="false" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_routeplanning_avoid_tunnels"
+                tomtom:navui_key="com.tomtom.navui.setting.RoutePlanningAvoidTunnels"
+                tomtom:navui_defaultValue="false" />
+
+        </SettingCategory>
+
+    </SettingScreen>
+
+    <!-- Sounds & Alerts -->
+    <SettingScreen
+        tomtom:navui_settingLabel="@string/navui_soundalerts_warning_type"
+        tomtom:navui_settingTitle="@string/navui_settings_title_sounds_and_alerts"
+        tomtom:navui_settingScreenId="@+id/navui_settings_soundalerts"
+        tomtom:navui_showValue="true" >
+
+        <SettingScreen
+            tomtom:navui_settingLabel="@string/navui_soundalerts_warning_type"
+            tomtom:navui_settingTitle="@string/navui_soundalerts_warning_type_title"
+            tomtom:navui_settingScreenId="@+id/navui_soundalerts_setting_warning_type"
+            tomtom:navui_showValue="true"  >
+
+            <ListSetting
+                tomtom:navui_key="com.tomtom.navui.setting.WarningType"
+                tomtom:navui_entries="@array/navui_soundalerts_warning_type_options"
+                tomtom:navui_entryValues="@array/navui_soundalerts_warning_type_values"
+                tomtom:navui_defaultValue="1" >
+                <VersionChange
+                    tomtom:navui_settingVersionUpgradeTo="112"
+                    tomtom:navui_defaultValue="1"/>
+            </ListSetting>
+
+            <intent android:action="AudioWarningTypeListScreen"/>
+        </SettingScreen>
+
+        <SettingCategory
+            tomtom:navui_settingLabel="@string/navui_soundalerts_warnings" />
+
+        <ToggleSetting
+            tomtom:navui_key="com.tomtom.navui.setting.SpeedCameraWarnings"
+            tomtom:navui_settingLabel="@string/navui_soundalerts_cameras_and_hazard_warnings"
+            tomtom:navui_defaultValue="true"
+            tomtom:navui_visibleAction="com.tomtom.navui.setting.SpeedCameraWarnings.VISIBILITY"
+            tomtom:navui_visibleBooleanExtra="VISIBLE">
+            <VersionChange
+                tomtom:navui_settingVersionUpgradeTo="108"
+                tomtom:navui_defaultValue="true"/>
+        </ToggleSetting>
+
+        <ToggleSetting
+            tomtom:navui_key="com.tomtom.navui.setting.SpeedCameraWarnings"
+            tomtom:navui_settingLabel="@string/navui_soundalerts_hazard_warnings"
+            tomtom:navui_defaultValue="true"
+            tomtom:navui_visibleAction="com.tomtom.navui.setting.Warnings.VISIBILITY"
+            tomtom:navui_visibleBooleanExtra="VISIBLE">
+        </ToggleSetting>
+
+        <SettingScreen
+            tomtom:navui_settingTitle="@string/navui_soundalerts_speed_cameras_fixed_title"
+            tomtom:navui_settingLabel="@string/navui_soundalerts_speed_cameras_fixed"
+            tomtom:navui_settingScreenId="@+id/navui_setting_speed_camera_alerts_fixed"
+            tomtom:navui_visibleAction="com.tomtom.navui.setting.speed_cameras_fixed.VISIBILITY"
+            tomtom:navui_visibleBooleanExtra="VISIBLE"
+            tomtom:navui_showValue="true" >
+
+            <SettingCategory
+                tomtom:navui_settingLabel="@string/navui_soundalerts_list_title" >
+
+                <ListSetting
+                    tomtom:navui_key="com.tomtom.navui.settings.SpeedCameraAlertsFixed"
+                    tomtom:navui_entries="@array/navui_soundalerts_speed_related_options"
+                    tomtom:navui_entryValues="@array/navui_soundalerts_speed_related_values"
+                    tomtom:navui_defaultValue="0" />
+
+            </SettingCategory>
+
+        </SettingScreen>
+
+        <SettingScreen
+            tomtom:navui_settingTitle="@string/navui_soundalerts_speed_cameras_mobile_title"
+            tomtom:navui_settingLabel="@string/navui_soundalerts_speed_cameras_mobile"
+            tomtom:navui_settingScreenId="@+id/navui_setting_speed_camera_alerts_mobile"
+            tomtom:navui_visibleAction="com.tomtom.navui.settings.SpeedCameraAlertsMobile.VISIBILITY"
+            tomtom:navui_visibleBooleanExtra="VISIBLE"
+            tomtom:navui_showValue="true" >
+
+            <SettingCategory
+                tomtom:navui_settingLabel="@string/navui_soundalerts_list_title" >
+
+                <ListSetting
+                    tomtom:navui_key="com.tomtom.navui.settings.SpeedCameraAlertsMobile"
+                    tomtom:navui_entries="@array/navui_soundalerts_speed_related_options"
+                    tomtom:navui_entryValues="@array/navui_soundalerts_speed_related_values"
+                    tomtom:navui_defaultValue="0" />
+
+            </SettingCategory>
+
+        </SettingScreen>
+
+        <SettingScreen
+            tomtom:navui_settingTitle="@string/navui_soundalerts_speed_cameras_likely_mobile_title"
+            tomtom:navui_settingLabel="@string/navui_soundalerts_speed_cameras_likely_mobile"
+            tomtom:navui_settingScreenId="@+id/navui_setting_speed_camera_alerts_likely_mobile"
+            tomtom:navui_visibleAction="com.tomtom.navui.settings.SpeedCameraAlertsLikelyMobile.VISIBILITY"
+            tomtom:navui_visibleBooleanExtra="VISIBLE"
+            tomtom:navui_showValue="true" >
+
+            <SettingCategory
+                tomtom:navui_settingLabel="@string/navui_soundalerts_list_title" >
+
+                <ListSetting
+                    tomtom:navui_key="com.tomtom.navui.settings.SpeedCameraAlertsLikelyMobile"
+                    tomtom:navui_entries="@array/navui_soundalerts_speed_related_options"
+                    tomtom:navui_entryValues="@array/navui_soundalerts_speed_related_values"
+                    tomtom:navui_defaultValue="1" />
+
+            </SettingCategory>
+
+        </SettingScreen>
+
+        <SettingScreen
+            tomtom:navui_settingTitle="@string/navui_soundalerts_speed_cameras_average_zone_title"
+            tomtom:navui_settingLabel="@string/navui_soundalerts_speed_cameras_average_zone"
+            tomtom:navui_settingScreenId="@+id/navui_setting_speed_camera_alerts_average_zone"
+            tomtom:navui_visibleAction="com.tomtom.navui.setting.speed_cameras_average_zone.VISIBILITY"
+            tomtom:navui_visibleBooleanExtra="VISIBLE"
+            tomtom:navui_showValue="true" >
+
+            <SettingCategory
+                tomtom:navui_settingLabel="@string/navui_soundalerts_list_title" >
+
+                <ListSetting
+                    tomtom:navui_key="com.tomtom.navui.settings.SpeedCameraAlertsAverageSpeedZone"
+                    tomtom:navui_entries="@array/navui_soundalerts_speed_related_options"
+                    tomtom:navui_entryValues="@array/navui_soundalerts_speed_related_values"
+                    tomtom:navui_defaultValue="0" />
+
+            </SettingCategory>
+
+        </SettingScreen>
+
+        <SettingScreen
+            tomtom:navui_settingTitle="@string/navui_soundalerts_speed_cameras_speed_enforcement_zone_title"
+            tomtom:navui_settingLabel="@string/navui_soundalerts_speed_cameras_speed_enforcement_zone"
+            tomtom:navui_settingScreenId="@+id/navui_setting_speed_camera_alerts_speed_enforcement_zone"
+            tomtom:navui_visibleAction="com.tomtom.navui.setting.speed_cameras_enforcement_zone.VISIBILITY"
+            tomtom:navui_visibleBooleanExtra="VISIBLE"
+            tomtom:navui_showValue="true" >
+
+            <SettingCategory
+                tomtom:navui_settingLabel="@string/navui_soundalerts_list_title" >
+
+                <ListSetting
+                    tomtom:navui_key="com.tomtom.navui.settings.SpeedCameraAlertsSpeedEnforcementZone"
+                    tomtom:navui_entries="@array/navui_soundalerts_speed_related_options"
+                    tomtom:navui_entryValues="@array/navui_soundalerts_speed_related_values"
+                    tomtom:navui_defaultValue="0" />
+
+            </SettingCategory>
+
+        </SettingScreen>
+
+        <SettingScreen
+            tomtom:navui_settingTitle="@string/navui_soundalerts_speed_cameras_traffic_light_title"
+            tomtom:navui_settingLabel="@string/navui_soundalerts_speed_cameras_traffic_light"
+            tomtom:navui_settingScreenId="@+id/navui_setting_speed_camera_alerts_traffic_light"
+            tomtom:navui_visibleAction="com.tomtom.navui.setting.speed_cameras_traffic_lights.VISIBILITY"
+            tomtom:navui_visibleBooleanExtra="VISIBLE"
+            tomtom:navui_showValue="true" >
+
+            <SettingCategory
+                tomtom:navui_settingLabel="@string/navui_soundalerts_list_title" >
+
+                <ListSetting
+                    tomtom:navui_key="com.tomtom.navui.settings.SaferyAlertsTrafficLight"
+                    tomtom:navui_entries="@array/navui_soundalerts_options"
+                    tomtom:navui_entryValues="@array/navui_soundalerts_values"
+                    tomtom:navui_defaultValue="0" />
+
+            </SettingCategory>
+
+        </SettingScreen>
+
+        <SettingScreen
+            tomtom:navui_settingTitle="@string/navui_soundalerts_speed_cameras_traffic_restriction_title"
+            tomtom:navui_settingLabel="@string/navui_soundalerts_speed_cameras_traffic_restriction"
+            tomtom:navui_settingScreenId="@+id/navui_setting_speed_camera_alerts_traffic_restriction"
+            tomtom:navui_visibleAction="com.tomtom.navui.setting.speed_cameras_traffic_restriction.VISIBILITY"
+            tomtom:navui_visibleBooleanExtra="VISIBLE"
+            tomtom:navui_showValue="true" >
+
+            <SettingCategory
+                tomtom:navui_settingLabel="@string/navui_soundalerts_list_title" >
+
+                <ListSetting
+                    tomtom:navui_key="com.tomtom.navui.settings.SpeedCameraAlertsTrafficRestriction"
+                    tomtom:navui_entries="@array/navui_soundalerts_options"
+                    tomtom:navui_entryValues="@array/navui_soundalerts_values"
+                    tomtom:navui_defaultValue="0" />
+
+            </SettingCategory>
+
+        </SettingScreen>
+
+        <SettingScreen
+            tomtom:navui_settingTitle="@string/navui_soundalerts_safety_blackspots_title"
+            tomtom:navui_settingLabel="@string/navui_soundalerts_safety_blackspots"
+            tomtom:navui_visibleAction="com.tomtom.navui.setting.SafetyAlertsBlackspot.VISIBILITY"
+            tomtom:navui_visibleBooleanExtra="VISIBLE"
+            tomtom:navui_showValue="true"
+            tomtom:navui_settingScreenId="@+id/navui_soundalerts_safety_blackspots" >
+
+            <SettingCategory
+                tomtom:navui_settingLabel="@string/navui_soundalerts_list_title" >
+
+                <ListSetting
+                    tomtom:navui_key="com.tomtom.navui.settings.SafetyAlertsAccidentBlackspots"
+                    tomtom:navui_entries="@array/navui_soundalerts_speed_related_options"
+                    tomtom:navui_entryValues="@array/navui_soundalerts_speed_related_values"
+                    tomtom:navui_defaultValue="1" />
+
+            </SettingCategory>
+
+        </SettingScreen>
+
+        <SettingScreen
+            tomtom:navui_settingTitle="@string/navui_soundalerts_safety_danger_zones_title"
+            tomtom:navui_settingLabel="@string/navui_soundalerts_safety_danger_zones"
+            tomtom:navui_visibleAction="com.tomtom.navui.setting.SafetyAlertsDangerZone.VISIBILITY"
+            tomtom:navui_visibleBooleanExtra="VISIBLE"
+            tomtom:navui_showValue="true"
+            tomtom:navui_settingScreenId="@+id/navui_soundalerts_safety_danger_zones" >
+
+            <SettingCategory
+                tomtom:navui_settingLabel="@string/navui_soundalerts_list_title" >
+
+                <ListSetting
+                    tomtom:navui_key="com.tomtom.navui.settings.SafetyAlertsDangerZones"
+                    tomtom:navui_entries="@array/navui_soundalerts_speed_related_options"
+                    tomtom:navui_entryValues="@array/navui_soundalerts_speed_related_values"
+                    tomtom:navui_defaultValue="0" />
+
+            </SettingCategory>
+
+        </SettingScreen>
+
+        <SettingScreen
+            tomtom:navui_settingTitle="@string/navui_soundalerts_safety_risk_zones_title"
+            tomtom:navui_settingLabel="@string/navui_soundalerts_safety_risk_zones"
+            tomtom:navui_visibleAction="com.tomtom.navui.setting.SafetyAlertsRiskZone.VISIBILITY"
+            tomtom:navui_visibleBooleanExtra="VISIBLE"
+            tomtom:navui_showValue="true"
+            tomtom:navui_settingScreenId="@+id/navui_soundalerts_safety_risk_zones" >
+
+            <SettingCategory
+                tomtom:navui_settingLabel="@string/navui_soundalerts_list_title" >
+
+                <ListSetting
+                    tomtom:navui_key="com.tomtom.navui.settings.SafetyAlertsRiskZones"
+                    tomtom:navui_entries="@array/navui_soundalerts_speed_related_options"
+                    tomtom:navui_entryValues="@array/navui_soundalerts_speed_related_values"
+                    tomtom:navui_defaultValue="0" />
+
+            </SettingCategory>
+
+        </SettingScreen>
+
+        <SettingCategory
+            tomtom:navui_visibleAction="com.tomtom.navui.setting.other_situations_divider.VISIBILITY"
+            tomtom:navui_visibleBooleanExtra="VISIBLE"
+            tomtom:navui_titleVisibility="invisible"/>
+
+        <ToggleSetting
+            tomtom:navui_settingTitle="@string/navui_soundalerts_safety_traffic_jam_tails_title"
+            tomtom:navui_settingLabel="@string/navui_soundalerts_safety_traffic_jam_tails"
+            tomtom:navui_key="com.tomtom.navui.settings.SafetyAlertsTrafficJamTails"
+            tomtom:navui_showValue="true"
+            tomtom:navui_defaultValue="true"
+            tomtom:navui_settingScreenId="@+id/navui_soundalerts_safety_traffic_jam_tails" >
+
+            <VersionChange
+                tomtom:navui_settingVersionUpgradeTo="111"
+                tomtom:navui_defaultValue="true"/>
+
+        </ToggleSetting>
+
+        <ToggleSetting
+            tomtom:navui_settingTitle="@string/navui_soundalerts_safety_over_speed_limit_title"
+            tomtom:navui_settingLabel="@string/navui_soundalerts_safety_over_speed_limit"
+            tomtom:navui_key="com.tomtom.navui.settings.SafetyAlertsOverSpeedLimit"
+            tomtom:navui_showValue="true"
+            tomtom:navui_defaultValue="false"
+            tomtom:navui_settingScreenId="@+id/navui_soundalerts_safety_over_speed_limit" >
+
+            <VersionChange
+                tomtom:navui_settingVersionUpgradeTo="111"
+                tomtom:navui_defaultValue="false"/>
+
+        </ToggleSetting>
+
+        <!--
+          - TODO: Re-enable/uncomment after Nav4.
+          - The following is commented out because these settings were de-scoped for Nav4 (NAVAPP-5068).
+
+        <SettingScreen
+            tomtom:navui_settingTitle="@string/navui_soundalerts_alert_time_title"
+            tomtom:navui_settingLabel="@string/navui_soundalerts_alert_time"
+            tomtom:navui_showValue="true"
+            tomtom:navui_settingScreenId="@+id/navui_soundalerts_alert_time_title" >
+
+            <ListSetting
+                tomtom:navui_key="com.tomtom.navui.settings.AlertTime"
+                tomtom:navui_entries="@array/navui_soundalerts_alert_time_options"
+                tomtom:navui_entryValues="@array/navui_soundalerts_alert_time_values"
+                tomtom:navui_defaultValue="10"
+                tomtom:navui_settingLabel="@string/navui_soundalerts_alert_time_list_title"
+                tomtom:navui_summary="@string/navui_soundalerts_alert_time_list_summary" />
+
+        </SettingScreen>
+        -->
+
+        <!-- PND -->
+        <!-- Sound output -->
+
+        <!-- PND -->
+        <!-- Link volume to car speed -->
+
+    </SettingScreen>
+
+    <!-- Bluetooth -->
+
+    <!-- Language & Units -->
+
+    <SettingScreen
+        tomtom:navui_settingTitle="@string/navui_settings_title_units"
+        tomtom:navui_settingScreenId="@+id/navui_settings_units" >
+        <SettingCategory
+            tomtom:navui_settingLabel="@string/navui_units_distance_title" >
+            <ListSetting
+                tomtom:navui_key="com.tomtom.navui.setting.Distance"
+                tomtom:navui_entries="@array/navui_units_distance_options"
+                tomtom:navui_entryValues="@array/navui_units_distance_values"
+                tomtom:navui_defaultValue="3" />
+        </SettingCategory>
+    </SettingScreen>
+
+    <!-- Live Poi Service -->
+    <SettingScreen
+        tomtom:navui_settingTitle="@string/navui_settings_livepoi_and_service"
+        tomtom:navui_settingScreenId="@+id/navui_settings_livepoi" >
+        <ToggleSetting
+            tomtom:navui_settingLabel="@string/navui_Setting_livepoi_poiinfo"
+            tomtom:navui_key="com.tomtom.navui.setting.live.poi.info"
+            tomtom:navui_defaultValue="true" />
+        <SettingCategory
+            tomtom:navui_settingLabel="@string/navui_Setting_livepoi_preference" />
+        <SettingScreen
+           tomtom:navui_settingLabel="@string/navui_settings_livepoi_fueltype"
+           tomtom:navui_settingTitle="@string/navui_settings_livepoi_fueltype"
+           tomtom:navui_showValue="true"
+           tomtom:navui_settingScreenId="@+id/navui_settings_livepoi_fueltypecategory" >
+           <ListSetting
+                tomtom:navui_key="com.tomtom.navui.setting.fuel.type"
+                tomtom:navui_entries="@array/navui_livepoi_fueltype_options"
+                tomtom:navui_entryValues="@array/navui_livepoi_fueltype_options_values"
+                tomtom:navui_defaultValue="0" />
+        </SettingScreen>
+    </SettingScreen>
+
+    <!-- My TomTom Account -->
+
+    <!-- Systems & Privacy -->
+    <SettingScreen
+        tomtom:navui_settingTitle="@string/navui_settings_title_systems_and_privacy"
+        tomtom:navui_settingScreenId="@+id/navui_settings_systemsprivacy" />
+
+    <!-- Help -->
+    <SettingScreen
+        tomtom:navui_settingTitle="@string/navui_settings_title_help"
+        tomtom:navui_settingScreenId="@+id/navui_settings_help" >
+
+        <Setting
+            tomtom:navui_settingLabel="@string/navui_help_device_info" >
+            <intent android:action="AboutScreen" />
+        </Setting>
+
+        <SettingScreen
+            tomtom:navui_settingTitle="@string/navui_configurable_features_title"
+            tomtom:navui_settingLabel="@string/navui_configurable_features_label"
+            tomtom:navui_visibleAction="com.tomtom.navui.setting.feature.VISIBILITY"
+            tomtom:navui_visibleBooleanExtra="GONE"
+            tomtom:navui_settingScreenId="@+id/navui_feature_screen">
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_category_report_map_error"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.MapErrorReport"
+                tomtom:navui_defaultValue="false" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_search_online"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.SearchOnline"
+                tomtom:navui_defaultValue="true" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_avoid_road_block_feature"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.AvoidBlockedRoadScreen"
+                tomtom:navui_defaultValue="true" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_configurable_features_menu_page_controls"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.MenuPageControls"
+                tomtom:navui_defaultValue="false" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_configurable_features_menu_extended_touchable_scroll_area"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.MenuExtendedTouchableScrollArea"
+                tomtom:navui_defaultValue="false" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_configurable_features_menu_swipe_on_partially_visible_item_click"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.MenuSwipeOnPartiallyVisibleItemClick"
+                tomtom:navui_defaultValue="true" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_configurable_features_test_cancel_route"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.test.TestCancelRoute"
+                tomtom:navui_defaultValue="false" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_find_alternative"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.FindAlternative"
+                tomtom:navui_defaultValue="true" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_active_destination_sync"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.ActiveDestinationSync"
+                tomtom:navui_defaultValue="true" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_favorite_sync"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.FavoriteSync"
+                tomtom:navui_defaultValue="true" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_community_poi_sync"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.CommunityPoiSync2"
+                tomtom:navui_defaultValue="true" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_community_poi_map_layer"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.CommunityPoiMapLayer"
+                tomtom:navui_defaultValue="false" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_track_sync"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.TrackSync"
+                tomtom:navui_defaultValue="true" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_configurable_features_volume_control_visible"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.VolumeControlVisible"
+                tomtom:navui_defaultValue="true" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_configurable_features_show_current_speed"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.ShowCurrentSpeed"
+                tomtom:navui_defaultValue="true" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_configurable_features_show_speed_limit"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.ShowSpeedLimit"
+                tomtom:navui_defaultValue="true" />
+
+            <SettingScreen
+                tomtom:navui_settingTitle="@string/navui_configurable_features_focus_ui_screen_title"
+                tomtom:navui_settingScreenId="@+id/navui_feature_focus_ui">
+
+                <ToggleSetting
+                    tomtom:navui_defaultValue="false"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.FocusUi"
+                    tomtom:navui_settingLabel="@string/navui_configurable_features_focus_ui">
+                    <VersionChange
+                        tomtom:navui_defaultValue="true"
+                        tomtom:navui_settingVersionUpgradeTo="122"/>
+                </ToggleSetting>
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_configurable_features_focus_ui_focus_when_disabled"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.FocusUiFocusWhenDisabled"
+                    tomtom:navui_defaultValue="false">
+                    <VersionChange
+                        tomtom:navui_settingVersionUpgradeTo="122"
+                        tomtom:navui_defaultValue="true"/>
+                </ToggleSetting>
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_configurable_features_focus_ui_use_fuxml_mechanism"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.FocusUiFUXML"
+                    tomtom:navui_defaultValue="false"/>
+
+            </SettingScreen>
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_configurable_features_menu_battery_and_bluetooth_icons_visible"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.MenuBatteryAndBluetoothIconsVisible"
+                tomtom:navui_defaultValue="true" />
+
+            <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_configurable_features_menu_wifi_icon_visible"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.MenuWifiIconVisible"
+                    tomtom:navui_defaultValue="false" />
+
+            <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_configurable_features_platform_wifi_settings_accessible"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.PlatformWifiSettingsAccessible"
+                    tomtom:navui_defaultValue="false" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_configurable_features_auto_density"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.AutoDensity"
+                tomtom:navui_defaultValue="true" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_configurable_features_plan_thrill"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.PlanThrill"
+                tomtom:navui_defaultValue="false" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_routeplanning_always_winding"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.MenuWindingRouteTypeEnabled"
+                tomtom:navui_defaultValue="false" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_track_recording_feature"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.TrackRecording"
+                tomtom:navui_defaultValue="false" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_routes_import_export_feature"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.RoutesImportExport"
+                tomtom:navui_defaultValue="false" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_configurable_features_map_color_schemes"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.MapColorScheme"
+                tomtom:navui_defaultValue="false" />
+
+
+             <ToggleSetting
+                 tomtom:navui_settingLabel="@string/navui_settings_livepoi_and_service"
+                 tomtom:navui_key="com.tomtom.navui.setting.feature.live.poi.service"
+                 tomtom:navui_defaultValue="false"/>
+
+            <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_settings_map_area_selection_search"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.map.area.search"
+                    tomtom:navui_defaultValue="false"/>
+
+            <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_settings_hierarchical_search"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.hierarchical.search"
+                    tomtom:navui_defaultValue="false"/>
+
+            <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_settings_disable_map_pins_search"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.disable.map.pins.search"
+                    tomtom:navui_defaultValue="false"/>
+
+            <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_settings_disable_map_center_menu"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.disable.map.center.menu"
+                    tomtom:navui_defaultValue="false"/>
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_settings_disable_get_maps_on_startup"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.disable.get.maps.on.startup"
+                tomtom:navui_defaultValue="false"/>
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_enable_page_indicator_fading"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.EnablePageIndicatorFading"
+                tomtom:navui_defaultValue="false" />
+
+            <SettingScreen
+                tomtom:navui_settingTitle="@string/navui_settings_fuzzy_search"
+                tomtom:navui_settingScreenId="@+id/navui_feature_debug_fuzzy_search">
+                <ListSetting
+                    tomtom:navui_settingLabel="@string/navui_settings_fuzzy_search"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.fuzzy.search"
+                    tomtom:navui_entries="@array/navui_fuzzy_search_level"
+                    tomtom:navui_entryValues="@array/navui_fuzzy_search_level_values"
+                    tomtom:navui_defaultValue="0"/>
+             </SettingScreen>
+
+             <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_configurable_features_speed_camera"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.SpeedCamVisibility"
+                tomtom:navui_defaultValue="true" />
+
+            <!-- appearance debug settings -->
+            <SettingScreen
+                tomtom:navui_settingTitle="@string/navui_settings_title_appearance"
+                tomtom:navui_settingLabel="@string/navui_settings_appearance_display"
+                tomtom:navui_settingScreenId="@+id/navui_feature_debug_appearance_screen">
+
+               <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_disable_timezones_in_eta"
+                    tomtom:navui_key="com.tomtom.navui.feature.disable.timezones.in.eta"
+                    tomtom:navui_defaultValue="false" />
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_use_system_time_for_eta"
+                    tomtom:navui_key="com.tomtom.navui.feature.use.system.time.not.gps.time"
+                    tomtom:navui_defaultValue="false" />
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_enable_configure_buildings"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.configure.buildings"
+                    tomtom:navui_defaultValue="false" />
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_enable_alg_split_screen"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.configure.alg.split.screen"
+                    tomtom:navui_defaultValue="false" />
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_feature_alternative_route_instructions"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.show.alternative.route.instructions"
+                    tomtom:navui_defaultValue="false" />
+
+                <SettingScreen
+                    tomtom:navui_settingLabel="@string/navui_settings_search_type_in_home_screen"
+                    tomtom:navui_settingScreenId="@+id/navui_settings_search_type_in_home_screen"
+                    tomtom:navui_settingTitle="@string/navui_settings_search_type_in_home_screen"
+                    tomtom:navui_showValue="true" >
+
+                    <ListSetting
+                        tomtom:navui_entries="@array/navui_search_type_options"
+                        tomtom:navui_entryValues="@array/navui_search_type_option_values"
+                        tomtom:navui_key="com.tomtom.navui.setting.search_type_in_home_screen"
+                        tomtom:navui_defaultValue="2" />
+
+                </SettingScreen>
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_setting_reachable_range_layer"
+                    tomtom:navui_key="com.tomtom.navui.setting.ReachableRangeLayer"
+                    tomtom:navui_defaultValue="false" />
+            </SettingScreen>
+
+             <!-- appearance vehicle settings -->
+            <SettingScreen
+                tomtom:navui_settingTitle="@string/navui_configurable_features_vehicle_profiles"
+                tomtom:navui_settingLabel="@string/navui_configurable_features_vehicle_profiles"
+                tomtom:navui_settingScreenId="@+id/navui_type_vehicle_screen">
+
+               <ToggleSetting
+                   tomtom:navui_settingLabel="@string/navui_enable_vehicle_profile_for_car"
+                   tomtom:navui_key="com.tomtom.navui.setting.feature.enable.vehicle.profile.for.car"
+                   tomtom:navui_defaultValue="true" />
+
+               <ToggleSetting
+                   tomtom:navui_settingLabel="@string/navui_enable_vehicle_profile_for_taxi"
+                   tomtom:navui_key="com.tomtom.navui.setting.feature.enable.vehicle.profile.for.taxi"
+                   tomtom:navui_defaultValue="true" />
+
+               <ToggleSetting
+                   tomtom:navui_settingLabel="@string/navui_enable_vehicle_profile_for_van"
+                   tomtom:navui_key="com.tomtom.navui.setting.feature.enable.vehicle.profile.for.van"
+                   tomtom:navui_defaultValue="true" />
+
+               <ToggleSetting
+                   tomtom:navui_settingLabel="@string/navui_enable_vehicle_profile_for_bus"
+                   tomtom:navui_key="com.tomtom.navui.setting.feature.enable.vehicle.profile.for.bus"
+                   tomtom:navui_defaultValue="true" />
+
+               <ToggleSetting
+                   tomtom:navui_settingLabel="@string/navui_enable_vehicle_profile_for_truck"
+                   tomtom:navui_key="com.tomtom.navui.setting.feature.enable.vehicle.profile.for.truck"
+                   tomtom:navui_defaultValue="true" />
+
+               <ToggleSetting
+                   tomtom:navui_settingLabel="@string/navui_enable_vehicle_profile_for_bicycle"
+                   tomtom:navui_key="com.tomtom.navui.setting.feature.enable.vehicle.profile.for.bicycle"
+                   tomtom:navui_defaultValue="true" />
+
+               <ToggleSetting
+                   tomtom:navui_settingLabel="@string/navui_enable_vehicle_profile_for_pedestrian"
+                   tomtom:navui_key="com.tomtom.navui.setting.feature.enable.vehicle.profile.for.pedestrian"
+                   tomtom:navui_defaultValue="true" />
+
+               <ToggleSetting
+                   tomtom:navui_settingLabel="@string/navui_enable_vehicle_profile_for_motorcycle"
+                   tomtom:navui_key="com.tomtom.navui.setting.feature.enable.vehicle.profile.for.motorcycle"
+                   tomtom:navui_defaultValue="true" />
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_enable_engine_composition_selection"
+                    tomtom:navui_key="com.tomtom.navui.setting.NAVUI_FEATURE_ENABLE_ENGINE_COMPOSITION_SELECTION"
+                    tomtom:navui_defaultValue="false"/>
+
+            </SettingScreen>
+
+            <SettingScreen
+                   tomtom:navui_settingTitle="@string/navui_configurable_features_online_search"
+                   tomtom:navui_settingLabel="@string/navui_configurable_features_online_search"
+                   tomtom:navui_showValue="true"
+                   tomtom:navui_settingScreenId="@+id/navui_configurable_features_online_search" >
+
+                   <SettingCategory
+                       tomtom:navui_settingLabel="@string/navui_configurable_features_online_search" >
+
+                   <ListSetting
+                       tomtom:navui_key="com.tomtom.navui.setting.feature.plan.use.online.search"
+                       tomtom:navui_entries="@array/navui_online_search_modes"
+                       tomtom:navui_entryValues="@array/navui_online_search_values"
+                       tomtom:navui_defaultValue="0" />
+
+                   </SettingCategory>
+            </SettingScreen>
+
+            <!--  routing based features going forward -->
+            <SettingScreen
+                tomtom:navui_settingTitle="@string/navui_configurable_features_route_title"
+                tomtom:navui_settingLabel="@string/navui_configurable_features_route_label"
+                tomtom:navui_settingScreenId="@+id/navui_feature_routing_screen">
+
+                <SettingScreen
+                    tomtom:navui_settingTitle="@string/navui_configurable_features_title"
+                    tomtom:navui_settingScreenId="@+id/navui_configurable_features_label" >
+
+                    <ToggleSetting
+                        tomtom:navui_settingLabel="@string/navui_decide_by_steering"
+                        tomtom:navui_key="com.tomtom.navui.setting.feature.DecideBySteering"
+                        tomtom:navui_defaultValue="true" />
+
+                    <ToggleSetting
+                        tomtom:navui_settingLabel="@string/navui_decide_by_steering_audio_prompt"
+                        tomtom:navui_key="com.tomtom.navui.setting.feature.DecideBySteering.audioprompt"
+                        tomtom:navui_defaultValue="true" />
+
+                    <ToggleSetting
+                        tomtom:navui_settingLabel="@string/navui_decide_by_steering_allow_zoomed_in_for_slower_routes"
+                        tomtom:navui_key="com.tomtom.navui.setting.feature.DecideBySteering.zoomedinslowerroutes"
+                        tomtom:navui_defaultValue="true" />
+
+                    <ToggleSetting
+                        tomtom:navui_settingLabel="@string/navui_keep_destination_after_arriving"
+                        tomtom:navui_key= "com.tomtom.navui.setting.feature.keep.destination.after.arriving"
+                        tomtom:navui_defaultValue="false" />
+
+                    <ToggleSetting
+                        tomtom:navui_settingLabel="@string/navui_feature_show_toll_roads_in_route_bar"
+                        tomtom:navui_key="com.tomtom.navui.feature.show.toll.roads.in.route.bar"
+                        tomtom:navui_defaultValue="true" />
+
+                    <ToggleSetting
+                        tomtom:navui_settingLabel="@string/navui_feature_show_ferries_or_car_shuttle_trains_in_route_bar"
+                        tomtom:navui_key="com.tomtom.navui.feature.show.ferries.or.car.shuttle.trains.in.route.bar"
+                        tomtom:navui_defaultValue="true" />
+
+                    <ToggleSetting
+                            tomtom:navui_settingLabel="@string/navui_feature_decision_screen_for_avoid_route_segment"
+                            tomtom:navui_key="com.tomtom.setting.feature.use.decision.screen.for.avoid.route.segment"
+                            tomtom:navui_defaultValue="false">
+                        <VersionChange
+                            tomtom:navui_settingVersionUpgradeTo="134"
+                            tomtom:navui_defaultValue="true" />
+                    </ToggleSetting>
+                </SettingScreen>
+
+                <SettingScreen
+                    tomtom:navui_settingTitle="@string/navui_configurable_prototypes_title"
+                    tomtom:navui_settingScreenId="@+id/navui_configurable_protoypes_label" >
+
+                    <ToggleSetting
+                        tomtom:navui_settingLabel="@string/navui_hide_active_route_avoid_roadblock"
+                        tomtom:navui_key="com.tomtom.navui.setting.feature.AvoidHideActiveRoute"
+                        tomtom:navui_defaultValue="false" />
+
+                    <ToggleSetting
+                        tomtom:navui_settingLabel="@string/navui_configurable_features_avoid_fallback"
+                        tomtom:navui_key="com.tomtom.navui.setting.feature.AvoidFallbackToFindAlternatives"
+                        tomtom:navui_defaultValue="false" />
+
+                     <ToggleSetting
+                        tomtom:navui_settingLabel="@string/navui_feature_remove_route_demo_dialog"
+                        tomtom:navui_key="com.tomtom.navui.feature.remove.route.demo.dialog"
+                        tomtom:navui_defaultValue="false" />
+
+                     <SettingScreen
+                        tomtom:navui_settingTitle="@string/navui_configurable_features_routebar_title"
+                        tomtom:navui_settingLabel="@string/navui_configurable_features_routebar_label"
+                        tomtom:navui_settingScreenId="@+id/navui_feature_routing_routebar_screen">
+
+                        <ToggleSetting
+                            tomtom:navui_settingLabel="@string/navui_feature_show_highways_in_route_bar"
+                            tomtom:navui_key="com.tomtom.navui.feature.show.highways.in.route.bar"
+                            tomtom:navui_defaultValue="false" />
+
+                         <ToggleSetting
+                                 tomtom:navui_settingLabel="@string/navui_feature_avoid_traffic_incident"
+                                 tomtom:navui_key="com.tomtom.navui.setting.feature.AvoidTrafficIncident"
+                                 tomtom:navui_defaultValue="true" />
+
+                     </SettingScreen>
+
+                     <ToggleSetting
+                        tomtom:navui_settingLabel="@string/navui_configurable_features_commuter_routes"
+                        tomtom:navui_key="com.tomtom.navui.setting.feature.CommuterRoutesEnabled"
+                        tomtom:navui_defaultValue="false" />
+
+                     <ToggleSetting
+                        tomtom:navui_settingLabel="@string/navui_configurable_features_track_learning"
+                        tomtom:navui_key="com.tomtom.navui.setting.feature.track.learning"
+                        tomtom:navui_defaultValue="false" />
+
+                     <ToggleSetting
+                        tomtom:navui_settingLabel="@string/navui_configurable_features_destination_prediction"
+                        tomtom:navui_key="com.tomtom.navui.setting.feature.destination.prediction"
+                        tomtom:navui_defaultValue="true" />
+
+                     <ToggleSetting
+                        tomtom:navui_settingLabel="@string/navui_configurable_features_destination_prediction_logging"
+                        tomtom:navui_key="com.tomtom.navui.setting.feature.destination.prediction.logging"
+                        tomtom:navui_defaultValue="false" />
+
+                     <ToggleSetting
+                        tomtom:navui_settingLabel="@string/navui_configurable_features_tracks_always_use_combined_routes"
+                        tomtom:navui_key="com.tomtom.navui.feature.tracks.always.use.combined.routes"
+                        tomtom:navui_defaultValue="true" />
+
+                     <ToggleSetting
+                        tomtom:navui_settingLabel="@string/navui_force_deny_navcloud_destinations"
+                        tomtom:navui_key="com.tomtom.navui.feature.plan.all.navcloud.destinations"
+                        tomtom:navui_defaultValue="false" />
+
+                     <ToggleSetting
+                        tomtom:navui_settingLabel="@string/navui_allow_use_of_learned_routes"
+                        tomtom:navui_key="com.tomtom.navui.feature.allow.use.of.learned.routes"
+                        tomtom:navui_defaultValue="false" />
+
+                     <ToggleSetting
+                        tomtom:navui_settingLabel="@string/navui_allow_all_alternative_routes"
+                        tomtom:navui_key="com.tomtom.navui.feature.allow.all.alternative.routes"
+                        tomtom:navui_defaultValue="false" />
+
+                      <SettingScreen
+                        tomtom:navui_settingTitle="@string/navui_criteria_find_alternatives_algorithm"
+                        tomtom:navui_settingLabel="@string/navui_criteria_find_alternatives_algorithm"
+                        tomtom:navui_showValue="true"
+                        tomtom:navui_settingScreenId="@+id/navui_criteria_find_alternatives_algorithm" >
+
+                        <SettingCategory
+                            tomtom:navui_settingLabel="@string/navui_criteria_find_alternatives_algorithm" >
+
+                            <ListSetting
+                                tomtom:navui_key="com.tomtom.navui.setting.feature.find.alternatives.algorithm"
+                                tomtom:navui_entries="@array/navui_criteria_alternatives_algorithm_options"
+                                tomtom:navui_entryValues="@array/navui_criteria_alternatives_algorithm_values"
+                                tomtom:navui_defaultValue="0" />
+                        </SettingCategory>
+                    </SettingScreen>
+
+                    <SettingScreen
+                        tomtom:navui_settingTitle="@string/navui_feature_available_vehicle_types"
+                        tomtom:navui_settingLabel="@string/navui_feature_available_vehicle_types"
+                        tomtom:navui_showValue="true"
+                        tomtom:navui_settingScreenId="@+id/navui_feature_available_vehicle_types" >
+
+                        <ToggleSetting
+                          tomtom:navui_settingLabel="@string/navui_feature_available_vehicle_type_car"
+                          tomtom:navui_key="com.tomtom.navui.setting.feature.enable.vehicle.profile.for.car"
+                          tomtom:navui_defaultValue="true" />
+
+                        <ToggleSetting
+                          tomtom:navui_settingLabel="@string/navui_feature_available_vehicle_type_truck"
+                          tomtom:navui_key="com.tomtom.navui.setting.feature.enable.vehicle.profile.for.truck"
+                          tomtom:navui_defaultValue="true" />
+
+                        <ToggleSetting
+                          tomtom:navui_settingLabel="@string/navui_feature_available_vehicle_type_bus"
+                          tomtom:navui_key="com.tomtom.navui.setting.feature.enable.vehicle.profile.for.bus"
+                          tomtom:navui_defaultValue="true" />
+
+                        <ToggleSetting
+                          tomtom:navui_settingLabel="@string/navui_feature_available_vehicle_type_taxi"
+                          tomtom:navui_key="com.tomtom.navui.setting.feature.enable.vehicle.profile.for.taxi"
+                          tomtom:navui_defaultValue="true" />
+
+                        <ToggleSetting
+                          tomtom:navui_settingLabel="@string/navui_feature_available_vehicle_type_van"
+                          tomtom:navui_key="com.tomtom.navui.setting.feature.enable.vehicle.profile.for.van"
+                          tomtom:navui_defaultValue="true" />
+
+                        <ToggleSetting
+                          tomtom:navui_settingLabel="@string/navui_feature_available_vehicle_type_bicycle"
+                          tomtom:navui_key="com.tomtom.navui.setting.feature.enable.vehicle.profile.for.bicycle"
+                          tomtom:navui_defaultValue="true" />
+
+                        <ToggleSetting
+                          tomtom:navui_settingLabel="@string/navui_feature_available_vehicle_type_pedestrian"
+                          tomtom:navui_key="com.tomtom.navui.setting.feature.enable.vehicle.profile.for.pedestrian"
+                          tomtom:navui_defaultValue="true" />
+
+                        <ToggleSetting
+                          tomtom:navui_settingLabel="@string/navui_feature_available_vehicle_type_motorcycle"
+                          tomtom:navui_key="com.tomtom.navui.setting.feature.enable.vehicle.profile.for.motorcycle"
+                          tomtom:navui_defaultValue="true" />
+
+                    </SettingScreen>
+
+                    <!-- Route Planning -->
+                    <SettingScreen
+                        tomtom:navui_settingTitle="@string/navui_settings_title_route_planning"
+                        tomtom:navui_settingScreenId="@+id/navui_settings_routeplanning_debug" >
+
+                        <SettingScreen
+                            tomtom:navui_settingTitle="@string/navui_criteria_alternatives_at_start"
+                            tomtom:navui_settingLabel="@string/navui_criteria_alternatives_at_start"
+                            tomtom:navui_showValue="true"
+                            tomtom:navui_settingScreenId="@+id/navui_criteria_alternatives_at_start" >
+
+                            <SettingCategory
+                                tomtom:navui_settingLabel="@string/navui_criteria_alternatives_at_start" >
+
+                                <ListSetting
+                                    tomtom:navui_key="com.tomtom.navui.setting.feature.default.number.of.alternatives"
+                                    tomtom:navui_entries="@array/navui_criteria_alternatives_at_start_options"
+                                    tomtom:navui_entryValues="@array/navui_criteria_alternatives_at_start_values"
+                                    tomtom:navui_defaultValue="0" />
+                            </SettingCategory>
+                        </SettingScreen>
+
+                        <SettingScreen
+                            tomtom:navui_settingTitle="@string/navui_criteria_alternatives_algorithm"
+                            tomtom:navui_settingLabel="@string/navui_criteria_alternatives_algorithm"
+                            tomtom:navui_showValue="true"
+                            tomtom:navui_settingScreenId="@+id/navui_criteria_alternatives_algorithm" >
+
+                            <SettingCategory
+                                tomtom:navui_settingLabel="@string/navui_criteria_alternatives_algorithm" >
+
+                                <ListSetting
+                                    tomtom:navui_key="com.tomtom.navui.setting.feature.default.alternative.algorithm"
+                                    tomtom:navui_entries="@array/navui_criteria_alternatives_algorithm_options"
+                                    tomtom:navui_entryValues="@array/navui_criteria_alternatives_algorithm_values"
+                                    tomtom:navui_defaultValue="0" />
+                            </SettingCategory>
+                        </SettingScreen>
+
+                        <SettingScreen
+                            tomtom:navui_settingTitle="@string/navui_routeplanning_always_avoid_motorways"
+                            tomtom:navui_settingLabel="@string/navui_routeplanning_always_avoid_motorways"
+                            tomtom:navui_showValue="true"
+                            tomtom:navui_settingScreenId="@+id/navui_routeplanning_always_avoid_motorways" >
+
+                            <SettingCategory
+                                tomtom:navui_settingLabel="@string/navui_routeplanning_always_avoid_motorways" >
+
+                                <ListSetting
+                                   tomtom:navui_key="com.tomtom.navui.settings.avoid.motorways.criteria.level"
+                                   tomtom:navui_entries="@array/navui_avoid_criteria_level_related_options"
+                                   tomtom:navui_entryValues="@array/navui_avoid_criteria_level_related_values"
+                                   tomtom:navui_defaultValue="0" />
+                            </SettingCategory>
+                        </SettingScreen>
+
+                        <SettingScreen
+                            tomtom:navui_settingTitle="@string/navui_avoid_toll_roads"
+                            tomtom:navui_settingLabel="@string/navui_avoid_toll_roads"
+                            tomtom:navui_showValue="true"
+                            tomtom:navui_settingScreenId="@+id/navui_avoid_toll_roads" >
+
+                            <SettingCategory
+                                tomtom:navui_settingLabel="@string/navui_avoid_toll_roads" >
+
+                                <ListSetting
+                                    tomtom:navui_key="com.tomtom.navui.settings.avoid.toll.criteria.level"
+                                    tomtom:navui_entries="@array/navui_avoid_criteria_level_related_options"
+                                    tomtom:navui_entryValues="@array/navui_avoid_criteria_level_related_values"
+                                    tomtom:navui_defaultValue="0" />
+                            </SettingCategory>
+                        </SettingScreen>
+
+                        <SettingScreen
+                            tomtom:navui_settingTitle="@string/navui_avoid_ferries"
+                            tomtom:navui_settingLabel="@string/navui_avoid_ferries"
+                            tomtom:navui_showValue="true"
+                            tomtom:navui_settingScreenId="@+id/navui_avoid_ferries" >
+
+                            <SettingCategory
+                                tomtom:navui_settingLabel="@string/navui_avoid_ferries" >
+
+                                <ListSetting
+                                   tomtom:navui_key="com.tomtom.navui.settings.avoid.ferries.criteria.level"
+                                   tomtom:navui_entries="@array/navui_avoid_criteria_level_related_options"
+                                   tomtom:navui_entryValues="@array/navui_avoid_criteria_level_related_values"
+                                   tomtom:navui_defaultValue="0" />
+                            </SettingCategory>
+                        </SettingScreen>
+
+                        <SettingScreen
+                            tomtom:navui_settingTitle="@string/navui_avoid_unpaved_roads"
+                            tomtom:navui_settingLabel="@string/navui_avoid_unpaved_roads"
+                            tomtom:navui_showValue="true"
+                            tomtom:navui_settingScreenId="@+id/navui_avoid_unpaved_roads" >
+
+                            <SettingCategory
+                                tomtom:navui_settingLabel="@string/navui_avoid_unpaved_roads" >
+
+                               <ListSetting
+                                   tomtom:navui_key="com.tomtom.navui.settings.avoid.unpaved.criteria.level"
+                                   tomtom:navui_entries="@array/navui_avoid_criteria_level_related_options"
+                                   tomtom:navui_entryValues="@array/navui_avoid_criteria_level_related_values"
+                                   tomtom:navui_defaultValue="0" />
+                            </SettingCategory>
+                        </SettingScreen>
+
+                        <SettingScreen
+                            tomtom:navui_settingTitle="@string/navui_avoid_carpool_lanes"
+                            tomtom:navui_settingLabel="@string/navui_avoid_carpool_lanes"
+                            tomtom:navui_showValue="true"
+                            tomtom:navui_settingScreenId="@+id/navui_avoid_carpool_lanes" >
+
+                            <SettingCategory
+                                tomtom:navui_settingLabel="@string/navui_avoid_carpool_lanes" >
+
+                                <ListSetting
+                                   tomtom:navui_key="com.tomtom.navui.settings.avoid.hov.criteria.level"
+                                   tomtom:navui_entries="@array/navui_avoid_criteria_level_related_options"
+                                   tomtom:navui_entryValues="@array/navui_avoid_criteria_level_related_values"
+                                   tomtom:navui_defaultValue="0" />
+                            </SettingCategory>
+                        </SettingScreen>
+
+                        <SettingScreen
+                            tomtom:navui_settingTitle="@string/navui_criteria_avoid_tunnels"
+                            tomtom:navui_settingLabel="@string/navui_criteria_avoid_tunnels"
+                            tomtom:navui_showValue="true"
+                            tomtom:navui_settingScreenId="@+id/navui_criteria_avoid_tunnels" >
+
+                            <SettingCategory
+                                tomtom:navui_settingLabel="@string/navui_criteria_avoid_tunnels" >
+
+                                <ListSetting
+                                    tomtom:navui_key="com.tomtom.navui.settings.avoid.tunnels.criteria.level"
+                                    tomtom:navui_entries="@array/navui_avoid_criteria_level_related_options"
+                                    tomtom:navui_entryValues="@array/navui_avoid_criteria_level_related_values"
+                                    tomtom:navui_defaultValue="0" />
+                            </SettingCategory>
+                        </SettingScreen>
+
+                        <SettingScreen
+                            tomtom:navui_settingTitle="@string/navui_criteria_avoid_border_crossings"
+                            tomtom:navui_settingLabel="@string/navui_criteria_avoid_border_crossings"
+                            tomtom:navui_showValue="true"
+                            tomtom:navui_settingScreenId="@+id/navui_criteria_avoid_border_crossings" >
+
+                            <SettingCategory
+                                tomtom:navui_settingLabel="@string/navui_criteria_avoid_border_crossings" >
+
+                                <ListSetting
+                                    tomtom:navui_key="com.tomtom.navui.settings.avoid.border.crossing.criteria.level"
+                                    tomtom:navui_entries="@array/navui_avoid_criteria_level_related_options"
+                                    tomtom:navui_entryValues="@array/navui_avoid_criteria_level_related_values"
+                                    tomtom:navui_defaultValue="0" />
+                            </SettingCategory>
+                        </SettingScreen>
+
+                        <SettingScreen
+                            tomtom:navui_settingTitle="@string/navui_configurable_features_online_routing"
+                            tomtom:navui_settingLabel="@string/navui_configurable_features_online_routing"
+                            tomtom:navui_showValue="true"
+                            tomtom:navui_settingScreenId="@+id/navui_configurable_features_online_routing" >
+
+                            <SettingCategory
+                                tomtom:navui_settingLabel="@string/navui_configurable_features_online_routing" >
+
+                                <ListSetting
+                                    tomtom:navui_key="com.tomtom.navui.setting.feature.plan.use.online.routing"
+                                    tomtom:navui_entries="@array/navui_online_routing_modes"
+                                    tomtom:navui_entryValues="@array/navui_online_routing_values"
+                                    tomtom:navui_defaultValue="0" />
+
+                            </SettingCategory>
+                        </SettingScreen>
+
+                        <ToggleSetting
+                            tomtom:navui_settingLabel="@string/navui_decision_point_navigation"
+                            tomtom:navui_key="com.tomtom.navui.setting.feature.DecisionPointNavigation"
+                            tomtom:navui_defaultValue="false" />
+
+                        <ToggleSetting
+                            tomtom:navui_settingLabel="@string/navui_use_personal_network_for_routing"
+                            tomtom:navui_key="com.tomtom.navui.setting.feature.PersonalNetworkForRouting"
+                            tomtom:navui_defaultValue="false" />
+
+                        <ToggleSetting
+                            tomtom:navui_settingLabel="@string/navui_softwaypoints_only_in_planning"
+                            tomtom:navui_key="com.tomtom.navui.setting.feature.plan.softwaypoints.only"
+                            tomtom:navui_defaultValue="false" />
+
+                        <ToggleSetting
+                            tomtom:navui_settingLabel="@string/navui_disallow_used_legs"
+                            tomtom:navui_key="com.tomtom.navui.setting.feature.disallow.used.legs"
+                            tomtom:navui_defaultValue="false" />
+
+                        <SettingScreen
+                            tomtom:navui_settingTitle="@string/navui_setting_fuel_type"
+                            tomtom:navui_settingLabel="@string/navui_setting_fuel_type"
+                            tomtom:navui_showValue="true"
+                            tomtom:navui_settingScreenId="@+id/navui_setting_fuel_type" >
+
+                            <SettingCategory
+                                tomtom:navui_settingLabel="@string/navui_setting_fuel_type" >
+
+                                <ListSetting
+                                    tomtom:navui_key="com.tomtom.navui.setting.fuel.type"
+                                    tomtom:navui_entries="@array/navui_setting_fuel_type_options"
+                                    tomtom:navui_entryValues="@array/navui_setting_fuel_type_values"
+                                    tomtom:navui_defaultValue="0" />
+                            </SettingCategory>
+                        </SettingScreen>
+
+                    </SettingScreen> <!--  end route planning... -->
+
+                </SettingScreen> <!--  end prototypes -->
+
+            </SettingScreen> <!-- end routing debug features -->
+
+            <!--   map based configurable features - going forward -->
+            <SettingScreen
+                tomtom:navui_settingTitle="@string/navui_configurable_features_map_title"
+                tomtom:navui_settingLabel="@string/navui_configurable_features_map_label"
+                tomtom:navui_settingScreenId="@+id/navui_feature_map_screen">
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_enable_full_map_interaction"
+                    tomtom:navui_key="com.tomtom.navui.setting.maprenderer.FullMapInteraction"
+                    tomtom:navui_defaultValue="false" />
+
+                <SettingScreen
+                    tomtom:navui_settingTitle="@string/navui_configurable_prototypes_title"
+                    tomtom:navui_settingScreenId="@+id/navui_map_configurable_protoypes_label" >
+
+                    <ToggleSetting
+                        tomtom:navui_settingLabel="@string/navui_show_roadshields_on_map"
+                        tomtom:navui_key="com.tomtom.navui.setting.show.roadshields.on.map"
+                        tomtom:navui_defaultValue="false" />
+
+                    <ToggleSetting
+                        tomtom:navui_settingLabel="@string/navui_force_show_terrain_on_map"
+                        tomtom:navui_key="com.tomtom.navui.feature.force.show.terrain.on.map"
+                        tomtom:navui_defaultValue="false" />
+                </SettingScreen>
+
+                <SettingScreen
+                    tomtom:navui_settingTitle="@string/navui_configurable_features_map_scale_view"
+                    tomtom:navui_settingLabel="@string/navui_configurable_features_map_scale_view"
+                    tomtom:navui_showValue="false"
+                    tomtom:navui_settingScreenId="@+id/navui_configurable_features_map_scale_view" >
+
+                    <ListSetting
+                        tomtom:navui_key="com.tomtom.navui.setting.feature.MapScaleView"
+                        tomtom:navui_entries="@array/navui_map_scale_view_modes"
+                        tomtom:navui_entryValues="@array/navui_map_scale_view_values"
+                        tomtom:navui_defaultValue="2" />
+                </SettingScreen>
+
+            </SettingScreen>
+
+            <SettingScreen
+                tomtom:navui_settingTitle="@string/navui_configurable_features_nds_maps_title"
+                tomtom:navui_settingLabel="@string/navui_configurable_features_nds_maps_label"
+                tomtom:navui_settingScreenId="@+id/navui_configurable_features_nds_maps" >
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_configurable_features_map_automatic_updates"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.map.management.automatic.updates"
+                    tomtom:navui_defaultValue="true" />
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_configurable_features_map_region_management"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.map.region.management"
+                    tomtom:navui_defaultValue="true" />
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_configurable_features_updates_available_notification"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.map.notify.when.updates.available"
+                    tomtom:navui_defaultValue="false" />
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_nds_non_wifi_map_download_warning"
+                    tomtom:navui_key="com.tomtom.navui.setting.non.wifi.map.download.warning"
+                    tomtom:navui_defaultValue="true" />
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_nds_map_management_automatically_apply_updates"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.map.management.automatically.apply.updates"
+                    tomtom:navui_defaultValue="false" />
+
+                <SettingScreen
+                    tomtom:navui_settingTitle="@string/navui_nds_connection_type"
+                    tomtom:navui_settingLabel="@string/navui_nds_connection_type"
+                    tomtom:navui_showValue="false"
+                    tomtom:navui_settingScreenId="@+id/navui_configurable_features_nds_map_management_required_internet_connection_type" >
+                    <ListSetting
+                        tomtom:navui_key="com.tomtom.navui.setting.feature.nds.map.management.required.internet.connection.type"
+                        tomtom:navui_entries="@array/navui_nds_connection_type_options"
+                        tomtom:navui_entryValues="@array/navui_nds_connection_type_values"
+                        tomtom:navui_defaultValue="ff" />
+                </SettingScreen>
+
+            </SettingScreen>
+
+            <!--   services based configurable features - going forward -->
+            <SettingScreen
+                    tomtom:navui_settingTitle="@string/navui_configurable_features_services_title"
+                    tomtom:navui_settingLabel="@string/navui_configurable_features_services_label"
+                    tomtom:navui_settingScreenId="@+id/navui_feature_services_screen">
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_configurable_features_services_overrideavailability"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.services.overrideavailability"
+                    tomtom:navui_defaultValue="false" />
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_configurable_features_services_speedcam_report"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.services.speedcam.report"
+                    tomtom:navui_defaultValue="false" />
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_configurable_features_services_speedcam_warning"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.services.speedcam.warning"
+                    tomtom:navui_defaultValue="false" />
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_configurable_features_services_onlinesearch"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.services.onlinesearch"
+                    tomtom:navui_defaultValue="false" />
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_configurable_features_services_mapcorrections"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.services.mapcorrections"
+                    tomtom:navui_defaultValue="false" />
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_configurable_features_services_traffic"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.services.traffic"
+                    tomtom:navui_defaultValue="false" />
+
+            </SettingScreen>
+
+            <!-- speech configurable features -->
+            <SettingScreen
+                tomtom:navui_settingTitle="@string/navui_configurable_features_speech_title"
+                tomtom:navui_settingLabel="@string/navui_configurable_features_speech_label"
+                tomtom:navui_settingScreenId="@+id/navui_feature_speech_screen">
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_asr_custom_wuw_phrase_feature"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.CustomWuwPhrase"
+                    tomtom:navui_defaultValue="true" />
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_asr_configurable_features_one_shot_address_entry_from_root"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.Asr.OneShotAddressEntryFromRoot"
+                    tomtom:navui_defaultValue="true" />
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_tts_traffic_alert_feature"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.TtsTrafficAlert"
+                    tomtom:navui_defaultValue="true" />
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_tts_route_eta_feature"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.TTSRouteEta.beta"
+                    tomtom:navui_defaultValue="true" />
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_tts_default_platform_engine"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.TtsDefaultPlatformEngine"
+                    tomtom:navui_defaultValue="false" />
+
+                <ToggleSetting
+                    tomtom:navui_settingLabel="@string/navui_asr_configurable_features_predicted_destination_proposal"
+                    tomtom:navui_key="com.tomtom.navui.setting.feature.Asr.PredictedDestinationProposal"
+                    tomtom:navui_defaultValue="true" />
+
+                <SettingScreen
+                    tomtom:navui_settingTitle="@string/navui_configurable_features_asr_server_mode"
+                    tomtom:navui_settingLabel="@string/navui_configurable_features_asr_server_mode"
+                    tomtom:navui_showValue="true"
+                    tomtom:navui_settingScreenId="@+id/navui_configurable_features_asr_server_mode" >
+
+                    <SettingCategory
+                        tomtom:navui_settingLabel="@string/navui_configurable_features_asr_server_mode" >
+
+                        <ListSetting
+                            tomtom:navui_key="com.tomtom.navui.setting.AsrHybridProcessingMode"
+                            tomtom:navui_entries="@array/navui_asr_modes"
+                            tomtom:navui_entryValues="@array/navui_asr_mode_values"
+                            tomtom:navui_defaultValue="EmbeddedOnly" />
+
+                    </SettingCategory>
+
+                </SettingScreen>
+
+            </SettingScreen>
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_configurable_features_menu_customisation"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.MenuCustomisation"
+                tomtom:navui_defaultValue="true" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_configurable_features_disable_filtered_traffic"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.DisableFilteredTraffic"
+                tomtom:navui_defaultValue="false" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_configurable_features_enable_speed_cam_speed_limit_override"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.OverrideSpeedCamSpeedLimit"
+                tomtom:navui_defaultValue="false" />
+
+
+            <SettingScreen
+                tomtom:navui_settingTitle="@string/navui_configurable_features_analytics"
+                tomtom:navui_settingLabel="@string/navui_configurable_features_analytics"
+                tomtom:navui_showValue="true"
+                tomtom:navui_settingScreenId="@+id/navui_configurable_features_analytics" >
+
+                <SettingCategory
+                    tomtom:navui_settingLabel="@string/navui_configurable_features_analytics" >
+
+                    <ListSetting
+                        tomtom:navui_key="com.tomtom.navui.setting.feature.analytics"
+                        tomtom:navui_entries="@array/navui_analytics_modes"
+                        tomtom:navui_entryValues="@array/navui_analytics_values"
+                        tomtom:navui_defaultValue="0" />
+                </SettingCategory>
+
+            </SettingScreen>
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_configurable_feature_external_navkit"
+                tomtom:navui_key="com.tomtom.navui.feature.external_navkit"
+                tomtom:navui_defaultValue="false" />
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_enable_storing_logs"
+                tomtom:navui_key="com.tomtom.navui.setting.NAVUI_FEATURE_STORING_SYSTEM_LOGS_ENABLED"
+                tomtom:navui_defaultValue="false"/>
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_poi_categories_in_search_screen"
+                tomtom:navui_key="com.tomtom.navui.setting.NAVUI_FEATURE_POI_CATEGORIES_IN_SEARCH_SCREEN"
+                tomtom:navui_defaultValue="false">
+                <VersionChange
+                    tomtom:navui_settingVersionUpgradeTo="139"
+                    tomtom:navui_defaultValue="true"/>
+            </ToggleSetting>
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_enable_vehicle_range_marker"
+                tomtom:navui_key="com.tomtom.navui.setting.NAVUI_FEATURE_ENABLE_VEHICLE_RANGE_MARKER"
+                tomtom:navui_defaultValue="false"/>
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_configurable_feature_safety_lock"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.safety_lock"
+                tomtom:navui_defaultValue="false"/>
+
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_configurable_feature_dune"
+                tomtom:navui_key="com.tomtom.navui.setting.feature.dune"
+                tomtom:navui_defaultValue="false"/>
+        </SettingScreen>
+
+    </SettingScreen>
+
+</SettingScreen>
