@@ -24,7 +24,6 @@ pipeline {
   }
   options {
     timestamps()
-    disableConcurrentBuilds()
   }
 
   parameters {
@@ -43,28 +42,31 @@ pipeline {
         expression { (params.MODALITY == 'NORMAL' && BRANCH_NAME != "master")  || params.MODALITY == 'UPDATE_DEPENDENCY_MANIFEST' }
       }
       steps {
-        script {
-          if (params.VERSION != '') {
-            error "COMMIT STAGE CANNOT HAVE VERSION"
-          }
-          def commitStage = new CommitStage(this,
-                                            "${WORKSPACE}/revision.txt",
-                                            "${WORKSPACE}/dependencies.lock",
-                                            params.MODALITY as CommitStage.Modality)
-          commitStage.setBuildStep({ instance ->
-            callGradleInDocker("clean assemble test")
-          })
-          commitStage.setUpdateDependencyManifestStep({ instance ->
+        lock(resource: 'LOCK_RESOURCE_FOR_MAIN')
+        {
+          script {
+            if (params.VERSION != '') {
+              error "COMMIT STAGE CANNOT HAVE VERSION"
+            }
+            def commitStage = new CommitStage(this,
+                                              "${WORKSPACE}/revision.txt",
+                                              "${WORKSPACE}/dependencies.lock",
+                                              params.MODALITY as CommitStage.Modality)
+            commitStage.setBuildStep({ instance ->
+              callGradleInDocker("clean assemble test")
+            })
+            commitStage.setUpdateDependencyManifestStep({ instance ->
               callGradleInDocker("generateGlobalLock saveGlobalLock")
-          })
-          commitStage.setPublishStep({ instance ->
+            })
+            commitStage.setPublishStep({ instance ->
               createReleaseCandidate(sh(script: "cat revision.txt", returnStdout: true).trim())
               def artifacts = sh(script: "find ${getArtifactsPublishDirName()} -type f", returnStdout: true).split('\\n')
               artifacts.each {artifact -> addToReleaseCandidate(sh(script: "cat revision.txt", returnStdout: true).trim(), artifact)}
-          })
-          commitStage.run()
+            })
+            commitStage.run()
 
-          wasMerged = commitStage.wasMerged()
+            wasMerged = commitStage.wasMerged()
+          }
         }
       }
     }
@@ -75,55 +77,58 @@ pipeline {
                      ((params.MODALITY == 'NORMAL') && wasMerged) }
       }
       steps {
-        script {
-          if (params.MODALITY != 'PROTEX' && params.VERSION != '') {
-            error "MODALITY SHOULD BE \"PROTEX\" TO GIVE VERSION AS A PARAMETER"
+        lock(resource: 'LOCK_RESOURCE_FOR_PROTEX_MAIN')
+        {
+          script {
+            if (params.MODALITY != 'PROTEX' && params.VERSION != '') {
+              error "MODALITY SHOULD BE \"PROTEX\" TO GIVE VERSION AS A PARAMETER"
+            }
+            def protexProjectId = 'c_cs_r1_main_8791'
+            def protexStage = new ProtexStage(steps: this,
+                    secretId: 'protex_creds',
+                    projectId: protexProjectId,
+                    generateReports: true
+                    )
+            def revision = ""
+
+            //Cleaning up the repository to only analyze R1 source code
+            callGradleInDocker("clean")
+
+            if (params.VERSION != '') {
+              //Run Protex on specific revision
+              revision = params.VERSION.trim()
+            }
+            else {
+              //After commit is merged, the version number is bumped up.
+              //Take the content of previous revision.txt
+              revision = sh(script: "git show HEAD~1:revision.txt", returnStdout: true).trim()
+            }
+
+            if (BRANCH_NAME == 'master') {
+              sh(script: "git fetch")
+            }
+
+            if (revision.contains("-SNAPSHOT")) {
+              error "VERSION CANNOT HAVE \"SNAPSHOT\" SUFFIX"
+            }
+
+            sh(script: "git checkout ${revision}")
+
+            protexStage.run()
+
+            def protexReports = protexStage.getGeneratedReportPaths()
+
+            sh(script: "git checkout master")
+
+            protexReports.each { path -> addToReleaseCandidate(revision, path)}
           }
-          def protexProjectId = 'c_cs_r1_main_8791'
-          def protexStage = new ProtexStage(steps: this,
-                  secretId: 'protex_creds',
-                  projectId: protexProjectId,
-                  generateReports: true
-                  )
-          def revision = ""
-
-          //Cleaning up the repository to only analyze R1 source code
-          callGradleInDocker("clean")
-
-          if (params.VERSION != '') {
-            //Run Protex on specific revision
-            revision = params.VERSION.trim()
-          }
-          else {
-            //After commit is merged, the version number is bumped up.
-            //Take the content of previous revision.txt
-            revision = sh(script: "git show HEAD~1:revision.txt", returnStdout: true).trim()
-          }
-
-          if (BRANCH_NAME == 'master') {
-            sh(script: "git fetch")
-          }
-
-          if (revision.contains("-SNAPSHOT")) {
-            error "VERSION CANNOT HAVE \"SNAPSHOT\" SUFFIX"
-          }
-
-          sh(script: "git checkout ${revision}")
-
-          protexStage.run()
-
-          def protexReports = protexStage.getGeneratedReportPaths()
-
-          sh(script: "git checkout master")
-
-          protexReports.each { path -> addToReleaseCandidate(revision, path)}
         }
       }
     }
   }
 
-  post { 
-    always { 
+  post {
+    always {
       sh(script: "rm -rf ${getArtifactsPublishDirName()}")
     }
   }
