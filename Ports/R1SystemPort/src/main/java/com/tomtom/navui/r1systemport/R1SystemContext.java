@@ -12,8 +12,12 @@ import com.tomtom.navui.stocksystemport.SystemComponentContainer;
 import com.tomtom.navui.systemport.SystemService;
 import com.tomtom.navui.systemport.systemcomponents.IntentHandlerSystemComponent;
 import com.tomtom.navui.systemport.systemcomponents.ScreenSystemComponent;
+import com.tomtom.navui.util.Log;
 
 public class R1SystemContext extends StockSystemContext {
+    private static final String TAG = "R1SystemContext";
+    private final int R1_MICHI_DPI = 240;
+
     public R1SystemContext(final Context context, final Class<? extends SystemService> serviceClz, final PendingIntent activityLaunchIntent,
             final ControlContext controlPort) {
         super(context, serviceClz, activityLaunchIntent, controlPort);
@@ -21,5 +25,13 @@ public class R1SystemContext extends StockSystemContext {
         final SystemComponentContainer systemComponents = getSystemComponentContainer();
         systemComponents.put(IntentHandlerSystemComponent.class, new R1IntentHandlerSystemComponent());
         systemComponents.put(ScreenSystemComponent.class, new R1ScreenSystemComponent(this, context));
+    }
+
+    @Override
+    public int getRendererDensity() {
+        if (Log.D) {
+            Log.d(TAG, "Current DPI for R1 Michi " + R1_MICHI_DPI);
+        }
+        return R1_MICHI_DPI;
     }
 }
