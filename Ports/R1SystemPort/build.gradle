@@ -8,7 +8,7 @@ dependencies {
     /* SystemPort */
     implementation "com.tomtom.navui:Ports_StockSystemPort:${versions.navui}"
     /* Local projects*/
-    localDependency(project, ':Kits:R1CoreKit')
+    localDependency(project, ':Kits_R1CoreKit')
 
     testImplementation "junit:junit:4.12"
     testImplementation "org.mockito:mockito-core:2.17.0"

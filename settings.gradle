@@ -1,2 +1,16 @@
-include ":Libs:InputHandler", ":Libs:LocationActionHandler", ":Ports:R1SystemPort", ":Kits:R1CoreKit", ":Kits:R1AppKit"
+include "Libs_InputHandler"
+project(':Libs_InputHandler').projectDir = file('Libs/InputHandler')
+
+include "Libs_LocationActionHandler"
+project(':Libs_LocationActionHandler').projectDir = file('Libs/LocationActionHandler')
+
+include "Ports_R1SystemPort"
+project(':Ports_R1SystemPort').projectDir = file('Ports/R1SystemPort')
+
+include "Kits_R1CoreKit"
+project(':Kits_R1CoreKit').projectDir = file('Kits/R1CoreKit')
+
+include "Kits_R1AppKit"
+project(':Kits_R1AppKit').projectDir = file('Kits/R1AppKit')
+
 include ":app", ":sdk"
