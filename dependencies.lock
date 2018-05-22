@@ -90,7 +90,7 @@
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
-            "locked": "9.11.0-18.2-0.0.26"
+            "locked": "9.11.0-18.2-0.0.27"
         },
         "com.tomtom.r1:toolchain": {
             "firstLevelTransitive": [
