@@ -9,7 +9,7 @@
 <SettingScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tomtom="http://schemas.android.com/apk/res-auto"
     tomtom:navui_settingScreenId="@+id/navui_settings"
-    tomtom:navui_settingScreenVersion="138">
+    tomtom:navui_settingScreenVersion="139">
 
     <SettingScreen
         tomtom:navui_settingTitle="@string/navui_settings_title_appearance"
@@ -1009,7 +1009,11 @@
                 <ToggleSetting
                     tomtom:navui_settingLabel="@string/navui_setting_reachable_range_layer"
                     tomtom:navui_key="com.tomtom.navui.setting.ReachableRangeLayer"
-                    tomtom:navui_defaultValue="false" />
+                    tomtom:navui_defaultValue="false" >
+                    <VersionChange
+                        tomtom:navui_settingVersionUpgradeTo="139"
+                        tomtom:navui_defaultValue="true"/>
+                </ToggleSetting>
             </SettingScreen>
 
              <!-- appearance vehicle settings -->
@@ -1061,7 +1065,11 @@
                 <ToggleSetting
                     tomtom:navui_settingLabel="@string/navui_enable_engine_composition_selection"
                     tomtom:navui_key="com.tomtom.navui.setting.NAVUI_FEATURE_ENABLE_ENGINE_COMPOSITION_SELECTION"
-                    tomtom:navui_defaultValue="false"/>
+                    tomtom:navui_defaultValue="false">
+                    <VersionChange
+                        tomtom:navui_settingVersionUpgradeTo="139"
+                        tomtom:navui_defaultValue="true"/>
+                </ToggleSetting>
 
             </SettingScreen>
 
@@ -1725,7 +1733,11 @@
             <ToggleSetting
                 tomtom:navui_settingLabel="@string/navui_enable_vehicle_range_marker"
                 tomtom:navui_key="com.tomtom.navui.setting.NAVUI_FEATURE_ENABLE_VEHICLE_RANGE_MARKER"
-                tomtom:navui_defaultValue="false"/>
+                tomtom:navui_defaultValue="false">
+                <VersionChange
+                    tomtom:navui_settingVersionUpgradeTo="139"
+                    tomtom:navui_defaultValue="true"/>
+            </ToggleSetting>
 
             <ToggleSetting
                 tomtom:navui_settingLabel="@string/navui_configurable_feature_safety_lock"
