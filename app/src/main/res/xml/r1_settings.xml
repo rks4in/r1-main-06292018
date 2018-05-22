@@ -9,7 +9,7 @@
 <SettingScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tomtom="http://schemas.android.com/apk/res-auto"
     tomtom:navui_settingScreenId="@+id/navui_settings"
-    tomtom:navui_settingScreenVersion="139">
+    tomtom:navui_settingScreenVersion="140">
 
     <SettingScreen
         tomtom:navui_settingTitle="@string/navui_settings_title_appearance"
@@ -1728,7 +1728,11 @@
             <ToggleSetting
                 tomtom:navui_settingLabel="@string/navui_poi_categories_in_search_screen"
                 tomtom:navui_key="com.tomtom.navui.setting.NAVUI_FEATURE_POI_CATEGORIES_IN_SEARCH_SCREEN"
-                tomtom:navui_defaultValue="false"/>
+                tomtom:navui_defaultValue="false">
+                <VersionChange
+                    tomtom:navui_settingVersionUpgradeTo="140"
+                    tomtom:navui_defaultValue="true"/>
+            </ToggleSetting>
 
             <ToggleSetting
                 tomtom:navui_settingLabel="@string/navui_enable_vehicle_range_marker"
