@@ -9,7 +9,7 @@
 <SettingScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tomtom="http://schemas.android.com/apk/res-auto"
     tomtom:navui_settingScreenId="@+id/navui_settings"
-    tomtom:navui_settingScreenVersion="140">
+    tomtom:navui_settingScreenVersion="141">
 
     <SettingScreen
         tomtom:navui_settingTitle="@string/navui_settings_title_appearance"
@@ -1453,7 +1453,11 @@
                                     tomtom:navui_key="com.tomtom.navui.setting.feature.plan.use.online.routing"
                                     tomtom:navui_entries="@array/navui_online_routing_modes"
                                     tomtom:navui_entryValues="@array/navui_online_routing_values"
-                                    tomtom:navui_defaultValue="0" />
+                                    tomtom:navui_defaultValue="0">
+                                    <VersionChange
+                                        tomtom:navui_settingVersionUpgradeTo="141"
+                                        tomtom:navui_defaultValue="1"/>
+                                </ListSetting>
 
                             </SettingCategory>
                         </SettingScreen>
