@@ -14,7 +14,7 @@
 import com.tomtom.cs.deliverypipeline.stages.commitstage.bitbucket.CommitStage
 import com.tomtom.cs.deliverypipeline.stages.qualitystages.protex.ProtexStage
 
-DOCKER_IMAGE_PATH = 'cs-fca-r1-docker.navkit-pipeline.tt3.com/tomtom/android-x86_64-toolchain:0.0.8'
+DOCKER_IMAGE_PATH = 'cs-fca-r1-docker.navkit-pipeline.tt3.com/tomtom/android-x86_64-toolchain'
 
 def wasMerged = false
 
@@ -140,6 +140,9 @@ def getArtifactsPublishDirName() {
 
 def callGradleInDocker(buildArgs) {
   echo "Calling gradle inside of docker for '${buildArgs}'"
+  def toolchainVersion = sh(script: "sed '/com.tomtom.r1:toolchain/,/locked/!d;/locked/q' dependencies.lock | \
+                                     grep -Eo \'[0-9]+\\.[0-9]+\\.[0-9]+\'", returnStdout: true).trim()
+  echo "Toolchain Version is ${toolchainVersion}"
   sh(script: "docker run --rm \
                          --net=host \
                          -e USER=\$(id -u) \
@@ -152,7 +155,7 @@ def callGradleInDocker(buildArgs) {
                          -v /etc/passwd:/etc/passwd:ro \
                          -v \${HOME}:/var/gradle:rw \
                          -u \$(id -u):\$(id -g) \
-                         ${DOCKER_IMAGE_PATH} \
+                         ${DOCKER_IMAGE_PATH}:${toolchainVersion} \
                          ./gradlew ${buildArgs}")
 }
 
