@@ -1,5 +1,11 @@
 {
     "_global_": {
+        "com.android.support.test:rules": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
+            ],
+            "locked": "1.0.2-alpha1"
+        },
         "com.google.guava:guava": {
             "firstLevelTransitive": [
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Libs_InputHandler",
@@ -104,6 +110,12 @@
             ],
             "locked": "0.0.10"
         },
+        "junit:junit": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
+            ],
+            "locked": "4.12"
+        },
         "org.jacoco:org.jacoco.agent": {
             "firstLevelTransitive": [
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
@@ -115,6 +127,18 @@
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "locked": "0.7.4.201502262128"
+        },
+        "org.mockito:mockito-core": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
+            ],
+            "locked": "2.17.0"
+        },
+        "org.robolectric:robolectric": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
+            ],
+            "locked": "3.8"
         },
         "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Kits_R1AppKit": {
             "firstLevelTransitive": [
