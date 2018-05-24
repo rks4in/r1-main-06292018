@@ -8,6 +8,11 @@ android {
         pickFirst 'lib/armeabi-v7a/libgnustl_shared.so'
         pickFirst 'lib/x86_64/libgnustl_shared.so'
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -32,6 +37,11 @@ dependencies {
     localDependency(project, ':Kits_R1AppKit')
     localDependency(project, ':Libs_LocationActionHandler')
     localDependency(project, ':Ports_R1SystemPort')
+
+    testImplementation "junit:junit:4.12"
+    testImplementation "org.mockito:mockito-core:2.17.0"
+    testImplementation "org.robolectric:robolectric:3.8"
+    testImplementation "com.android.support.test:rules:1.0.2-alpha1"
 }
 
 configurations.all { Configuration configuration ->
