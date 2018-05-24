@@ -9,7 +9,7 @@
 <SettingScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tomtom="http://schemas.android.com/apk/res-auto"
     tomtom:navui_settingScreenId="@+id/navui_settings"
-    tomtom:navui_settingScreenVersion="142">
+    tomtom:navui_settingScreenVersion="143">
 
     <SettingScreen
         tomtom:navui_settingTitle="@string/navui_settings_title_appearance"
@@ -832,7 +832,7 @@
                 tomtom:navui_key="com.tomtom.navui.setting.feature.ShowCurrentSpeed"
                 tomtom:navui_defaultValue="true">
                 <VersionChange
-                    tomtom:navui_settingVersionUpgradeTo="142"
+                    tomtom:navui_settingVersionUpgradeTo="143"
                     tomtom:navui_defaultValue="false"/>
             </ToggleSetting>
 
