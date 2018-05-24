@@ -830,7 +830,11 @@
             <ToggleSetting
                 tomtom:navui_settingLabel="@string/navui_configurable_features_show_current_speed"
                 tomtom:navui_key="com.tomtom.navui.setting.feature.ShowCurrentSpeed"
-                tomtom:navui_defaultValue="true" />
+                tomtom:navui_defaultValue="true">
+                <VersionChange
+                    tomtom:navui_settingVersionUpgradeTo="142"
+                    tomtom:navui_defaultValue="false"/>
+            </ToggleSetting>
 
             <ToggleSetting
                 tomtom:navui_settingLabel="@string/navui_configurable_features_show_speed_limit"
