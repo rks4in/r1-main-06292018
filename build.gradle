@@ -19,6 +19,7 @@ project.versions += [
     //Lock to specific version of NavKit, to unlock use '+'
     navKitLocked: '9.11.0-18.2',
     navui: '18.2.111',
+    app: "${file('revision.txt').text.trim()}"
 ]
 if (project.versions.navKitLocked == '+') {
     project.versions += [ nik: '+' ]
