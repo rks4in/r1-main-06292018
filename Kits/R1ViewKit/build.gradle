@@ -1,0 +1,6 @@
+apply plugin: 'com.android.library'
+apply from: "${rootDir}/gradle/androidProject.gradle"
+
+dependencies {
+    implementation "com.tomtom.navui:Modules_NavAppBaseModule:${versions.navui}"
+}

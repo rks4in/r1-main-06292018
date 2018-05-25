@@ -13,4 +13,7 @@ project(':Kits_R1CoreKit').projectDir = file('Kits/R1CoreKit')
 include "Kits_R1AppKit"
 project(':Kits_R1AppKit').projectDir = file('Kits/R1AppKit')
 
+include "Kits_R1ViewKit"
+project(':Kits_R1ViewKit').projectDir = file('Kits/R1ViewKit')
+
 include ":app", ":sdk"

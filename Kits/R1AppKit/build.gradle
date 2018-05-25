@@ -6,6 +6,7 @@ dependencies {
     implementation "com.tomtom.navui:Modules_NavAppBaseModule:${versions.navui}"
     /* Local dependencies */
     localDependency(project, ':Kits_R1CoreKit')
+    localDependency(project, ':Kits_R1ViewKit')
     localDependency(project, ':Libs_InputHandler')
 
     testImplementation "junit:junit:4.12"

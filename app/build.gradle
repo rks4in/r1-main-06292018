@@ -36,6 +36,7 @@ dependencies {
     localDependency(project, ':Kits_R1CoreKit')
     localDependency(project, ':Kits_R1AppKit')
     localDependency(project, ':Libs_LocationActionHandler')
+    localDependency(project, ':Kits_R1ViewKit')
     localDependency(project, ':Ports_R1SystemPort')
 
     testImplementation "junit:junit:4.12"
