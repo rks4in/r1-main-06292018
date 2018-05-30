@@ -48,12 +48,7 @@ import com.tomtom.navui.viewkit.ViewContext;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.LinkedHashMap;
-
-import static com.tomtom.r1navapp.R1NavAppConstants.DUNE_FILE_NAME;
-import static com.tomtom.r1navapp.R1NavAppConstants.TTNDATA_FILES_PATH;
 
 /**
  * R1 navigation application class
@@ -65,7 +60,6 @@ public class R1NavApp extends StockApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        setDuneEnabled(false);
         getErrorReporter().setEnabled();
     }
 
@@ -152,26 +146,6 @@ public class R1NavApp extends StockApplication {
     public int getProductTheme() {
         // Return a resource ID for the product particulars style
         return com.tomtom.r1navapp.R.style.navui_SignatureProductTheme;
-    }
-
-    private void setDuneEnabled(final boolean aEnable) {
-        File duneFile = new File(TTNDATA_FILES_PATH + DUNE_FILE_NAME);
-
-        if (aEnable) {
-            if (!duneFile.exists()) {
-                try {
-                    duneFile.createNewFile();
-                } catch (IOException e) {
-                    Log.e(TAG, "Dune cannot be enabled: " + e);
-                }
-            }
-        } else {
-            if (duneFile.exists()) {
-                if (!duneFile.delete()) {
-                    Log.e(TAG, "Dune file could not be deleted");
-                }
-            }
-        }
     }
 
     private void configureFocusUiContext(final AppContext appContext) {

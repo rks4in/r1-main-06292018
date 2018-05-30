@@ -9,7 +9,7 @@
 <SettingScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tomtom="http://schemas.android.com/apk/res-auto"
     tomtom:navui_settingScreenId="@+id/navui_settings"
-    tomtom:navui_settingScreenVersion="143">
+    tomtom:navui_settingScreenVersion="144">
 
     <SettingScreen
         tomtom:navui_settingTitle="@string/navui_settings_title_appearance"
@@ -1762,7 +1762,11 @@
             <ToggleSetting
                 tomtom:navui_settingLabel="@string/navui_configurable_feature_dune"
                 tomtom:navui_key="com.tomtom.navui.setting.feature.dune"
-                tomtom:navui_defaultValue="false"/>
+                tomtom:navui_defaultValue="false">
+                <VersionChange
+                    tomtom:navui_settingVersionUpgradeTo="144"
+                    tomtom:navui_defaultValue="true"/>
+            </ToggleSetting>
         </SettingScreen>
 
     </SettingScreen>
