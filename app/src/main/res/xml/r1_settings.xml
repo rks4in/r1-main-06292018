@@ -9,7 +9,7 @@
 <SettingScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tomtom="http://schemas.android.com/apk/res-auto"
     tomtom:navui_settingScreenId="@+id/navui_settings"
-    tomtom:navui_settingScreenVersion="144">
+    tomtom:navui_settingScreenVersion="145">
 
     <SettingScreen
         tomtom:navui_settingTitle="@string/navui_settings_title_appearance"
@@ -1766,6 +1766,9 @@
                 <VersionChange
                     tomtom:navui_settingVersionUpgradeTo="144"
                     tomtom:navui_defaultValue="true"/>
+                <VersionChange
+                    tomtom:navui_settingVersionUpgradeTo="145"
+                    tomtom:navui_defaultValue="false"/>
             </ToggleSetting>
         </SettingScreen>
 
