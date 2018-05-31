@@ -3,7 +3,7 @@ apply from: "${rootDir}/gradle/androidProject.gradle"
 
 dependencies {
   implementation "com.google.guava:guava:22.0"
-  implementation "com.tomtom.navui:Modules_NavAppBaseModule:${versions.navui}"
+  implementation "com.tomtom.navui:Modules_NavAppBaseModule:${versions.navUiLocked}"
 
   localDependency(project, ':Libs_InputHandler')
   localDependency(project, ':Kits_R1CoreKit')

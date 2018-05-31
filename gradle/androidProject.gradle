@@ -29,6 +29,10 @@ android {
         release {
             signingConfig signingConfigs.release
         }
+
+        all {
+            buildConfigField "String", "NAVUI_VERSION", "\"${project.versions.navUiResolved}\""
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
