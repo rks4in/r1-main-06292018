@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tomtom= "http://www.tomtom.com/metadata">
+    <string name="r1_navui_app_version" tomtom:use="Text" tomtom:desc="Application version string" tomtom:translate="yes">Application Version : </string>
+    <string name="r1_navui_version" tomtom:use="Text" tomtom:desc="NavUI version string" tomtom:translate="yes">NavUI Version : </string>
+</resources>

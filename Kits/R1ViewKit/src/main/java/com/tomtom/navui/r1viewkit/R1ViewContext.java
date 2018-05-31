@@ -25,20 +25,18 @@ public class R1ViewContext extends SigViewContext {
 
     @Override
     protected <T extends NavView<?>> T newView(String name, Context context, AttributeSet attrs, int style) {
-        String cname = name.startsWith("Nav") ? name.substring("Nav".length()) : name;
+        if (name.indexOf("R1") == 0) {
+            return newView(name.substring(2), context, attrs, style);
+        }
+
         try {
-            final String implName = getR1ImplementationName(cname);
+            final String implName = getR1ImplementationName(name);
             return createView(context, attrs, style, implName);
         } catch (ClassNotFoundException e) {
             return super.newView(name, context, attrs, style);
-        } catch (NoSuchMethodException e) {
-            throw new RuntimeException(cname, e);
-        } catch (InstantiationException e) {
-            throw new RuntimeException(cname, e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(cname, e);
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(cname, e);
+        } catch (NoSuchMethodException | InstantiationException |
+                IllegalAccessException | InvocationTargetException e) {
+            throw new RuntimeException(name, e);
         }
     }
 
