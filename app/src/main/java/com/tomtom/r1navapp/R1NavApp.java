@@ -14,6 +14,8 @@ import com.tomtom.navui.focusuikit.FocusUiContext;
 import com.tomtom.navui.promptkit.PromptContext;
 import com.tomtom.navui.promptport.AudioEngineContext;
 import com.tomtom.navui.promptport.audioplayer.AudioPlayerEngineFactory;
+import com.tomtom.navui.r1appkit.util.BuildInfoUtils;
+import com.tomtom.navui.r1viewkit.R1ViewContext;
 import com.tomtom.navui.rendererkit.RendererContext;
 import com.tomtom.navui.r1appkit.R1AppContext;
 import com.tomtom.navui.sigappkit.util.time.TimeFormattingUtilWrapperImpl;
@@ -23,7 +25,6 @@ import com.tomtom.navui.sigmapviewkit.SigMapViewContext;
 import com.tomtom.navui.sigpromptkit.SigPromptContext;
 import com.tomtom.navui.sigrendererkit3.SigRendererContext3;
 import com.tomtom.navui.sigtaskkit.SigTaskContext;
-import com.tomtom.navui.sigviewkit.SigViewContext;
 import com.tomtom.navui.stockaudio.StockAudioEngineContext;
 import com.tomtom.navui.stockaudio.spp.SoundPromptPlayerFactory;
 import com.tomtom.navui.stockcontrolport.StockControlContext;
@@ -46,16 +47,16 @@ import com.tomtom.navui.util.Log;
 import com.tomtom.navui.viewkit.ExtViewContext;
 import com.tomtom.navui.viewkit.ViewContext;
 
-import org.apache.commons.lang3.exception.ExceptionUtils;
-
 import java.util.LinkedHashMap;
 
 /**
  * R1 navigation application class
  */
-public class R1NavApp extends StockApplication {
+public class R1NavApp extends StockApplication implements BuildInfoUtils.BuildInfoListener {
     /** Logging tag for debugging purposes */
     private static final String TAG = "R1NavApp";
+
+    private BuildInfoUtils mBuildInfoUtils;
 
     @Override
     public void onCreate() {
@@ -78,7 +79,7 @@ public class R1NavApp extends StockApplication {
         final ControlContext controls = new StockControlContext();
 
         // configure which view kit
-        final ViewContext viewKit = new SigViewContext(controls);
+        final ViewContext viewKit = new R1ViewContext(controls);
         final SigMapViewContext mapViewKit = new SigMapViewContext(viewKit);
         viewKit.addExt(ExtViewContext.class, mapViewKit);
 
@@ -117,6 +118,8 @@ public class R1NavApp extends StockApplication {
 
         TimeFormattingUtilWrapperImpl.init();
 
+        fetchBuildInfo(appKit);
+
         return appKit;
     }
 
@@ -146,6 +149,23 @@ public class R1NavApp extends StockApplication {
     public int getProductTheme() {
         // Return a resource ID for the product particulars style
         return com.tomtom.r1navapp.R.style.navui_SignatureProductTheme;
+    }
+
+    @Override
+    public void onBuildInfoAvailable(BuildInfoUtils.BuildInfo buildInfo) {
+        if (Log.I) {
+            Log.i(TAG, buildInfo.appVersion);
+            Log.i(TAG, buildInfo.mapName);
+            Log.i(TAG, buildInfo.mapVersion);
+            Log.i(TAG, buildInfo.navKitVersion);
+            Log.i(TAG, buildInfo.navUiVersion);
+        }
+    }
+
+    private void fetchBuildInfo(AppContext appContext) {
+        mBuildInfoUtils = new BuildInfoUtils(appContext);
+        mBuildInfoUtils.addListener(this);
+        mBuildInfoUtils.fetchBuildInfo();
     }
 
     private void configureFocusUiContext(final AppContext appContext) {

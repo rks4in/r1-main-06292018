@@ -18,18 +18,36 @@ project.versions.load(new FileInputStream(project.file("versions.properties")))
 project.versions += [
     //Lock to specific version of NavKit, to unlock use '+'
     navKitLocked: '9.11.0-18.2',
-    navui: '18.2.111',
+    navUiLocked: '18.2.111',
+    app: "${file('revision.txt').text.trim()}"
 ]
-if (project.versions.navKitLocked == '+') {
-    project.versions += [ nik: '+' ]
-} else {
-    project.versions += [ nik: "${project.versions.navKitLocked}-+" ]
-}
-project.ext.navuiNavKitGroup = 'com.tomtom.navui.navkit'
-project.ext.r1NavKitGroup = "com.tomtom.r1.navkit"
 
-def checkDependencyNavKitVersion(ResolvedDependency dependency) {
-    if (dependency.moduleGroup.startsWith(navuiNavKitGroup)) {
+def isNavKitLocked = versions.navKitLocked != '+'
+def isNavUiLocked = versions.navUiLocked != '+'
+
+if (isNavKitLocked) {
+    versions.navKitResolved = versions.navKitLocked
+}
+
+if (isNavUiLocked) {
+    versions.navUiResolved = versions.navUiLocked
+}
+
+if (isNavKitLocked) {
+    project.versions += [ nik: "${project.versions.navKitLocked}-+" ]
+} else {
+    project.versions += [ nik: '+' ]
+}
+
+project.ext.tomtomGroup = 'com.tomtom'
+project.ext.navuiGroup = project.ext.tomtomGroup + '.navui'
+project.ext.navuiNavKitGroup = project.ext.navuiGroup + '.navkit'
+project.ext.r1NavKitGroup = project.ext.tomtomGroup + ".r1.navkit"
+
+// Finds version of NavKit recursively checking the dependency including it's child dependencies
+// Throws a build time exception in case of any version mismatch
+def resolveNavKitVersion(ResolvedDependency dependency) {
+    if (dependency.moduleGroup == navuiNavKitGroup) {
         if (versions.navKitResolved == null) {
             versions.navKitResolved = dependency.moduleVersion
         } else if (versions.navKitResolved != dependency.moduleVersion) {
@@ -40,23 +58,50 @@ def checkDependencyNavKitVersion(ResolvedDependency dependency) {
     }
 
     dependency.children.each { it ->
-        checkDependencyNavKitVersion(it)
+        resolveNavKitVersion(it)
     }
 }
 
-def checkProjectNavKitVersion(Project subProject) {
+// Finds version of NavUI recursively checking the dependency including it's child dependencies
+// Throws a build time exception in case of any version mismatch
+def resolveNavUiVersion(ResolvedDependency dependency) {
+    if (dependency.moduleGroup == navuiGroup) {
+        if (versions.navUiResolved == null) {
+            versions.navUiResolved = dependency.moduleVersion
+        } else if (versions.navUiResolved != dependency.moduleVersion) {
+            throw new GradleException(
+                    "Different version of NavUi artifacts are not allowed: " +
+                            "${versions.navUiResolved} and ${dependency.moduleVersion}")
+        }
+    }
+
+    dependency.children.each { it ->
+        resolveNavUiVersion(it)
+    }
+}
+
+// Resolves versions of NavKit and NavUI recursively for all project dependencies
+// Throws a build time exception in case of any version mismatch
+def resolveProjectNavVersions(Project subProject, boolean resolveNavKit, boolean resolveNavUi) {
     subProject.configurations.each { configuration ->
         if (!configuration.isCanBeResolved()) {
             return
         }
 
         configuration.dependencies.each { dependency ->
-            if (dependency.group.startsWith('com.tomtom')) {
-                ResolvedDependency resolvedDepndency =
+            if (dependency.group.startsWith(tomtomGroup)) {
+                ResolvedDependency resolvedDependency =
                         configuration.resolvedConfiguration.firstLevelModuleDependencies.find {
                     it.moduleGroup == dependency.group && it.moduleName == dependency.name
                 }
-                checkDependencyNavKitVersion(resolvedDepndency)
+
+                if (resolveNavKit) {
+                    resolveNavKitVersion(resolvedDependency)
+                }
+
+                if (resolveNavUi) {
+                    resolveNavUiVersion(resolvedDependency)
+                }
             }
         }
     }
@@ -115,10 +160,9 @@ allprojects {
     afterEvaluate {
         navkitResolutionStrategy(it)
 
-        // Check that all resolved NavKit artifacts have the same version 
-        // only if NavKit dynamic version was specified
-        if (versions.navKitLocked == '+') {
-            checkProjectNavKitVersion(it)
+        // Resolve NavKit and/or NavUi versions if they were specified as dynamic
+        if (!isNavKitLocked || !isNavUiLocked) {
+            resolveProjectNavVersions(it, !isNavKitLocked, !isNavUiLocked)
         }
     }
 }

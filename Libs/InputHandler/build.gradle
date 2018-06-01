@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply from: "${rootDir}/gradle/androidProject.gradle"
 
 dependencies {
-  implementation "com.tomtom.navui:Modules_NavAppBaseModule:${versions.navui}"
+  implementation "com.tomtom.navui:Modules_NavAppBaseModule:${versions.navUiLocked}"
   implementation "com.google.guava:guava:22.0"
 
   localDependency(project, ':Kits_R1CoreKit')
