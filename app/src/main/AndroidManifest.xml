@@ -118,6 +118,17 @@
                 <action android:name="com.tomtom.positioning.START" />
             </intent-filter>
         </service>
+
+        <service
+            android:name="com.tomtom.positioning.player.Player"
+            android:exported="true"
+            android:process="com.tomtom.navkit"
+            tools:replace="android:exported">
+            <intent-filter>
+                <action android:name="com.tomtom.positioning.player.START"/>
+                <action android:name="com.tomtom.positioning.player.STOP" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
