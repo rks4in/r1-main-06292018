@@ -54,6 +54,8 @@ pipeline {
                                               params.MODALITY as CommitStage.Modality)
             commitStage.setBuildStep({ instance ->
               callGradleInDocker("clean assemble test")
+              stashArtifactsOnMaster()
+              unStashArtifactsAndRunTestsOnSlave()
             })
             commitStage.setUpdateDependencyManifestStep({ instance ->
               callGradleInDocker("generateGlobalLock saveGlobalLock")
@@ -138,10 +140,14 @@ def getArtifactsPublishDirName() {
   return sh(script: "grep artifactPublishDirName= ${WORKSPACE}/publish.properties | sed 's/^.*=//'", returnStdout: true).trim()
 }
 
+def getToolChainVersion(){
+  return sh(script: "sed '/com.tomtom.r1:toolchain/,/locked/!d;/locked/q' dependencies.lock | \
+                                     grep -Eo \'[0-9]+\\.[0-9]+\\.[0-9]+\'", returnStdout: true).trim()
+}
+
 def callGradleInDocker(buildArgs) {
   echo "Calling gradle inside of docker for '${buildArgs}'"
-  def toolchainVersion = sh(script: "sed '/com.tomtom.r1:toolchain/,/locked/!d;/locked/q' dependencies.lock | \
-                                     grep -Eo \'[0-9]+\\.[0-9]+\\.[0-9]+\'", returnStdout: true).trim()
+  def toolchainVersion = getToolChainVersion()
   echo "Toolchain Version is ${toolchainVersion}"
   sh(script: "docker run --rm \
                          --net=host \
@@ -172,6 +178,7 @@ def createReleaseCandidate(revision) {
   }
 }
 
+
 def addToReleaseCandidate(revision, sourceDir) {
   withCredentials([usernamePassword(credentialsId: 'artifactory_creds',
                   usernameVariable: 'USERNAME',
@@ -182,5 +189,38 @@ def addToReleaseCandidate(revision, sourceDir) {
                                      -c cs-fca-r1-product-release-candidates \
                                      -r cs-fca-r1-product-releases \
                                      add-to-rc ${revision} ${sourceDir}")
+  }
+}
+
+def stashArtifactsOnMaster() {
+  sh "ls -la ${pwd()}"
+  stash name: 'builtSources', includes: 'build/artifacts/app/*'
+  stash name: 'startUpScript', includes: 'Scripts/*'
+  echo "Stashing Done"
+}
+
+def unStashArtifactsAndRunTestsOnSlave(){
+  def toolchainVersion = getToolChainVersion()
+  node {
+    label 'Test'
+    sh "rm -rf jenkins_artifacts"
+    sh "mkdir jenkins_artifacts"
+    echo "Directory created"
+    dir('jenkins_artifacts'){
+      echo "Unstashing"
+      unstash 'builtSources'
+      unstash 'startUpScript'
+      runTests(toolchainVersion)
+    }
+  }
+}
+
+def runTests(toolchainVersion) {
+  def userId = sh(script: "id -u", returnStdout: true).trim()
+  docker.image("cs-fca-r1-docker.navkit-pipeline.tt3.com/tomtom/android-x86_64-toolchain:${toolchainVersion}")
+              .inside("-e USER=${userId} --privileged --group-add=plugdev -v /dev/bus/usb:/dev/bus/usb:rw -v /etc/sudoers:/etc/sudoers:ro")
+  {
+      sh(script: "sudo /usr/local/android-sdk/platform-tools/adb start-server")
+      sh(script: "Scripts/smoke_test.sh")
   }
 }
