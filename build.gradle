@@ -4,7 +4,7 @@ apply plugin: 'maven-publish'
 
 buildscript {
     repositories {
-        maven { url 'http://artifactory-ci.tomtomgroup.com/artifactory/navapp-maven-virtual/' }
+        maven { url 'https://artifactory.navkit-pipeline.tt3.com/artifactory/navapp-maven-virtual/' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
@@ -143,8 +143,8 @@ file("publish.properties").withReader {
 
 allprojects {
     repositories {
-        maven { url 'http://artifactory-ci.tomtomgroup.com/artifactory/cs-fca-r1-maven-releases' }
-        maven { url 'http://artifactory-ci.tomtomgroup.com/artifactory/navapp-maven-virtual' }
+        maven { url 'https://artifactory.navkit-pipeline.tt3.com/artifactory/cs-fca-r1-maven-releases' }
+        maven { url 'https://artifactory.navkit-pipeline.tt3.com/artifactory/navapp-maven-virtual' }
     }
 
     apply plugin: 'nebula.dependency-lock'
