@@ -16,4 +16,13 @@ project(':Kits_R1AppKit').projectDir = file('Kits/R1AppKit')
 include "Kits_R1ViewKit"
 project(':Kits_R1ViewKit').projectDir = file('Kits/R1ViewKit')
 
+include "Nik_NavKitResources"
+project(':Nik_NavKitResources').projectDir = file('nik/navkitresources')
+
+include "Nik_Services_R1ServicesConnector"
+project(':Nik_Services_R1ServicesConnector').projectDir = file('nik/services/connectors')
+
+include "Nik_Services_R1NavKitService"
+project(':Nik_Services_R1NavKitService').projectDir = file('nik/services/navkit')
+
 include ":app", ":sdk"

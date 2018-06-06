@@ -12,10 +12,11 @@ android {
         abi {
             enable true
             reset()
-            include "x86_64","armeabi-v7a"
+            include project.abis as String[]
             universalApk false
         }
     }
+
     signingConfigs {
         def signaturesFolder = "$rootDir/Signatures"
         release {

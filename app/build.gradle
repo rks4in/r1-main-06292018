@@ -30,14 +30,14 @@ dependencies {
     /* ApiKit */
     implementation "com.tomtom.navui:Kits_SignatureApiKit:${versions.navUiLocked}"
     implementation "com.tomtom.navui:Kits_UtilKit:${versions.navUiLocked}"
-    /* NavKit */
-    implementation "com.tomtom.r1.navkit:NavKitService:${versions.nik}"
     /* Local projects*/
     localDependency(project, ':Kits_R1CoreKit')
     localDependency(project, ':Kits_R1AppKit')
     localDependency(project, ':Libs_LocationActionHandler')
     localDependency(project, ':Kits_R1ViewKit')
     localDependency(project, ':Ports_R1SystemPort')
+    localDependency(project, ':Nik_Services_R1NavKitService')
+    localDependency(project, ':Nik_Services_R1ServicesConnector')
 
     testImplementation "junit:junit:4.12"
     testImplementation "org.mockito:mockito-core:2.17.0"

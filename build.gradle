@@ -33,16 +33,16 @@ if (isNavUiLocked) {
     versions.navUiResolved = versions.navUiLocked
 }
 
-if (isNavKitLocked) {
-    project.versions += [ nik: "${project.versions.navKitLocked}-+" ]
-} else {
-    project.versions += [ nik: '+' ]
-}
+ext.tomtomGroup = 'com.tomtom'
+ext.navuiGroup = ext.tomtomGroup + '.navui'
+ext.navuiNavKitGroup = ext.navuiGroup + '.navkit'
+ext.r1NavKitGroup = ext.tomtomGroup + '.r1.navkit'
+ext.abis = ['x86_64', 'armeabi-v7a']
+ext.isNavKitDebugBuildEnabled = isNavKitDebugBuildEnabled()
 
-project.ext.tomtomGroup = 'com.tomtom'
-project.ext.navuiGroup = project.ext.tomtomGroup + '.navui'
-project.ext.navuiNavKitGroup = project.ext.navuiGroup + '.navkit'
-project.ext.r1NavKitGroup = project.ext.tomtomGroup + ".r1.navkit"
+def isNavKitDebugBuildEnabled() {
+    return project.hasProperty('buildDebugNavKit') && project.buildDebugNavKit.trim() == 'true'
+}
 
 // Finds version of NavKit recursively checking the dependency including it's child dependencies
 // Throws a build time exception in case of any version mismatch
