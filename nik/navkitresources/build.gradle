@@ -1,0 +1,60 @@
+apply plugin: 'com.android.library'
+apply from: "${rootDir}/gradle/androidProject.gradle"
+
+repositories {
+    ivy {
+        url "http://artifactory-ci.tomtomgroup.com/artifactory/navkit-release-local"
+        layout "pattern", {
+            artifact "[organisation]/[module]/android/x86_64/release/[revision]/[artifact](-[classifier])-[revision].[ext]"
+            ivy "[organisation]/[module]/android/x86_64/release/[revision]/ivy(-[classifier])-[revision].[ext]"
+        }
+    }
+}
+
+configurations {
+    zipDependency
+}
+
+task cleanAssets(type: Delete) {
+    delete "${android.sourceSets.main.assets.srcDirs[0]}/resources"
+    delete "${android.sourceSets.main.assets.srcDirs[0]}/localsearch"
+}
+
+task resolveZipAssets {
+    dependsOn cleanAssets
+
+    doFirst {
+        delete "$buildDir/tmp/navkit"
+    }
+
+    doLast {
+        configurations.getByName('zipDependency').resolve().each { file ->
+            copy {
+                from zipTree(file)
+                into "$buildDir/tmp/navkit"
+            }
+
+            copy {
+                from fileTree("$buildDir/tmp/navkit/ChunkFiles")
+                from "$buildDir/tmp/navkit/iconassets2.sqlite"
+                from "$buildDir/tmp/navkit/translations.sqlite"
+                into "${android.sourceSets.main.assets.srcDirs[0]}/resources"
+            }
+
+            copy {
+                from fileTree("$buildDir/tmp/navkit/Localsearch")
+                into "${android.sourceSets.main.assets.srcDirs[0]}/localsearch"
+            }
+        }
+    }
+}
+
+dependencies {
+    zipDependency([group: "com.tomtom", name: "IconAssets2Resources", version: "${versions.navKitLocked}", configuration: 'module', classifier: 'android-x86_64-release-custom', ext: 'zip'])
+    zipDependency([group: "com.tomtom", name: "ResourceFiles", version: "${versions.navKitLocked}", configuration: 'module', classifier: 'android-x86_64-release-custom', ext: 'zip'])
+}
+
+afterEvaluate {
+    generateReleaseAssets.dependsOn resolveZipAssets
+    clean.dependsOn cleanAssets
+}

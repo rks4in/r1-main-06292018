@@ -1,0 +1,87 @@
+apply plugin: 'com.android.library'
+apply from: "${rootDir}/gradle/androidProject.gradle"
+apply from: 'ivyDependencyResolver.gradle'
+
+android {
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
+}
+
+// Adds new NavKit zip dependency to the project.
+// buildType can be "release", "debug" or "all" and that will influence the artifact extract location.
+// artifactType can be interface or lib and that will be a part of classifier to find in ivy repository.
+// Dependency is added multiple times for each ABI required for lib artifacts and once for interface artifacts
+def navKitDependency(dependencyPath, buildType, artifactType) {
+    def buildConf = buildType == 'all' ? 'release' : buildType
+    def dependencyClosure = { abi ->
+        def classifier = "android-$abi-$buildConf-$artifactType"
+        def dependency = [group        : 'com.tomtom',
+                          name         : dependencyPath,
+                          version      : "${versions.navKitLocked}",
+                          configuration: 'module',
+                          classifier   : classifier,
+                          ext          : 'zip']
+
+        project.dependencies {
+            if (buildType == 'debug') {
+                nativeDebug(dependency)
+            } else if (buildType == 'release') {
+                nativeRelease(dependency)
+            } else {
+                nativeCompile(dependency)
+            }
+        }
+    }
+
+    if (artifactType == 'interface') {
+        dependencyClosure(project.abis[0])
+    } else {
+        project.abis.each(dependencyClosure)
+    }
+}
+
+dependencies {
+    navKitDependency("Framework.Porting.Adaptations", "debug", "lib")
+    navKitDependency("Framework.Porting.Assert", "debug", "lib")
+    navKitDependency("Framework.Porting.Backtrace", "debug", "lib")
+    navKitDependency("Framework.Porting.OsAbstractionLayer", "debug", "lib")
+    navKitDependency("Framework.Porting.Clock", "debug", "lib")
+    navKitDependency("Framework.Porting.Clock", "debug", "interface")
+
+    navKitDependency("Framework.Porting.Adaptations", "release", "lib")
+    navKitDependency("Framework.Porting.Assert", "release", "lib")
+    navKitDependency("Framework.Porting.Backtrace", "release", "lib")
+    navKitDependency("Framework.Porting.OsAbstractionLayer", "release", "lib")
+
+    navKitDependency("Framework.Porting.Adaptations", "all", "interface")
+    navKitDependency("Framework.Porting.Assert", "all", "interface")
+    navKitDependency("Framework.Porting.Backtrace", "all", "interface")
+    navKitDependency("Framework.Porting.OsAbstractionLayer", "all", "interface")
+    navKitDependency("NavKit.FOR.NDS", "all", "interface")
+
+    navKitDependency("Framework.ThirdParty.Boost", "all", "interface")
+    navKitDependency("Framework.ThirdParty.Boost.System", "all", "lib")
+    navKitDependency("Framework.ThirdParty.Boost.Thread", "all", "lib")
+    navKitDependency("Framework.ThirdParty.Boost.Filesystem", "all", "lib")
+
+    implementation "com.tomtom.navui.navkit:CrashHandlerJniAar:${versions.navKitLocked}"
+    implementation "com.tomtom.navui.navkit:ProcessHostBase:${versions.navKitLocked}"
+
+    if (isNavKitDebugBuildEnabled) {
+        debugImplementation "com.tomtom.navui.navkit:NavKitNDS-debug:${versions.navKitLocked}"
+    }
+
+    releaseImplementation "com.tomtom.navui.navkit:NavKitNDS:${versions.navKitLocked}"
+
+    implementation 'com.android.support:support-annotations:27.0.2'
+
+    runtimeOnly "com.tomtom.navui.navkit:libSQLite:${versions.navKitLocked}"
+    runtimeOnly "com.tomtom.navui.navkit:libIcu4c:${versions.navKitLocked}"
+    runtimeOnly "com.tomtom.navui.navkit:PositioningServiceAar:${versions.navKitLocked}"
+
+    runtimeOnly project(path: ":Nik_Services_R1ServicesConnector", configuration: "default")
+    runtimeOnly project(path: ":Nik_NavKitResources", configuration: "default")
+}

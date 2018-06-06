@@ -1,0 +1,111 @@
+repositories {
+    ivy {
+        url "http://artifactory-ci.tomtomgroup.com/artifactory/navkit-release-local"
+        layout "pattern", {
+            artifact "[organisation]/[module]/android/x86_64/release/[revision]/[artifact](-[classifier])-[revision].[ext]"
+            ivy "[organisation]/[module]/android/x86_64/release/[revision]/ivy(-[classifier])-[revision].[ext]"
+            artifact "[organisation]/[module]/android/x86_64/debug/[revision]/[artifact](-[classifier])-[revision].[ext]"
+            ivy "[organisation]/[module]/android/x86_64/debug/[revision]/ivy(-[classifier])-[revision].[ext]"
+            artifact "[organisation]/[module]/android/armeabi-v7a/release/[revision]/[artifact](-[classifier])-[revision].[ext]"
+            ivy "[organisation]/[module]/android/armeabi-v7a/release/[revision]/ivy(-[classifier])-[revision].[ext]"
+            artifact "[organisation]/[module]/android/armeabi-v7a/debug/[revision]/[artifact](-[classifier])-[revision].[ext]"
+            ivy "[organisation]/[module]/android/armeabi-v7a/debug/[revision]/ivy(-[classifier])-[revision].[ext]"
+        }
+    }
+}
+
+configurations {
+    nativeCompile {
+        transitive false
+    }
+    nativeRelease {
+        transitive false
+    }
+    nativeDebug {
+        transitive false
+    }
+}
+
+// Creates Resolve and Copy tasks for specified configuration
+// Resolve task resoves and downloads required zip artifact
+// while copy task extracts the zip to defined location
+// allBuildTypes signals that configuration is not buildType specific
+// and everything can be extracted to 'all' folder
+def createDependenciesTasks(String configuration, boolean allBuildTypes) {
+    task "resolve${configuration.capitalize()}Dependencies" {
+        doLast {
+            configurations.findByName(configuration).resolvedConfiguration.resolvedArtifacts.each { ResolvedArtifact artifact ->
+                def outputPath = getNativeArtifactPath(artifact, allBuildTypes)
+                def copyTask = tasks.findByName("copy${configuration.capitalize()}Dependencies")
+                copyTask.inputs.file artifact.file
+                copyTask.inputs.property(artifact.file.name, outputPath)
+                copyTask.outputs.dir outputPath
+            }
+        }
+    }
+
+    task "copy${configuration.capitalize()}Dependencies" {
+        dependsOn "resolve${configuration.capitalize()}Dependencies"
+        doFirst {
+            delete {
+                delete outputs.files
+            }
+        }
+        doLast {
+            inputs.files.each { artifact ->
+                copy {
+                    from zipTree(artifact)
+                    into inputs.properties[artifact.name]
+                }
+            }
+        }
+    }
+}
+
+createDependenciesTasks('nativeCompile', true)
+createDependenciesTasks('nativeRelease', false)
+createDependenciesTasks('nativeDebug', false)
+
+copyNativeDebugDependencies.dependsOn copyNativeCompileDependencies
+copyNativeReleaseDependencies.dependsOn copyNativeCompileDependencies
+
+tasks.whenTaskAdded { task ->
+    if (task.name == 'prepareDebugDependencies' || task.name == 'externalNativeBuildCleanDebug' || task.name == 'externalNativeBuildDebug') {
+        if (project.isNavKitDebugBuildEnabled) {
+            task.dependsOn copyNativeDebugDependencies
+        } else {
+            task.dependsOn copyNativeReleaseDependencies
+        }
+    }
+    if (task.name == 'prepareReleaseDependencies' || task.name == 'externalNativeBuildCleanRelease' || task.name == 'externalNativeBuildRelease') {
+        task.dependsOn copyNativeReleaseDependencies
+    }
+}
+
+// Gets a location where to extraxt zip artifact depending on its type
+def getNativeArtifactPath(ResolvedArtifact artifact, boolean allBuildTypes) {
+    def name = artifact.name
+    def classifier = artifact.classifier
+
+    if (artifact.classifier == null) {
+        classifier = artifact.name[artifact.name.indexOf('-')+1 .. -1]
+        name = artifact.name.split('-')[0]
+    }
+
+    def matcher = classifier =~ /android-(.+)-(release|debug)-(.+)/
+    if (!matcher.matches()) {
+        throw new GradleException("Classifier for native artifact doesn't match required pattern")
+    }
+
+    def targetPlatform = matcher.group(1)
+    def buildType = allBuildTypes ? 'all' : matcher.group(2)
+    def artifactType = matcher.group(3)
+
+    if (artifactType == "lib") {
+        return "$buildDir/native/$buildType/lib/$name/$targetPlatform"
+    } else if (artifactType == "interface") {
+        return "$buildDir/native/$buildType/include/$name"
+    } else {
+        return "$buildDir/native/$buildType/other/$name"
+    }
+}
