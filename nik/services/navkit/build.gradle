@@ -8,6 +8,14 @@ android {
             path 'src/main/jni/Android.mk'
         }
     }
+
+    defaultConfig {
+        externalNativeBuild {
+            ndkBuild {
+                arguments "IS_NAVKIT_DEBUG_ENABLED=${isNavKitDebugBuildEnabled}"
+            }
+        }
+    }
 }
 
 // Adds new NavKit zip dependency to the project.
@@ -84,4 +92,14 @@ dependencies {
 
     runtimeOnly project(path: ":Nik_Services_R1ServicesConnector", configuration: "default")
     runtimeOnly project(path: ":Nik_NavKitResources", configuration: "default")
+}
+
+gradle.taskGraph.whenReady { graph ->
+    // Prevents from building with debug NavKit libraries if is not explicitly requested.
+    // Debug NavKit artifacts are not published for all versions.
+    graph.allTasks.findAll {
+        it.name.contains("resolveNativeDebugDependencies")
+    }.each {
+        it.onlyIf { isNavKitDebugBuildEnabled }
+    }
 }

@@ -10,7 +10,7 @@ ifdef NATIVE_COMPILE_DIR
     include $(TOP_PATH)/boost-system.mk
     include $(TOP_PATH)/boost-filesystem.mk
 endif
-ifeq ($(APP_OPTIM),debug)
+ifeq ($(IS_NAVKIT_DEBUG_ENABLED),true)
     ifdef NATIVE_DEBUG_DIR
         include $(TOP_PATH)/../../debug/jni/adaptation-base.mk
         include $(TOP_PATH)/../../debug/jni/abstraction.mk
