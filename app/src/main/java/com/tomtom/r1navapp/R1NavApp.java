@@ -130,7 +130,7 @@ public class R1NavApp extends StockApplication implements BuildInfoUtils.BuildIn
 
     @Override
     public int getThemeResourceId() {
-        return R.style.navui_SignatureTheme;
+        return R.style.r1_Theme;
     }
 
     @Override
