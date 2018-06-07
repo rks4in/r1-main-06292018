@@ -36,8 +36,8 @@ dependencies {
     localDependency(project, ':Libs_LocationActionHandler')
     localDependency(project, ':Kits_R1ViewKit')
     localDependency(project, ':Ports_R1SystemPort')
-    localDependency(project, ':Nik_Services_R1NavKitService')
-    localDependency(project, ':Nik_Services_R1ServicesConnector')
+    localDependency(project, ':nik_services_navkit')
+    localDependency(project, ':nik_services_connectors')
 
     testImplementation "junit:junit:4.12"
     testImplementation "org.mockito:mockito-core:2.17.0"
