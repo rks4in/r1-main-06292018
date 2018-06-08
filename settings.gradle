@@ -1,19 +1,21 @@
-include "Libs_InputHandler"
-project(':Libs_InputHandler').projectDir = file('Libs/InputHandler')
+File rootDirectory = rootProject.projectDir
+rootProject.name = rootDirectory.name
 
-include "Libs_LocationActionHandler"
-project(':Libs_LocationActionHandler').projectDir = file('Libs/LocationActionHandler')
-
-include "Ports_R1SystemPort"
-project(':Ports_R1SystemPort').projectDir = file('Ports/R1SystemPort')
-
-include "Kits_R1CoreKit"
-project(':Kits_R1CoreKit').projectDir = file('Kits/R1CoreKit')
-
-include "Kits_R1AppKit"
-project(':Kits_R1AppKit').projectDir = file('Kits/R1AppKit')
-
-include "Kits_R1ViewKit"
-project(':Kits_R1ViewKit').projectDir = file('Kits/R1ViewKit')
-
-include ":app", ":sdk"
+FileTree r1BuildTree = fileTree(
+        dir: rootDirectory,
+        includes: [
+                "Kits${File.separator}**${File.separator}build.gradle",
+                "Libs${File.separator}**${File.separator}build.gradle",
+                "Ports${File.separator}**${File.separator}build.gradle",
+                "nik${File.separator}**${File.separator}build.gradle",
+                "app${File.separator}build.gradle",
+                "sdk${File.separator}build.gradle",
+        ],
+)
+r1BuildTree.each { File file ->
+    File parentDir = file.parentFile
+    String projectName = file.parentFile.path.replace("${rootDirectory.path}${File.separator}", ":").replace(File.separator,"_")
+    include projectName
+    project(projectName).projectDir = parentDir
+    println(projectName)
+}

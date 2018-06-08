@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Copyright (c) 1992-2018 TomTom N.V. All rights reserved.
+ This software is the proprietary copyright of TomTom N.V. and its subsidiaries and may be
+ used for internal evaluation purposes or commercial use strictly subject to separate
+ licensee agreement between you and TomTom. If you are the licensee, you are only permitted
+ to use this Software in accordance with the terms of your license agreement. If you are
+ not the licensee then you are not authorised to use this software in any manner and should
+ immediately return it to TomTom N.V.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.tomtom.navkit">
+
+    <uses-sdk android:minSdkVersion="15" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application>
+
+        <service 
+            android:name="com.tomtom.navkit.NavKitLifeline"
+            android:exported="false" />
+
+        <service
+            android:name="com.tomtom.navkit.NavKit"
+            android:exported="false" />
+
+        <service
+            android:name="com.tomtom.logcollector.LogCollectorService"
+            android:exported="false" />
+
+        <receiver android:name="com.tomtom.navkit.adaptations.RemovableMediaStateNotifierByAndroidIntent"
+            android:enabled="true" android:exported="true" android:label="RemovableMediaStateNotifierByAndroidIntent">
+            <intent-filter>
+                <action android:name="android.content.Intent.ACTION_MEDIA_MOUNTED" />
+                <action android:name="android.content.Intent.ACTION_MEDIA_UNMOUNTED" />
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.MEDIA_EJECT" />
+                <action android:name="android.intent.action.MEDIA_UNMOUNTED" />
+                <data android:scheme="file" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

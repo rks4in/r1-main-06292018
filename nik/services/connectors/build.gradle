@@ -1,0 +1,9 @@
+apply plugin: 'com.android.library'
+apply from: "${rootDir}/gradle/androidProject.gradle"
+
+dependencies {
+    runtimeOnly "com.tomtom.navui.navkit:libSQLite:${versions.navKitLocked}"
+    runtimeOnly "com.tomtom.navui.navkit:libIcu4c:${versions.navKitLocked}"
+    runtimeOnly "com.tomtom.navui.navkit:libConnector:${versions.navKitLocked}"
+    runtimeOnly "com.tomtom.navui.navkit:ServicesConnectorJni:${versions.navKitLocked}"
+}

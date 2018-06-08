@@ -1,0 +1,339 @@
+<?xml version="1.0" ?>
+<settingsFile name="file">
+  <Stacks>
+      <Protocol Id="10000" Name="HTTP Client" Type="Https">
+          <Protocol Id="11000" Name="MIT Client" Type="MapIssueTrackerClient">
+              <Connector Id="11001" Name="MIT" Type="MapIssueTracker" ReflectionBox="ReflectionBox5" />
+          </Protocol>
+          <Protocol Id="12000" Name="AMS Client" Type="AMSClient">
+              <Protocol Id="12100" Name="Perseus Client" Type="PerseusClient">
+                  <Connector Id="12101" Name="TEC" Type="Traffic" ReflectionBox="ReflectionBox1" />
+                  <Connector Id="12103" Name="WEA" Type="Weather" ReflectionBox="ReflectionBox2" />
+                  <Connector Id="12104" Name="HB" Type="Heartbeat" ReflectionBox="ReflectionBox2" />
+                  <Connector Id="12105" Name="FCD" Type="FloatingCarData" ReflectionBox="ReflectionBox4" />
+                  <Connector Id="12106" Name="SAA" Type="SafetyAlerts" ReflectionBox="ReflectionBox1" />
+                  <Connector Id="12107" Name="FPI" Type="FuelPrice" ReflectionBox="ReflectionBox1" />
+                  <Connector Id="12108" Name="PKI" Type="Parking" ReflectionBox="ReflectionBox3" />
+                  <Connector Id="12109" Name="EMI" Type="EMI" ReflectionBox="ReflectionBox5" />
+                  <Protocol Id="12110" Name="TPEG Demuxer" Type="TPEGDemuxer"/>
+              </Protocol>
+              <Protocol Id="12200" Name="SLR Client" Type="SafetyLocationReportCollectorClient">
+                  <Connector Id="12201" Name="SLR" Type="SafetyLocationReportCollector" ReflectionBox="ReflectionBox1" />
+              </Protocol>
+              <Protocol Id="12300" Name="Places Client" Type="PlacesClient">
+                  <Connector Id="12301" Name="PLA" Type="Places" ReflectionBox="ReflectionBox1"/>
+              </Protocol>
+          </Protocol>
+      </Protocol>
+  </Stacks>
+
+  <settingsGroup name="EventHandler">
+    <!-- Waiting period after an error/interruption before retrying -->
+    <setting name="RetryTimeOutMsec" value="100"/>
+
+    <!-- Waiting period between checks for running timers -->
+    <setting name="WaitTimeOutMsec" value="1000"/>
+  </settingsGroup>
+
+  <settingsGroup name="ReflectionBox1">
+    <!-- Address string used for the socket to send/receive reflection messages.
+         IPv4, IPv6, Unix domain and Unix abstract sockets are supported on platforms where available.
+         The address should be encoded in one of the following ways:
+           * [IP4:]<IPv4 address or hostname>:<port>
+           * IP6:<IPv6 address or hostname>:<port>
+           * UDS:<socket-name>
+           * UDA:<socket-name>
+    -->
+    <setting name="Address" value="IP4:localhost:3000"/>
+
+    <!-- Timeout before checking port for messages -->
+    <setting name="NavKitPumpTimeOut" value="100"/>
+
+    <setting name="ChannelConnectRetryMs" value="200"/>
+
+    <!-- Whether this box acts as a server (passive) or as a client (active) -->
+    <setting name="IsPassive" value="false"/>
+  </settingsGroup>
+
+  <settingsGroup name="ReflectionBox2">
+    <setting name="Address" value="IP4:localhost:3001"/>
+    <setting name="NavKitPumpTimeOut" value="100"/>
+    <setting name="ChannelConnectRetryMs" value="200"/>
+    <setting name="IsPassive" value="false"/>
+  </settingsGroup>
+
+  <settingsGroup name="ReflectionBox3">
+    <setting name="Address" value="IP4:localhost:3000"/>
+    <setting name="NavKitPumpTimeOut" value="100"/>
+    <setting name="ChannelConnectRetryMs" value="200"/>
+    <setting name="IsPassive" value="false"/>
+  </settingsGroup>
+
+  <settingsGroup name="ReflectionBox4">
+    <setting name="Address" value="IP4:localhost:3434"/>
+    <setting name="NavKitPumpTimeOut" value="100"/>
+    <setting name="ChannelConnectRetryMs" value="200"/>
+    <setting name="IsPassive" value="false"/>
+  </settingsGroup>
+
+  <settingsGroup name="ReflectionBox5">
+    <setting name="Address" value="IP4:localhost:3000"/>
+    <setting name="NavKitPumpTimeOut" value="100"/>
+    <setting name="ChannelConnectRetryMs" value="200"/>
+    <setting name="IsPassive" value="false"/>
+  </settingsGroup>
+
+  <settingsGroup name="HttpsProtocol">
+    <!-- The proxy address -->
+    <setting name="ProxyAddress" value=""/>
+  </settingsGroup>
+
+  <settingsGroup name="AMSClientProtocol">
+    <!-- The Access Management Server (AMS) -->
+    <setting name="Host" value="int-ams-test.services.tomtom.com"/>
+
+    <!-- The port on the AMS that the Perseus client connects to -->
+    <setting name="Port" value="0"/>
+
+    <!-- The client certificate, in PEM format.
+    The Certificate may or may not contain the private key. If it does, leave CertificateKey empty.
+    If it does not then set CertificateKey to he PEM formatted file that contains the private key.
+     -->
+    <setting name="Certificate" value="/mnt/sdcard/ttndata/files/ServiceConnectors/client.pem"/>
+    <setting name="CertificateKey" value=""/>
+
+    <!-- The server certificate, used by the client to authenticate the server -->
+    <setting name="CertificateBundle" value="/mnt/sdcard/ttndata/files/ServiceConnectors/tomtom-ams-server-side-ca.crt"/>
+
+    <!-- The resource/page on the AMS requested by the client in the AMS login -->
+    <setting name="Resource" value="/ams/cl/authentication/tls"/>
+
+    <!-- The query to send to the AMS for TTPlaces -->
+    <setting name="PlacesQuery" value="/places/search/1/place?"/>
+
+    <!-- The resource/page on the server requested in the TTPlaces request -->
+    <setting name="TTPlacesResource" value="/srvc/tt/ls"/>
+
+    <!-- The location on the Cambridge server to which reported safety camera information is sent -->
+    <setting name="CambridgeResource" value="/srvc/tt/saafl/gateway/input/api-2.0/publicUserReports-1.4/sendReports"/>
+  </settingsGroup>
+
+  <settingsGroup name="PlacesProtocol">
+    <!-- The maximum number of queries allowed to be persistent at a time -->
+    <setting name="MaxMultipleQueries" value="255"/>
+
+    <!-- The maximum number of tolerable/allowed server errors before entering an error state -->
+    <setting name="MaxNrAllowedServerErrors" value="10"/>
+
+    <!-- The maximum number of tolerable/allowed client errors before entering an error state -->
+    <setting name="MaxNrAllowedClientErrors" value="10"/>
+
+    <!-- The maximum number of results that are returned by the Places server per single web request -->
+    <setting name="MaxNumberOfResultsPerRequest" value="20"/>
+  </settingsGroup>
+
+  <settingsGroup name="PLACES Connector">
+    <!-- The maximum number of results that are returned by the Places connector per single page request -->
+    <setting name="MaxNumberOfResultsPerPage" value="20"/>
+  </settingsGroup>
+
+  <settingsGroup name="FloatingCarData Connector">
+    <!-- Every SampleCount-th position sample is sent to server  -->
+    <setting name="UpdateSampleCount" value="5"/>
+  </settingsGroup>
+
+  <settingsGroup name="PerseusProtocol">
+
+    <!-- The resource/page on the server requested in the InitSession request -->
+    <setting name="InitSessionURLResource" value="srvc/tt/tpeg/InitSession"/>
+
+    <!-- When set to true, use the host received after InitSession for GetMessage requests
+         When set to false, use the parent protocol host
+         This setting is optional, false by default      -->
+    <setting name="UseHostFromPerseusInitSession" value="true"/>
+
+    <!-- The server certificate, used by the client to authenticate the server
+         This setting is optional, only used when UseHostFromPerseusInitSession is set to true -->
+    <setting name="CertificateBundle" value="/mnt/sdcard/ttndata/files/ServiceConnectors/perseus.crt"/>
+
+    <!-- Time within which InitSession params must be received by the Perseus client -->
+    <setting name="WaitForInitSessionParamsTimeOutInMs" value="15000"/>
+
+    <!-- Time to wait before sending the next GetMessage request -->
+    <setting name="WaitForNextSendGetMsgTimeOutInMs" value="120000"/>
+
+    <!-- Interval between sending traffic/weather/safety camera location messages to subscribers -->
+    <setting name="ResendMessageTimeOutInMs" value="60000"/>
+
+    <!-- Enable/disable TMC in InitSessionRequest -->
+    <setting name="TMCEnabled" value="true"/>
+
+    <!-- Maximum time retrying HTTP requests in case of no response from, or a connection loss to, the server before
+         reporting the error to the connectors
+         This setting is optional, 180000 by default -->
+    <setting name="MaxTimeBeforeReportingErrorInMs" value = "180000" />
+
+    <!-- Exponential backoff settings below are temporarily also used for AMS client protocol, which reads them from this section -->
+    <!-- Initial value for the exponential back off algorithm used to calculate the timeout before retrying to send a HTTP request
+         This setting is optional, 1000 by default -->
+    <setting name="ExponentialBackOffInitValueInMs" value = "1000" />
+
+    <!-- Upper bound for the exponential back off algorithm used to calculate the timeout before retrying to send a HTTP request
+         This setting is optional, 120000 by default -->
+    <setting name="ExponentialBackOffMaxValueInMs" value = "120000" />
+
+    <!-- Multiplier for the exponential back off algorithm used to calculate the timeout before retrying to send a HTTP request
+         This setting is optional, 2.0 by default -->
+    <setting name="ExponentialBackOffMultiplier" value = "2.0" />
+
+    <!-- When enabled, postdata will be compressed using gzip -->
+    <setting name="CompressInitSessionRequest" value="false"/>
+    <setting name="CompressGetMessageRequest" value="true"/>
+  </settingsGroup>
+
+  <settingsGroup name="FuelPrice Connector">
+    <!-- The location of the Fuel database -->
+    <setting name="DatabaseURI" value="/mnt/sdcard/ttndata/files/ServiceConnectors/Fuel"/>
+
+    <!-- The filename of the Fuel database -->
+    <setting name="DatabaseFilename" value="dynamic_poi.sqlite"/>
+
+    <!-- Maximum number of fuel price messages the client can handle at a time is (32 * MaxNrReportedItems). -->
+    <setting name="MaxNrReportedItems" value="20"/>
+
+  </settingsGroup>
+
+  <settingsGroup name="EMI Connector">
+    <!-- The location of the ChargingPark database -->
+    <setting name="DatabaseURI" value="./EMI"/>
+
+    <!-- The filename of the ChargingPark database -->
+    <setting name="DatabaseFilename" value="dynamic_poi.sqlite"/>
+
+    <!-- Maximum number of ChargingPark messages the client can handle at a time-->
+    <setting name="MaxNrReportedItems" value="200"/>
+
+  </settingsGroup>
+
+  <settingsGroup name="TRAFFIC connector">
+    <!-- In which mode this connector will run on the server -->
+    <setting name="Mode" value="stateful"/>
+
+    <!-- Radius of the InnerRegion, a region centred around the current position. Incidents in this region are considered to be most important. -->
+    <setting name="InnerRadiusInMeters" value="10000"/>
+
+    <!-- Radius of the OuterRegion, a region centred around the current position but larger than and including the InnerRegion.
+         Incidents in this region (but not in the inner region) are considered to be important but the TomTom Traffic Service may select relevant incidents to be sent. -->
+    <setting name="OuterRadiusInMeters" value="120000"/>
+
+    <!-- Maximum number of traffic messages the client can handle at a time -->
+    <setting name="MaxNrReportedItems" value="500"/>
+  </settingsGroup>
+
+  <settingsGroup name="Parking Connector">
+    <!-- The location of the Parking database -->
+    <setting name="DatabaseURI" value="/mnt/sdcard/ttndata/files/ServiceConnectors/Parking"/>
+
+    <!-- The filename of the Parking database -->
+    <setting name="DatabaseFilename" value="dynamic_poi.sqlite"/>
+
+    <!-- Maximum number of parking messages the client can handle at a time -->
+    <setting name="MaxNrReportedItems" value="20"/>
+  </settingsGroup>
+
+  <settingsGroup name="WEA Connector">
+    <!-- Maximum number of weather messages the client can handle at a time -->
+    <setting name="MaxNrReportedItems" value="20"/>
+  </settingsGroup>
+
+  <settingsGroup name="SAA Connector">
+    <!-- Maximum number of safety alerts the client can handle at a time -->
+    <setting name="MaxNrReportedItems" value="200"/>
+  </settingsGroup>
+
+  <settingsGroup name="CambridgeProtocol">
+    <!-- Interval between connecting attempts (upto MaxConnectAttempts/MaxReconectAttempts) -->
+    <setting name="ConnectingTimeOutInMs" value="10000"/>
+
+    <!-- Maximum number of times to try to connect to the Cambridge server -->
+    <setting name="MaxConnectAttempts" value="10"/>
+
+    <!-- Maximum number of times relogin attempts must be made when disconnected from the Cambridge server -->
+    <setting name="MaxReconectAttempts" value="5"/>
+
+    <!-- Maximum number of times to try reporting a safety camera location -->
+    <setting name="MaxMessageReportingAttempts" value="10"/>
+
+    <!-- Interval between attempts to report a safety location -->
+    <setting name="MessageReportingTimeOutInMs" value ="5000"/>
+
+    <setting name="CertificateBundle" value=""/>
+  </settingsGroup>
+
+  <settingsGroup name="CambridgeConnector">
+    <!-- Relative cost of this provider -->
+    <setting name="Cost" value="50"/>
+
+    <!-- Relative quality of the information of this provider -->
+    <setting name="Quality" value="50"/>
+  </settingsGroup>
+
+  <settingsGroup name="Connector">
+    <!-- When set to true, the current car location as received by the traffic connector will be used.
+         When set to false, the current car location as received by the FloatingCarData connector will be used. -->
+    <setting name="UseCurrentCarLocationFromTraffic" value="true"/>
+  </settingsGroup>
+
+  <settingsGroup name="MapIssueTrackerConnector">
+    <setting name="Host" value="mit-staging.tomtom.com"/>
+    <setting name="Port" value="443"/>
+    <setting name="Resource" value="/mit-ws/v1/reports"/>
+    <!-- Leave empty to have Curl look for a valid certificate in the device's store. -->
+    <setting name="CertificateBundle" value=""/>
+    <setting name="ExtendedRetryTimeoutSec" value="900"/>
+    <setting name="DatabaseURI" value="/mnt/sdcard/ttndata/files/ServiceConnectors/MapInputTracker"/>
+    <setting name="DatabaseFilename" value="pending_reports.sqlite"/>
+    <!-- To be used as security provider for anonymous reporting -->
+    <setting name="DefaultSecurityProvider" value="Guest"/>
+    <!-- To be used as access token for anonymous reporting -->
+    <setting name="DefaultAccessToken" value="1234"/>
+    <!-- Client id in report header-->
+    <setting name="ClientId" value="MIT_TomTom"/>
+    <!-- App id in report header -->
+    <setting name="AppId" value="1234567"/>
+  </settingsGroup>
+
+  <settingsGroup name="HeartbeatConnector">
+    <!-- The time between two heartbeats. -->
+    <setting name="IntervalBetweenTwoHeartbeatsInMs" value="60000"></setting>
+  </settingsGroup>
+
+  <settingsGroup name="Debug">
+    <!-- Directory in which to dump log output -->
+    <setting name="DumpPath" value="/mnt/sdcard/ttndata/files/ServiceConnectors/"/>
+
+    <!-- Generate an XML dump file with web request data (headers and body of request and response) -->
+    <setting name="DumpWebRequest" value="false"/>
+
+    <!--Generate an XML dump file with the received TPEG message in binary form -->
+    <setting name="DumpTPEGBinary" value="false"/>
+
+    <!--Generate an XML dump file with decoded data (for all decoders, one file per decoder) -->
+    <setting name="DumpTPEGStructure" value="false"/>
+
+    <!-- Generate an XML dump file with extracted Traffic data -->
+    <setting name="DumpTrafficFeedStructure" value="false"/>
+
+    <!--Generate an XML dump file with extracted Weather data -->
+    <setting name="DumpWeatherFeedStructure" value="false"/>
+
+    <!--Generate an XML dump file with extracted Safety Locations data -->
+    <setting name="DumpSafetyLocationsFeedStructure" value="false"/>
+
+    <!--Generate an XML dump file with extracted Fuel data -->
+    <setting name="DumpFuelPriceStructure" value="false"/>
+
+    <!-- Generate an XML dump file with extracted Parking data -->
+    <setting name="DumpParkingStructure" value="false"/>
+  </settingsGroup>
+</settingsFile>
