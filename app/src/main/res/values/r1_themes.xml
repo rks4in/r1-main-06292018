@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="r1_Theme" parent="@style/navui_SignatureTheme">
+        <item name="navui_contactItemContentTextStyle">@style/r1_contactItemContentTextStyle</item>
+        <item name="navui_moreInformationItemContentTextStyle">@style/r1_moreInformationItemContentTextStyle</item>
+    </style>
+
+</resources>

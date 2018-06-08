@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="r1_contactItemContentTextStyle" parent="@style/navui_NavContactItemContentText">
+        <item name="android:autoLink">phone</item>
+        <item name="android:linksClickable">true</item>
+        <item name="android:textColorLink">?attr/navui_colorAccent</item>
+    </style>
+
+    <style name="r1_moreInformationItemContentTextStyle" parent="@style/navui_NavMoreInformationItemContentText">
+        <item name="android:autoLink">phone</item>
+        <item name="android:linksClickable">true</item>
+        <item name="android:textColorLink">?attr/navui_colorAccent</item>
+    </style>
+
+</resources>
