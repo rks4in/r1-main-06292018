@@ -27,13 +27,13 @@ function startAndCheckNavApp(){
     startTime="$(TZ=UTC0 printf '%(%s)T\n' '-1')"
     echo "Starting NavApp"
     adb shell am start -n "com.tomtom.r1navapp/.R1MainActivity"
-    tail -f NavApp_Logging | while read line
+    tail -f -n+1 NavApp_Logging | while read line
     do
-        if (echo $line | grep "$1" ); then echo "TEST PASS: NAVAPP STARTED SUCCESSFULLY"; break; fi;
+        if (echo $line | grep "$1" ); then echo "TEST PASS: NAVAPP STARTED SUCCESSFULLY"; exit 0; fi;
         currentTime=$(TZ=UTC0 printf '%(%s)T\n' '-1')
         timeElapsed=$(expr $currentTime - $startTime)
         if [ $timeElapsed -gt $2 ]
-            then echo "TEST FAIL: NAVAPP NOT STARTED"; break;
+            then echo "TEST FAIL: NAVAPP NOT STARTED"; cat NavApp_Logging; exit 1;
         fi
     done
     kill $logcat_pid
