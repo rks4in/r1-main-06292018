@@ -6,6 +6,12 @@
             ],
             "locked": "1.0.2-alpha1"
         },
+        "com.android.support:support-annotations": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
+            ],
+            "locked": "27.0.2"
+        },
         "com.google.guava:guava": {
             "firstLevelTransitive": [
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Libs_InputHandler",
@@ -13,6 +19,56 @@
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Ports_R1SystemPort"
             ],
             "locked": "23.4-android"
+        },
+        "com.tomtom.navui.navkit:CrashHandlerJniAar": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
+            ],
+            "locked": "9.11.0-18.2"
+        },
+        "com.tomtom.navui.navkit:NavKitNDS": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
+            ],
+            "locked": "9.11.0-18.2"
+        },
+        "com.tomtom.navui.navkit:PositioningServiceAar": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
+            ],
+            "locked": "9.11.0-18.2"
+        },
+        "com.tomtom.navui.navkit:ProcessHostBase": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
+            ],
+            "locked": "9.11.0-18.2"
+        },
+        "com.tomtom.navui.navkit:ServicesConnectorJni": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_connectors"
+            ],
+            "locked": "9.11.0-18.2"
+        },
+        "com.tomtom.navui.navkit:libConnector": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_connectors"
+            ],
+            "locked": "9.11.0-18.2"
+        },
+        "com.tomtom.navui.navkit:libIcu4c": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_connectors",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
+            ],
+            "locked": "9.11.0-18.2"
+        },
+        "com.tomtom.navui.navkit:libSQLite": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_connectors",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
+            ],
+            "locked": "9.11.0-18.2"
         },
         "com.tomtom.navui:Kits_MapCoreKit": {
             "firstLevelTransitive": [
@@ -91,14 +147,6 @@
             ],
             "locked": "18.2.111"
         },
-        "com.tomtom.r1.navkit:NavKitService": {
-            "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
-            ],
-            "locked": "9.11.0-18.2-0.0.31"
-        },
         "com.tomtom.r1:toolchain": {
             "firstLevelTransitive": [
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Kits_R1AppKit",
@@ -108,9 +156,92 @@
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Libs_LocationActionHandler",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Ports_R1SystemPort",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_navkitresources",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_connectors",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:sdk"
             ],
-            "locked": "0.0.10"
+            "locked": "0.0.13"
+        },
+        "com.tomtom:Framework.Porting.Adaptations": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
+            ],
+            "locked": "9.11.0-18.2"
+        },
+        "com.tomtom:Framework.Porting.Assert": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
+            ],
+            "locked": "9.11.0-18.2"
+        },
+        "com.tomtom:Framework.Porting.Backtrace": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
+            ],
+            "locked": "9.11.0-18.2"
+        },
+        "com.tomtom:Framework.Porting.Clock": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
+            ],
+            "locked": "9.11.0-18.2"
+        },
+        "com.tomtom:Framework.Porting.OsAbstractionLayer": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
+            ],
+            "locked": "9.11.0-18.2"
+        },
+        "com.tomtom:Framework.ThirdParty.Boost": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
+            ],
+            "locked": "9.11.0-18.2"
+        },
+        "com.tomtom:Framework.ThirdParty.Boost.Filesystem": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
+            ],
+            "locked": "9.11.0-18.2"
+        },
+        "com.tomtom:Framework.ThirdParty.Boost.System": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
+            ],
+            "locked": "9.11.0-18.2"
+        },
+        "com.tomtom:Framework.ThirdParty.Boost.Thread": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
+            ],
+            "locked": "9.11.0-18.2"
+        },
+        "com.tomtom:IconAssets2Resources": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_navkitresources"
+            ],
+            "locked": "9.11.0-18.2"
+        },
+        "com.tomtom:NavKit.FOR.NDS": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
+            ],
+            "locked": "9.11.0-18.2"
+        },
+        "com.tomtom:ResourceFiles": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_navkitresources"
+            ],
+            "locked": "9.11.0-18.2"
         },
         "junit:junit": {
             "firstLevelTransitive": [
@@ -196,6 +327,29 @@
             "project": true
         },
         "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app": {
+            "project": true
+        },
+        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_navkitresources": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
+            ],
+            "project": true
+        },
+        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_connectors": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
+            ],
+            "project": true
+        },
+        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit": {
+            "firstLevelTransitive": [
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
+            ],
             "project": true
         },
         "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:sdk": {
