@@ -3,7 +3,7 @@ apply from: "${rootDir}/gradle/androidProject.gradle"
 
 repositories {
     ivy {
-        url "http://artifactory-ci.tomtomgroup.com/artifactory/navkit-release-local"
+        url "https://artifactory.navkit-pipeline.tt3.com/artifactory/navkit-release-local"
         layout "pattern", {
             artifact "[organisation]/[module]/android/x86_64/release/[revision]/[artifact](-[classifier])-[revision].[ext]"
             ivy "[organisation]/[module]/android/x86_64/release/[revision]/ivy(-[classifier])-[revision].[ext]"
