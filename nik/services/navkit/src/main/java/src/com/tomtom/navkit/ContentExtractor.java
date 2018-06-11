@@ -105,6 +105,7 @@ public class ContentExtractor {
                             || path.endsWith(".sql")
                             || path.endsWith(".sqlite")
                             || path.endsWith(".s3db")
+                            || path.endsWith("nkw.crt")
                     ) {
 
                 if (!outFile.exists() || !prefs.contains(crcKey) || (prefs.getLong(crcKey, 0L) != zipCrc)) {
