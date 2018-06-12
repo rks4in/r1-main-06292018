@@ -120,6 +120,9 @@ public class R1NavApp extends StockApplication implements BuildInfoUtils.BuildIn
 
         fetchBuildInfo(appKit);
 
+        R1TimeZoneHandler timeZoneHandler = new R1TimeZoneHandler();
+        timeZoneHandler.init(taskKit);
+
         return appKit;
     }
 
