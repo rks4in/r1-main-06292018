@@ -57,6 +57,7 @@ LOCAL_SRC_FILES := adaptations/src/ConfidentialValueStore/cpp/AndroidSecureKeyVa
   adaptations/src/ResourceCategoryLayout/cpp/AndroidResourceCategoryLayout.cpp \
   adaptations/src/TimeZoneChangedObserver/cpp/TimeZoneChangedObserverByAndroidIntent.cpp \
   adaptations/src/NavCloudConfiguration/cpp/NavCloudConfiguration.cpp \
+  adaptations/src/OnlineRoutingConfiguration/cpp/AndroidOnlineRoutingConfiguration.cpp \
   adaptations/src/OnlineSearchConfiguration/cpp/AndroidOnlineSearchConfiguration.cpp \
   processhost/AndroidServiceAdaptationProvider.cpp \
   processhost/JniWrapper.cpp \

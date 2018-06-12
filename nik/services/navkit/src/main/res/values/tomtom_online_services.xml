@@ -9,5 +9,5 @@
  immediately return it to TomTom N.V.
 -->
 <resources>
-    <string name="app_name">NavKitService</string>
+    <string name="tomtom_online_services_key"></string>
 </resources>

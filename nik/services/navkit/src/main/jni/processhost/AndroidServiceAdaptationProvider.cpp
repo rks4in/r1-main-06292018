@@ -21,6 +21,7 @@
 #include "AndroidProxyConfiguration.h"
 #include "NavCloudConfiguration.h"
 #include "AndroidDnsConfiguration.h"
+#include "AndroidOnlineRoutingConfiguration.h"
 #include "AndroidOnlineSearchConfiguration.h"
 
 using namespace NProcessHost::NAdaptation;
@@ -42,6 +43,7 @@ CAndroidServiceAdaptationProvider::CAndroidServiceAdaptationProvider(JavaVM* aVM
 , iAndroidProxyConfiguration(NULL)
 , iNavCloudConfiguration(NULL)
 , iAndroidDnsConfiguration(NULL)
+, iOnlineRoutingConfiguration(NULL)
 , iOnlineSearchConfiguration(NULL)
 {
 }
@@ -130,6 +132,12 @@ void CAndroidServiceAdaptationProvider::RegisterAdaptations()
   iNavCloudConfiguration = new CNavCloudConfiguration(*iAndroidProperties);
   RegisterControlAdaptation(*iNavCloudConfiguration);
 
+  iOnlineRoutingConfiguration = new CAndroidOnlineRoutingConfiguration(iVM, *iAndroidProperties);
+  if (iOnlineRoutingConfiguration->AcquireJniResources())
+  {
+    RegisterControlAdaptation(*iOnlineRoutingConfiguration);
+  }
+
   CreateAdaptationAndAcquireJniResources(iAndroidDnsConfiguration,  "CAndroidDnsConfiguration");
 
   iOnlineSearchConfiguration = new CAndroidOnlineSearchConfiguration(iVM, *iAndroidProperties);
@@ -179,6 +187,10 @@ CAndroidServiceAdaptationProvider::~CAndroidServiceAdaptationProvider()
   {
     iAndroidDnsConfiguration->ReleaseJniResources();
   }
+  if (iOnlineRoutingConfiguration != NULL)
+  {
+    iOnlineRoutingConfiguration->ReleaseJniResources();
+  }
   if (iOnlineSearchConfiguration != NULL)
   {
     iOnlineSearchConfiguration->ReleaseJniResources();
@@ -196,5 +208,6 @@ CAndroidServiceAdaptationProvider::~CAndroidServiceAdaptationProvider()
   delete iAndroidProxyConfiguration;
   delete iNavCloudConfiguration;
   delete iAndroidDnsConfiguration;
+  delete iOnlineRoutingConfiguration;
   delete iOnlineSearchConfiguration;
 }
