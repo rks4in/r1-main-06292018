@@ -38,7 +38,6 @@ namespace NProcessHost
         CAndroidJNIUtil(aVM),
         iPropertiesAdaptation(aPropertiesAdaptation)
     {
-      assert(iResourceLayout != nullptr);
     }
 
     CAndroidOnlineRoutingConfiguration::~CAndroidOnlineRoutingConfiguration()
