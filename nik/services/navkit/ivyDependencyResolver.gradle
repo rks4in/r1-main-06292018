@@ -70,14 +70,14 @@ copyNativeDebugDependencies.dependsOn copyNativeCompileDependencies
 copyNativeReleaseDependencies.dependsOn copyNativeCompileDependencies
 
 tasks.whenTaskAdded { task ->
-    if (task.name == 'prepareDebugDependencies' || task.name == 'externalNativeBuildCleanDebug' || task.name == 'externalNativeBuildDebug') {
+    if (task.name == 'prepareDebugDependencies' || task.name == 'externalNativeBuildDebug') {
         if (project.isNavKitDebugBuildEnabled) {
             task.dependsOn copyNativeDebugDependencies
         } else {
             task.dependsOn copyNativeReleaseDependencies
         }
     }
-    if (task.name == 'prepareReleaseDependencies' || task.name == 'externalNativeBuildCleanRelease' || task.name == 'externalNativeBuildRelease') {
+    if (task.name == 'prepareReleaseDependencies' || task.name == 'externalNativeBuildRelease') {
         task.dependsOn copyNativeReleaseDependencies
     }
 }

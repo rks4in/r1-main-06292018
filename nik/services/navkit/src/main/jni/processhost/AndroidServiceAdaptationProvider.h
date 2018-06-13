@@ -46,6 +46,7 @@ namespace NProcessHost
     class CAndroidProxyConfiguration;
     class CNavCloudConfiguration;
     class CAndroidDnsConfiguration;
+    class CAndroidOnlineRoutingConfiguration;
     class CAndroidOnlineSearchConfiguration;
 
     class CAndroidServiceAdaptationProvider : public NNavKit::NAdaptation::CBaseAdaptationProvider
@@ -73,6 +74,7 @@ namespace NProcessHost
       CAndroidProxyConfiguration* iAndroidProxyConfiguration;
       CNavCloudConfiguration* iNavCloudConfiguration;
       CAndroidDnsConfiguration* iAndroidDnsConfiguration;
+      CAndroidOnlineRoutingConfiguration* iOnlineRoutingConfiguration;
       CAndroidOnlineSearchConfiguration* iOnlineSearchConfiguration;
     };
   }
