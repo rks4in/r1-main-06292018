@@ -2,357 +2,357 @@
     "_global_": {
         "com.android.support.test:rules": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "locked": "1.0.2-alpha1"
         },
         "com.android.support:support-annotations": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
             ],
             "locked": "27.0.2"
         },
         "com.google.guava:guava": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Libs_InputHandler",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Libs_LocationActionHandler",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Ports_R1SystemPort"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Libs_InputHandler",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Libs_LocationActionHandler",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Ports_R1SystemPort"
             ],
             "locked": "23.4-android"
         },
         "com.tomtom.navui.navkit:CrashHandlerJniAar": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
             ],
             "locked": "9.11.0-18.2"
         },
         "com.tomtom.navui.navkit:NavKitNDS": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
             ],
             "locked": "9.11.0-18.2"
         },
         "com.tomtom.navui.navkit:PositioningServiceAar": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
             ],
             "locked": "9.11.0-18.2"
         },
         "com.tomtom.navui.navkit:ProcessHostBase": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
             ],
             "locked": "9.11.0-18.2"
         },
         "com.tomtom.navui.navkit:ServicesConnectorJni": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_connectors"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_connectors"
             ],
             "locked": "9.11.0-18.2"
         },
         "com.tomtom.navui.navkit:libConnector": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_connectors"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_connectors"
             ],
             "locked": "9.11.0-18.2"
         },
         "com.tomtom.navui.navkit:libIcu4c": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_connectors",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_connectors",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
             ],
             "locked": "9.11.0-18.2"
         },
         "com.tomtom.navui.navkit:libSQLite": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_connectors",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_connectors",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
             ],
             "locked": "9.11.0-18.2"
         },
         "com.tomtom.navui:Kits_MapCoreKit": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "locked": "18.2.111"
         },
         "com.tomtom.navui:Kits_SignatureApiKit": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "locked": "18.2.111"
         },
         "com.tomtom.navui:Kits_UtilKit": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "locked": "18.2.111"
         },
         "com.tomtom.navui:Modules_FocusUiModule": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "locked": "18.2.111"
         },
         "com.tomtom.navui:Modules_MapManagementModule": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "locked": "18.2.111"
         },
         "com.tomtom.navui:Modules_NavAppBaseModule": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Kits_R1AppKit",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Kits_R1CoreKit",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Kits_R1ViewKit",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Libs_InputHandler",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Libs_LocationActionHandler",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Ports_R1SystemPort",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Kits_R1AppKit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Kits_R1CoreKit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Kits_R1ViewKit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Libs_InputHandler",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Libs_LocationActionHandler",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Ports_R1SystemPort",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "locked": "18.2.111"
         },
         "com.tomtom.navui:Modules_PromptModule": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "locked": "18.2.111"
         },
         "com.tomtom.navui:NavAppSDK": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:sdk"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:sdk"
             ],
             "locked": "18.2.111"
         },
         "com.tomtom.navui:Ports_StockSystemPort": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Ports_R1SystemPort",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Ports_R1SystemPort",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "locked": "18.2.111"
         },
         "com.tomtom.r1:toolchain": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Kits_R1AppKit",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Kits_R1CoreKit",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Kits_R1ViewKit",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Libs_InputHandler",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Libs_LocationActionHandler",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Ports_R1SystemPort",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_navkitresources",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_connectors",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:sdk"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Kits_R1AppKit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Kits_R1CoreKit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Kits_R1ViewKit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Libs_InputHandler",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Libs_LocationActionHandler",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Ports_R1SystemPort",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_navkitresources",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_connectors",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:sdk"
             ],
             "locked": "0.0.15"
         },
         "com.tomtom:Framework.Porting.Adaptations": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
             ],
             "locked": "9.11.0-18.2"
         },
         "com.tomtom:Framework.Porting.Assert": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
             ],
             "locked": "9.11.0-18.2"
         },
         "com.tomtom:Framework.Porting.Backtrace": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
             ],
             "locked": "9.11.0-18.2"
         },
         "com.tomtom:Framework.Porting.Clock": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
             ],
             "locked": "9.11.0-18.2"
         },
         "com.tomtom:Framework.Porting.OsAbstractionLayer": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
             ],
             "locked": "9.11.0-18.2"
         },
         "com.tomtom:Framework.ThirdParty.Boost": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
             ],
             "locked": "9.11.0-18.2"
         },
         "com.tomtom:Framework.ThirdParty.Boost.Filesystem": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
             ],
             "locked": "9.11.0-18.2"
         },
         "com.tomtom:Framework.ThirdParty.Boost.System": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
             ],
             "locked": "9.11.0-18.2"
         },
         "com.tomtom:Framework.ThirdParty.Boost.Thread": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
             ],
             "locked": "9.11.0-18.2"
         },
         "com.tomtom:IconAssets2Resources": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_navkitresources"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_navkitresources"
             ],
             "locked": "9.11.0-18.2"
         },
         "com.tomtom:NavKit.FOR.NDS": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
             ],
             "locked": "9.11.0-18.2"
         },
         "com.tomtom:ResourceFiles": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_navkitresources"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_navkitresources"
             ],
             "locked": "9.11.0-18.2"
         },
         "junit:junit": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "locked": "4.12"
         },
         "org.jacoco:org.jacoco.agent": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "locked": "0.7.4.201502262128"
         },
         "org.jacoco:org.jacoco.ant": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "locked": "0.7.4.201502262128"
         },
         "org.mockito:mockito-core": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "locked": "2.17.0"
         },
         "org.robolectric:robolectric": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "locked": "3.8"
         },
-        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Kits_R1AppKit": {
+        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Kits_R1AppKit": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Libs_LocationActionHandler",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Libs_LocationActionHandler",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "project": true
         },
-        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Kits_R1CoreKit": {
+        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Kits_R1CoreKit": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Kits_R1AppKit",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Libs_InputHandler",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Libs_LocationActionHandler",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Ports_R1SystemPort",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Kits_R1AppKit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Libs_InputHandler",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Libs_LocationActionHandler",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Ports_R1SystemPort",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "project": true
         },
-        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Kits_R1ViewKit": {
+        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Kits_R1ViewKit": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Kits_R1AppKit",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Kits_R1AppKit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "project": true
         },
-        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Libs_InputHandler": {
+        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Libs_InputHandler": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Kits_R1AppKit",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Libs_LocationActionHandler"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Kits_R1AppKit",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Libs_LocationActionHandler"
             ],
             "project": true
         },
-        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Libs_LocationActionHandler": {
+        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Libs_LocationActionHandler": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "project": true
         },
-        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:Ports_R1SystemPort": {
+        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Ports_R1SystemPort": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "project": true
         },
-        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app": {
+        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app": {
             "project": true
         },
-        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_navkitresources": {
+        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_navkitresources": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
             ],
             "project": true
         },
-        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_connectors": {
+        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_connectors": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
             ],
             "project": true
         },
-        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:nik_services_navkit": {
+        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit": {
             "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:app"
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
             "project": true
         },
-        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA_2:sdk": {
+        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:sdk": {
             "project": true
         }
     }
