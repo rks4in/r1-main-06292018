@@ -53,7 +53,7 @@ function installAndStartUpNavApp(){
         then installNavApp "app-x86_64-release.apk" "x86"
         else installNavApp "app-armeabi-v7a-release.apk" "Arm"
     fi
-    logString="D/SigHomeScreen([0-9]*): onResume"
+    logString="D/SigHomeScreen(.*): onResume"
     timeout=20
     startAndCheckNavApp "$logString" $timeout
 }
