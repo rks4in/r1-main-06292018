@@ -9,7 +9,7 @@
 <SettingScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tomtom="http://schemas.android.com/apk/res-auto"
     tomtom:navui_settingScreenId="@+id/navui_settings"
-    tomtom:navui_settingScreenVersion="145">
+    tomtom:navui_settingScreenVersion="146">
 
     <SettingScreen
         tomtom:navui_settingTitle="@string/navui_settings_title_appearance"
@@ -1770,8 +1770,15 @@
                     tomtom:navui_settingVersionUpgradeTo="145"
                     tomtom:navui_defaultValue="false"/>
             </ToggleSetting>
+            <ToggleSetting
+                tomtom:navui_settingLabel="@string/navui_use_system_time_for_eta"
+                tomtom:navui_key="com.tomtom.navui.feature.use.system.time.not.gps.time"
+                tomtom:navui_defaultValue="false">
+                <VersionChange
+                    tomtom:navui_settingVersionUpgradeTo="146"
+                    tomtom:navui_defaultValue="true"/>
+            </ToggleSetting>
         </SettingScreen>
-
     </SettingScreen>
 
 </SettingScreen>
