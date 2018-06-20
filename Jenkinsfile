@@ -13,6 +13,7 @@
 
 import com.tomtom.cs.deliverypipeline.stages.commitstage.bitbucket.CommitStage
 import com.tomtom.cs.deliverypipeline.stages.qualitystages.protex.ProtexStage
+import com.tomtom.cs.deliverypipeline.stages.qualitystages.coverity.CoverityStage
 
 DOCKER_IMAGE_PATH = 'cs-fca-r1-docker.navkit-pipeline.tt3.com/tomtom/android-x86_64-toolchain'
 
@@ -123,6 +124,39 @@ pipeline {
             sh(script: "git checkout master")
 
             protexReports.each { path -> addToReleaseCandidate(revision, path)}
+          }
+        }
+      }
+    }
+    stage('Coverity') {
+       when {
+        expression { ((params.MODALITY == 'NORMAL') && wasMerged) }
+       }
+      steps {
+        lock(resource: 'LOCK_RESOURCE_FOR_COVERITY_MAIN')
+        {
+          script {
+            withCredentials([usernamePassword(credentialsId: 'tt_service_account_creds', usernameVariable: 'COVUSER', passwordVariable: 'COVPASS')]) {
+              def CoverityConfig = ['--java --template']
+              def toolchainVersion = getToolChainVersion()
+              def buildDockerImage = "${DOCKER_IMAGE_PATH}:${toolchainVersion}"
+              // We have to set the Djdk.internal.lambda.dumpProxyClasses environmental variable because Coverity Build some how wants this
+              // for evaluating lambda functions. Also there is a limitation right now that we cannot run Coverity of both Debug and Release.
+              // Hence we get the Coverity Analysis only for Release build.
+              def environmentalVar = ["_JAVA_OPTIONS=-Djdk.internal.lambda.dumpProxyClasses=/tmp"]
+              def codeanalysis = new CoverityStage(steps: this,
+                                     buildDockerImage: "${buildDockerImage}",
+                                     covStream: "CS_R1_TICS",
+                                     covUser: COVUSER,
+                                     covPass: COVPASS,
+                                     covConfig: CoverityConfig,
+                                     scm: "git",
+                                     buildCmd: "./gradlew clean assembleRelease",
+                                     buildDir: "${WORKSPACE}",
+                                     environmentVars: environmentalVar
+                                     )
+              codeanalysis.run()
+            }
           }
         }
       }
