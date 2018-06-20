@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.tomtom.navui.controlport.ControlContext;
+import com.tomtom.navui.r1systemport.permissions.RequestPermissionOnReadyListenerWrapper;
 import com.tomtom.navui.r1systemport.systemcomponents.R1IntentHandlerSystemComponent;
 import com.tomtom.navui.r1systemport.systemcomponents.R1ScreenSystemComponent;
 import com.tomtom.navui.stocksystemport.StockSystemContext;
@@ -17,6 +18,8 @@ import com.tomtom.navui.util.Log;
 public class R1SystemContext extends StockSystemContext {
     private static final String TAG = "R1SystemContext";
     private final int R1_MICHI_DPI = 240;
+
+    private RequestPermissionOnReadyListenerWrapper mOnReadyListenerWrapper;
 
     public R1SystemContext(final Context context, final Class<? extends SystemService> serviceClz, final PendingIntent activityLaunchIntent,
             final ControlContext controlPort) {
@@ -33,5 +36,26 @@ public class R1SystemContext extends StockSystemContext {
             Log.d(TAG, "Current DPI for R1 Michi " + R1_MICHI_DPI);
         }
         return R1_MICHI_DPI;
+    }
+
+    @Override
+    public void setOnReadyListener(final OnReadyListener listener) {
+        // Dismiss the previous wrapper if necessary
+        if (mOnReadyListenerWrapper != null) {
+            if (mOnReadyListenerWrapper.getWrappedListener() != listener) {
+                mOnReadyListenerWrapper.dismiss();
+                mOnReadyListenerWrapper = null;
+            } else {
+                return;
+            }
+        }
+
+        // Wrap the listener, so we can request permissions before invoking it
+        if (listener != null) {
+            mOnReadyListenerWrapper = new RequestPermissionOnReadyListenerWrapper(listener);
+            super.setOnReadyListener(mOnReadyListenerWrapper);
+        } else {
+            super.setOnReadyListener(null);
+        }
     }
 }
