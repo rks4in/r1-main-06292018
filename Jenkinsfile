@@ -9,7 +9,7 @@
  *
  */
 
-@Library('cs-delivery-pipeline@1.1.19') _
+@Library('cs-delivery-pipeline@2.1.3') _
 
 import com.tomtom.cs.deliverypipeline.stages.commitstage.bitbucket.CommitStage
 import com.tomtom.cs.deliverypipeline.stages.qualitystages.protex.ProtexStage
@@ -52,7 +52,7 @@ pipeline {
                                               "${WORKSPACE}/revision.txt",
                                               "${WORKSPACE}/dependencies.lock",
                                               params.MODALITY as CommitStage.Modality)
-            commitStage.setBuildStep({ instance ->
+            commitStage.addVerificationStep("Build", { instance ->
               callGradleInDocker("clean assemble test")
               stashArtifactsOnMaster()
               unStashArtifactsAndRunTestsOnSlave()
