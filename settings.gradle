@@ -8,6 +8,7 @@ FileTree r1BuildTree = fileTree(
                 "Libs${File.separator}**${File.separator}build.gradle",
                 "Ports${File.separator}**${File.separator}build.gradle",
                 "nik${File.separator}**${File.separator}build.gradle",
+                "harman${File.separator}**${File.separator}build.gradle",
                 "app${File.separator}build.gradle",
                 "sdk${File.separator}build.gradle",
         ],

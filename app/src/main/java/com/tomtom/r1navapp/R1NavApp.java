@@ -57,6 +57,7 @@ public class R1NavApp extends StockApplication implements BuildInfoUtils.BuildIn
     private static final String TAG = "R1NavApp";
 
     private BuildInfoUtils mBuildInfoUtils;
+    private R1TimeZoneHandler mTimeZoneHandler;
 
     @Override
     public void onCreate() {
@@ -120,8 +121,7 @@ public class R1NavApp extends StockApplication implements BuildInfoUtils.BuildIn
 
         fetchBuildInfo(appKit);
 
-        R1TimeZoneHandler timeZoneHandler = new R1TimeZoneHandler();
-        timeZoneHandler.init(taskKit);
+        mTimeZoneHandler = new R1TimeZoneHandler(appKit);
 
         return appKit;
     }

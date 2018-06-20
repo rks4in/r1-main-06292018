@@ -11,47 +11,93 @@
 
 package com.tomtom.r1navapp;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.IBinder;
+import android.os.Looper;
+import android.os.RemoteException;
+
+import com.harman.fcaclock.Constants;
+import com.harman.fcaclock.IFcaClockService;
+import com.tomtom.navui.appkit.AppContext;
+import com.tomtom.navui.taskkit.TaskContext;
 import com.tomtom.navui.taskkit.currentposition.CurrentPositionTask;
 import com.tomtom.navui.taskkit.route.Position;
 import com.tomtom.navui.taskkit.route.RouteGuidanceTask;
-import com.tomtom.navui.taskkit.TaskContext;
 import com.tomtom.navui.util.Log;
-import com.tomtom.navui.util.Releasable;
 
 import java.util.TimeZone;
 
-public class R1TimeZoneHandler implements Releasable,
-                                          RouteGuidanceTask.CurrentPositionListener,
+public class R1TimeZoneHandler implements RouteGuidanceTask.CurrentPositionListener,
                                           TaskContext.ContextStateListener {
+
     private static final String TAG = "R1TimeZoneHandler";
 
-    private TaskContext mTaskContext;
+    private AppContext mAppContext;
+
     private CurrentPositionTask mCurrentPositionTask;
+
     private TimeZone mPreviousTimeZone;
 
-    public void init(TaskContext taskContext) {
-        mTaskContext = taskContext;
+    private IFcaClockService mFcaClockService;
 
-        mTaskContext.addContextStateListener(this);
-        if (mTaskContext.isReady()) {
-            onTaskContextReady();
+    private final Object mFcaClockServiceLock = new Object();
+
+    private Handler mHandler;
+
+    private final ServiceConnection mFcaClockServiceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            if (Log.D) {
+                Log.d(TAG, IFcaClockService.class.getCanonicalName() + " connected");
+            }
+
+            synchronized (mFcaClockServiceLock) {
+                mFcaClockService = IFcaClockService.Stub.asInterface(iBinder);
+            }
+
+            // Send previous TimeZone if Service is Reconnected
+            if (mPreviousTimeZone != null) {
+                sendTimeZone(mPreviousTimeZone);
+            } else {
+                initTaskContext();
+            }
         }
-    }
 
-    @Override
-    public void release() {
-        releaseCurrentPositionTask();
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            if (Log.D) {
+                Log.d(TAG, IFcaClockService.class.getCanonicalName()  + " disconnected");
+            }
 
-        mTaskContext.removeContextStateListener(this);
-        mTaskContext = null;
+            synchronized (mFcaClockServiceLock) {
+                mFcaClockService = null;
+            }
+
+            // Don't release CurrentPositionTask and TaskContext
+            // because service will reconnect automatically and onServiceConnected will be called
+        }
+    };
+
+    public R1TimeZoneHandler(AppContext appContext) {
+        mAppContext = appContext;
+
+        HandlerThread handlerThread = new HandlerThread(TAG + "Thread");
+        handlerThread.start();
+        Looper looper = handlerThread.getLooper();
+        mHandler = new Handler(looper);
+
+        bindFcaClockService();
     }
 
     @Override
     public void onTaskContextReady() {
-        if (mCurrentPositionTask == null) {
-            mCurrentPositionTask = mTaskContext.newTask(CurrentPositionTask.class);
-            mCurrentPositionTask.addCurrentPositionListener(this);
-        }
+        initCurrentPositionTask();
     }
 
     @Override
@@ -69,6 +115,7 @@ public class R1TimeZoneHandler implements Releasable,
         if (mCurrentPositionTask != null) {
             if (mCurrentPositionTask.getCurrentPositionStatus() ==
                     RouteGuidanceTask.PositionStatusChangedListener.PositionStatus.GPS) {
+
                 TimeZone timeZone = mCurrentPositionTask.getTimeZone();
                 if (!timeZone.equals(mPreviousTimeZone)) {
                     if (Log.D) {
@@ -76,9 +123,68 @@ public class R1TimeZoneHandler implements Releasable,
                                 timeZone.getDisplayName());
                     }
 
+                    sendTimeZone(timeZone);
+
                     mPreviousTimeZone = timeZone;
                 }
             }
+        }
+    }
+
+    private void sendTimeZone(TimeZone timeZone) {
+        mHandler.post(() -> {
+            synchronized (mFcaClockServiceLock) {
+                if (mFcaClockService != null) {
+                    try {
+                        int errorCode = mFcaClockService.setTimeZone(timeZone.getID(),
+                                timeZone.getDSTSavings());
+
+                        if (errorCode == Constants.SERVICE_SEND_SUCCESS) {
+                            if (Log.D) {
+                                Log.d(TAG, "TimeZone was successfully sent to " +
+                                                IFcaClockService.class.getCanonicalName() +
+                                        ", id = " + timeZone.getID() +
+                                        " dstOffsetMilli = " + timeZone.getDSTSavings());
+                            }
+                        } else {
+                            if (Log.W) {
+                                Log.w(TAG, "Can not send TimeZone to F" +
+                                        IFcaClockService.class.getCanonicalName() +
+                                        ", Error Code = " + errorCode);
+                            }
+                        }
+
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+
+    private void bindFcaClockService() {
+        Intent intent = new Intent();
+        intent.setPackage(Constants.FCA_CLOCK_PACKAGE);
+        if (!mAppContext.getSystemPort().getApplicationContext().bindService(
+                intent, mFcaClockServiceConnection, Context.BIND_AUTO_CREATE)) {
+            if (Log.E) {
+                Log.e(TAG, "Cannot bind to " + IFcaClockService.class.getCanonicalName());
+            }
+        }
+    }
+
+    private void initTaskContext() {
+        if (mAppContext.getTaskKit().isReady()) {
+            initCurrentPositionTask();
+        } else {
+            mAppContext.getTaskKit().addContextStateListener(this);
+        }
+    }
+
+    private void initCurrentPositionTask() {
+        if (mCurrentPositionTask == null) {
+            mCurrentPositionTask = mAppContext.getTaskKit().newTask(CurrentPositionTask.class);
+            mCurrentPositionTask.addCurrentPositionListener(this);
         }
     }
 
