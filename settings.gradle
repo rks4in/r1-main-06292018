@@ -11,6 +11,7 @@ FileTree r1BuildTree = fileTree(
                 "harman${File.separator}**${File.separator}build.gradle",
                 "app${File.separator}build.gradle",
                 "sdk${File.separator}build.gradle",
+                "TestApps${File.separator}fcaclock${File.separator}**${File.separator}build.gradle"
         ],
 )
 r1BuildTree.each { File file ->

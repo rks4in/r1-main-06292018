@@ -1,0 +1,3 @@
+apply plugin: 'com.android.application'
+apply from: "${rootDir}/gradle/androidProject.gradle"
+localDependency(project, ':harman_interfaces')
