@@ -155,6 +155,7 @@
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Libs_InputHandler",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Libs_LocationActionHandler",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Ports_R1SystemPort",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:TestApps_fcaclock",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:harman_interfaces",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_navkitresources",
@@ -254,13 +255,13 @@
             "firstLevelTransitive": [
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
-            "locked": "0.8.1"
+            "locked": "0.7.4.201502262128"
         },
         "org.jacoco:org.jacoco.ant": {
             "firstLevelTransitive": [
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
-            "locked": "0.8.1"
+            "locked": "0.7.4.201502262128"
         },
         "org.mockito:mockito-core": {
             "firstLevelTransitive": [
@@ -325,6 +326,9 @@
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app"
             ],
+            "project": true
+        },
+        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:TestApps_fcaclock": {
             "project": true
         },
         "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app": {
