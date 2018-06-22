@@ -14,6 +14,7 @@
 import com.tomtom.cs.deliverypipeline.stages.commitstage.bitbucket.CommitStage
 import com.tomtom.cs.deliverypipeline.stages.qualitystages.protex.ProtexStage
 import com.tomtom.cs.deliverypipeline.stages.qualitystages.coverity.CoverityStage
+import com.tomtom.cs.deliverypipeline.stages.qualitystages.tiobetics.TiobeTicsStage
 
 DOCKER_IMAGE_PATH = 'cs-fca-r1-docker.navkit-pipeline.tt3.com/tomtom/android-x86_64-toolchain'
 
@@ -157,6 +158,29 @@ pipeline {
                                      )
               codeanalysis.run()
             }
+          }
+        }
+      }
+    }
+
+    stage('Tiobe') {
+      when {
+        expression { ((params.MODALITY == 'NORMAL') && wasMerged) }
+      }
+      steps {
+        lock(resource: 'LOCK_RESOURCE_FOR_TIOEBETICS')
+        {
+          script {
+            def toolchainVersion = getToolChainVersion()
+            echo "Toolchain Version is ${toolchainVersion}"
+            def tiobeTicsAnalysis = new TiobeTicsStage(steps: this,
+                                                      buildDockerImage: "${DOCKER_IMAGE_PATH}:${toolchainVersion}",
+                                                      sourceDir: "${WORKSPACE}/",
+                                                      tiobeBinary: "Ubuntu14.04-64bit",
+                                                      tiobeConfiguration: "r1",
+                                                      tiobeProject: "CS_R1-Main",
+                                                      )
+            tiobeTicsAnalysis.run()
           }
         }
       }
