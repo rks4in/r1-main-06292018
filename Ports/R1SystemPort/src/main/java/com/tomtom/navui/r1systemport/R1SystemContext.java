@@ -49,7 +49,6 @@ public class R1SystemContext extends StockSystemContext {
                 return;
             }
         }
-
         // Wrap the listener, so we can request permissions before invoking it
         if (listener != null) {
             mOnReadyListenerWrapper = new RequestPermissionOnReadyListenerWrapper(listener);
