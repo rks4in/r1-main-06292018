@@ -81,7 +81,7 @@ pipeline {
                      ((params.MODALITY == 'NORMAL') && wasMerged) }
       }
       steps {
-        lock(resource: 'LOCK_RESOURCE_FOR_PROTEX_MAIN')
+        lock(resource: 'LOCK_RESOURCE_FOR_PROTEX')
         {
           script {
             if (params.MODALITY != 'PROTEX' && params.VERSION != '') {
@@ -129,12 +129,13 @@ pipeline {
         }
       }
     }
+
     stage('Coverity') {
        when {
         expression { ((params.MODALITY == 'NORMAL') && wasMerged) }
        }
       steps {
-        lock(resource: 'LOCK_RESOURCE_FOR_COVERITY_MAIN')
+        lock(resource: 'LOCK_RESOURCE_FOR_COVERITY')
         {
           script {
             withCredentials([usernamePassword(credentialsId: 'tt_service_account_creds', usernameVariable: 'COVUSER', passwordVariable: 'COVPASS')]) {
