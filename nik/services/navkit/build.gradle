@@ -3,6 +3,11 @@ apply from: "${rootDir}/gradle/androidProject.gradle"
 apply from: 'ivyDependencyResolver.gradle'
 
 android {
+    packagingOptions {
+        pickFirst 'lib/armeabi-v7a/libgnustl_shared.so'
+        pickFirst 'lib/x86_64/libgnustl_shared.so'
+    }
+
     externalNativeBuild {
         ndkBuild {
             path 'src/main/jni/Android.mk'
