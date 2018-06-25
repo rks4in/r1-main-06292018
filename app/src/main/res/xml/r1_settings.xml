@@ -977,12 +977,14 @@
                     tomtom:navui_settingLabel="@string/navui_disable_timezones_in_eta"
                     tomtom:navui_key="com.tomtom.navui.feature.disable.timezones.in.eta"
                     tomtom:navui_defaultValue="false" />
-
                 <ToggleSetting
                     tomtom:navui_settingLabel="@string/navui_use_system_time_for_eta"
                     tomtom:navui_key="com.tomtom.navui.feature.use.system.time.not.gps.time"
-                    tomtom:navui_defaultValue="false" />
-
+                    tomtom:navui_defaultValue="false">
+                    <VersionChange
+                        tomtom:navui_settingVersionUpgradeTo="146"
+                        tomtom:navui_defaultValue="true"/>
+                </ToggleSetting>
                 <ToggleSetting
                     tomtom:navui_settingLabel="@string/navui_enable_configure_buildings"
                     tomtom:navui_key="com.tomtom.navui.setting.feature.configure.buildings"
@@ -1770,14 +1772,7 @@
                     tomtom:navui_settingVersionUpgradeTo="145"
                     tomtom:navui_defaultValue="false"/>
             </ToggleSetting>
-            <ToggleSetting
-                tomtom:navui_settingLabel="@string/navui_use_system_time_for_eta"
-                tomtom:navui_key="com.tomtom.navui.feature.use.system.time.not.gps.time"
-                tomtom:navui_defaultValue="false">
-                <VersionChange
-                    tomtom:navui_settingVersionUpgradeTo="146"
-                    tomtom:navui_defaultValue="true"/>
-            </ToggleSetting>
+
         </SettingScreen>
     </SettingScreen>
 
