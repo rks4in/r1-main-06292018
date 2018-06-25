@@ -139,7 +139,9 @@ pipeline {
         {
           script {
             withCredentials([usernamePassword(credentialsId: 'tt_service_account_creds', usernameVariable: 'COVUSER', passwordVariable: 'COVPASS')]) {
-              def CoverityConfig = ['--java --template']
+              def CoverityConfig = ['--java --template',
+                                    '--compiler x86_64-linux-android-g++ --comptype g++ --template',
+                                    '--compiler cc1plus --comptype gcc --template' ]
               def toolchainVersion = getToolChainVersion()
               def buildDockerImage = "${DOCKER_IMAGE_PATH}:${toolchainVersion}"
               // We have to set the Djdk.internal.lambda.dumpProxyClasses environmental variable because Coverity Build some how wants this
