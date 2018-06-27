@@ -12,14 +12,6 @@
             ],
             "locked": "27.0.2"
         },
-        "com.google.guava:guava": {
-            "firstLevelTransitive": [
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Libs_InputHandler",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Libs_LocationActionHandler",
-                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Ports_R1SystemPort"
-            ],
-            "locked": "23.4-android"
-        },
         "com.tomtom.navui.navkit:CrashHandlerJniAar": {
             "firstLevelTransitive": [
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_services_navkit"
