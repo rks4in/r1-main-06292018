@@ -9,7 +9,7 @@
  *
  */
 
-@Library('cs-delivery-pipeline@2.1.3') _
+@Library('cs-delivery-pipeline@2.1.5') _
 
 import com.tomtom.cs.deliverypipeline.stages.commitstage.bitbucket.CommitStage
 import com.tomtom.cs.deliverypipeline.stages.qualitystages.protex.ProtexStage
@@ -174,6 +174,10 @@ pipeline {
         lock(resource: 'LOCK_RESOURCE_FOR_TIOEBETICS')
         {
           script {
+            // Generating code coverage reports is only required for the Tics stage
+            // Clean is required otherwise tests are not re-run using tool
+            callGradleInDocker("clean testReleaseUnitTestCoverage")
+
             def toolchainVersion = getToolChainVersion()
             echo "Toolchain Version is ${toolchainVersion}"
             def tiobeTicsAnalysis = new TiobeTicsStage(steps: this,
