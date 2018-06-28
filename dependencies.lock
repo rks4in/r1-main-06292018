@@ -148,6 +148,7 @@
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Libs_LocationActionHandler",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Ports_R1SystemPort",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:TestApps_fcaclock",
+                "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Tests_kpi",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:harman_interfaces",
                 "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:nik_navkitresources",
@@ -321,6 +322,9 @@
             "project": true
         },
         "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:TestApps_fcaclock": {
+            "project": true
+        },
+        "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:Tests_kpi": {
             "project": true
         },
         "r1-main_master-BLRUSLVIKQHRIBUSRG7LMCZQBBNYEWROKEUJPWWC4PH7R5NQSFLA:app": {
