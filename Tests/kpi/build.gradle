@@ -1,0 +1,14 @@
+apply plugin: 'java'
+
+dependencies {
+    // Explicitly specify guava and gson version
+    // to prevent using their old versions from TestFrameworkGenerics
+    testImplementation 'com.google.guava:guava:23.6-jre'
+    testImplementation 'com.google.code.gson:gson:2.8.5'
+    testImplementation 'com.tomtom.r1.navkit:PerfAgentController:0.0.2'
+    testImplementation 'com.tomtom.r1.navkit:TestFrameworkGenerics:0.0.3'
+
+    testImplementation 'org.slf4j:slf4j-api:+'
+    testImplementation 'com.googlecode.json-simple:json-simple:+'
+    testImplementation 'io.appium:java-client:+'
+}

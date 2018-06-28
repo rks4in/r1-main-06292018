@@ -151,6 +151,9 @@ allprojects {
 
     dependencyLock{
         globalLockFile = 'dependencies.lock'
+
+        // skip guava to be locked because 2 different versions are used for android and jre
+        skippedDependencies = ['com.google.guava:guava']
     }
 
     tasks.withType(JavaCompile) {
@@ -174,6 +177,10 @@ subprojects {
     dependencies {
         toolchain "com.tomtom.r1:toolchain:+"
     }
+}
+
+project(':Tests_kpi').afterEvaluate {
+    it.test.enabled = it.hasProperty("kpiTests")
 }
 
 // A special way to define local dependencies is required by dependency lock plugin
