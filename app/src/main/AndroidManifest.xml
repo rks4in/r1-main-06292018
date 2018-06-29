@@ -23,6 +23,9 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
 
+    <!-- For Cluster service -->
+    <uses-permission android:name="android.permission.TYPE_SYSTEM_OVERLAY" />
+
     <!-- Tell the system this app requires OpenGL ES 2.0 -->
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -84,6 +87,9 @@
         <service android:name="com.tomtom.navui.sigpromptkit.spokenguidance.SpokenGuidanceService"/>
         <service android:name="com.tomtom.navui.stockaudio.spp.SoundPromptPlayerService" />
         <service android:name="com.tomtom.navui.audio.source.SourceManagerService" />
+
+        <!-- <Cluster Service> -->
+        <service android:name=".ClusterDisplayService" android:exported="true"/>
 
         <!-- <NavKit Services> -->
 

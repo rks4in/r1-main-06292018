@@ -30,6 +30,9 @@ dependencies {
     /* ApiKit */
     implementation "com.tomtom.navui:Kits_SignatureApiKit:${versions.navUiLocked}"
     implementation "com.tomtom.navui:Kits_UtilKit:${versions.navUiLocked}"
+    /* Cluster service */
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.google.android.gms:play-services-maps:12.0.1'
     /* Local projects*/
     localDependency(project, ':Kits_R1CoreKit')
     localDependency(project, ':Kits_R1AppKit')
