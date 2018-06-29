@@ -11,10 +11,12 @@
 
 package com.tomtom.r1navapp;
 
+import android.annotation.TargetApi;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
@@ -31,13 +33,14 @@ import com.tomtom.navui.taskkit.route.RouteGuidanceTask;
 import com.tomtom.navui.util.Log;
 
 import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 
 public class R1TimeZoneHandler implements RouteGuidanceTask.CurrentPositionListener,
                                           TaskContext.ContextStateListener {
 
     private static final String TAG = "R1TimeZoneHandler";
 
-    private AppContext mAppContext;
+    private final AppContext mAppContext;
 
     private CurrentPositionTask mCurrentPositionTask;
 
@@ -47,7 +50,7 @@ public class R1TimeZoneHandler implements RouteGuidanceTask.CurrentPositionListe
 
     private final Object mFcaClockServiceLock = new Object();
 
-    private Handler mHandler;
+    private final Handler mHandler;
 
     private final ServiceConnection mFcaClockServiceConnection = new ServiceConnection() {
 
@@ -64,6 +67,7 @@ public class R1TimeZoneHandler implements RouteGuidanceTask.CurrentPositionListe
             // Send previous TimeZone if Service is Reconnected
             if (mPreviousTimeZone != null) {
                 sendTimeZone(mPreviousTimeZone);
+                sendDayLightOffset(mPreviousTimeZone);
             } else {
                 initTaskContext();
             }
@@ -117,44 +121,73 @@ public class R1TimeZoneHandler implements RouteGuidanceTask.CurrentPositionListe
                     RouteGuidanceTask.PositionStatusChangedListener.PositionStatus.GPS) {
 
                 TimeZone timeZone = mCurrentPositionTask.getTimeZone();
+
                 if (!timeZone.equals(mPreviousTimeZone)) {
                     if (Log.D) {
-                        Log.d(TAG, "onCurrentPositionResult: new TimeZone received - " +
-                                timeZone.getDisplayName());
+                        Log.d(TAG, "onCurrentPositionResult: new TimeZone received - " + timeZone.getDisplayName());
                     }
-
                     sendTimeZone(timeZone);
-
-                    mPreviousTimeZone = timeZone;
                 }
+
+                // If mPreviousTimeZone is null, then we should proceed with sending DayLight Offset to current time zone.
+                if ((mPreviousTimeZone == null) || (timeZone.getDSTSavings() != mPreviousTimeZone.getDSTSavings())) {
+                    if (Log.D) {
+                        Log.d(TAG, "onCurrentPositionResult: new DST Saving received - " + timeZone.getDisplayName());
+                    }
+                    sendDayLightOffset(timeZone);
+                }
+
+                if (!timeZone.equals(mPreviousTimeZone)) { mPreviousTimeZone = timeZone; }
             }
         }
     }
 
-    private void sendTimeZone(TimeZone timeZone) {
+    @TargetApi(Build.VERSION_CODES.N)
+    private void sendDayLightOffset(TimeZone timeZone) {
         mHandler.post(() -> {
             synchronized (mFcaClockServiceLock) {
-                if (mFcaClockService != null) {
+                if ((mFcaClockService != null) && (timeZone != null)) {
                     try {
-                        int errorCode = mFcaClockService.setTimeZone(timeZone.getID(),
-                                timeZone.getDSTSavings());
+                        // Converted to minutes since interface requires
+                        int dstOffsetInMinutes = Math.toIntExact(TimeUnit.MILLISECONDS.toMinutes((long) timeZone.getDSTSavings()));
+                        int errorCode = mFcaClockService.setDayLightSavingsOffset(dstOffsetInMinutes);
 
-                        if (errorCode == Constants.SERVICE_SEND_SUCCESS) {
-                            if (Log.D) {
-                                Log.d(TAG, "TimeZone was successfully sent to " +
-                                                IFcaClockService.class.getCanonicalName() +
-                                        ", id = " + timeZone.getID() +
-                                        " dstOffsetMilli = " + timeZone.getDSTSavings());
-                            }
-                        } else {
-                            if (Log.W) {
-                                Log.w(TAG, "Can not send TimeZone to F" +
+                        if (errorCode != Constants.SERVICE_SEND_SUCCESS) {
+                            if (Log.E) {
+                                Log.e(TAG, "Cannot send Day Light Offset to " +
                                         IFcaClockService.class.getCanonicalName() +
                                         ", Error Code = " + errorCode);
                             }
                         }
-
                     } catch (RemoteException e) {
+                        e.printStackTrace();
+                    } catch (ArithmeticException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+
+    @TargetApi(Build.VERSION_CODES.N)
+    private void sendTimeZone(TimeZone timeZone) {
+        mHandler.post(() -> {
+            synchronized (mFcaClockServiceLock) {
+                if ((mFcaClockService != null) && (timeZone != null)) {
+                    try {
+                        int timeZoneOffsetInMinutes = Math.toIntExact(TimeUnit.MILLISECONDS.toMinutes((long) timeZone.getRawOffset()));
+                        int errorCode = mFcaClockService.setTimeZoneOffset(timeZoneOffsetInMinutes, timeZone.getID());
+
+                        if (errorCode != Constants.SERVICE_SEND_SUCCESS) {
+                            if (Log.E) {
+                                Log.e(TAG, "Can not send TimeZone offset and id" +
+                                        IFcaClockService.class.getCanonicalName() +
+                                        ", Error Code = " + errorCode);
+                            }
+                        }
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    } catch (ArithmeticException e) {
                         e.printStackTrace();
                     }
                 }

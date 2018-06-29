@@ -11,11 +11,19 @@ public class FcaClockService extends Service {
     private final IFcaClockService.Stub mBinder = new IFcaClockService.Stub() {
 
         @Override
-        public int setTimeZone(String timeZone, int dstOffsetMilli) {
-            Log.i(TAG, "setTimeZone - Got data ( " + timeZone +
-                    " ) dstOffset ( " + dstOffsetMilli + " )" );
+        public int setTimeZoneOffset(int timeZoneOffset, String timeZoneId) {
+            Log.i(TAG, "setTimeZoneOffset - Got timeZoneOffset ( " + timeZoneOffset +
+                    " ) timeZoneId ( " + timeZoneId + " )" );
             return Constants.SERVICE_SEND_SUCCESS;
         }
+
+        @Override
+        public int setDayLightSavingsOffset(int daylightSavingsOffset) {
+            Log.i(TAG, "setDayLightSavingOffset - Got data dstOffset ( " + daylightSavingsOffset +
+                    " )" );
+            return Constants.SERVICE_SEND_SUCCESS;
+        }
+
     };
 
     @Override
