@@ -1,5 +1,8 @@
 apply plugin: 'com.android.library'
 apply from: "${rootDir}/gradle/androidProject.gradle"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
 
 dependencies {
     implementation "com.google.guava:guava:16+"
@@ -10,7 +13,10 @@ dependencies {
     /* Local projects*/
     localDependency(project, ':Kits_R1CoreKit')
 
+    testImplementation "com.tomtom.navui:Kits_TestKit_RobolectricTestKit:${versions.navUiLocked}"
+    testImplementation "io.mockk:mockk:1.8.3"
     testImplementation "junit:junit:4.12"
+    testImplementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.41"
     testImplementation "org.mockito:mockito-core:2.17.0"
     testImplementation "org.robolectric:robolectric:3.8"
 }
